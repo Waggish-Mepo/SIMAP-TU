@@ -57,7 +57,7 @@ class CreateStudents extends Migration
             $table->date('tgl_lahir_ayah');
             $table->string('pendidikan_ayah');
             $table->string('pekerjaan_ayah');
-            $table->string('penghasilan_perbulan');
+            $table->string('penghasilan_perbulan_ayah');
             $table->string('berkebutuhan_khusus_ayah');
             $table->integer('no_hp_ayah');
             $table->string('email_ayah');
@@ -67,7 +67,7 @@ class CreateStudents extends Migration
             $table->date('tgl_lahir_ibu');
             $table->string('pendidikan_ibu');
             $table->string('pekerjaan_ibu');
-            $table->string('penghasilan_perbulan');
+            $table->string('penghasilan_perbulan_ibu');
             $table->string('berkebutuhan_khusus_ibu');
             $table->integer('no_hp_ibu');
             $table->string('email_ibu');
