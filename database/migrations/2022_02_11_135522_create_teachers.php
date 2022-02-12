@@ -20,7 +20,6 @@ class CreateTeachers extends Migration
             $table->integer('nik');
             $table->integer('no_induk_yayasan');
             $table->string('no_ukg');
-            $table->string('nama');
             $table->string('jk_teacher');
             $table->string('tempat_lahir');
             $table->date('tgl_lahir_teacher');
@@ -67,7 +66,7 @@ class CreateTeachers extends Migration
             $table->integer('no_sertifikasi');
             $table->integer('tahun_sertifikasi');
             $table->string('bidang_studi_sertifikasi');
-            $table->string('nrg_sertifikasi');
+            $table->integer('nrg_sertifikasi');
             $table->integer('no_peserta_sertifikasi');
             $table->string('jenjang_pendidikan');
             $table->string('gelar_akademik');
