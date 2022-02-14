@@ -17,7 +17,6 @@ class CreateStudentGroupsTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('major_id');
             $table->string('nama');
-            $table->timestamps();
         });
     }
 
