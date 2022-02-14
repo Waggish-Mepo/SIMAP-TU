@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStudentGroupsTable extends Migration
+class CreateBatchesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateStudentGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('student_groups', function (Blueprint $table) {
+        Schema::create('batches', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('batch_id');
-            $table->string('nama');
+            $table->uuid('major_id');
+            $table->string('entry_year');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +28,6 @@ class CreateStudentGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_groups');
+        Schema::dropIfExists('batches');
     }
 }
