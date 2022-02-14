@@ -15,7 +15,7 @@ class CreateStudentGroupsTable extends Migration
     {
         Schema::create('student_groups', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('major_id');
+            $table->uuid('batch_id');
             $table->string('nama');
         });
     }
