@@ -26,5 +26,9 @@ class User extends Authenticatable
         'status'
     ];
 
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
     
 }
