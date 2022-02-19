@@ -9,7 +9,7 @@
     </title>
 </head>
 <body>
-    <!-- main content -->
+
 <div class="flex min-h-screen mx-auto max-w-fit flex-nowrap" >
 
 <div class=" xl:ml-0 xl:mt-0 sm:content-center sm:-ml-64 sm:mt-44">
@@ -70,4 +70,3 @@
 @include('layout.script')
 </body>
 </html>
-
