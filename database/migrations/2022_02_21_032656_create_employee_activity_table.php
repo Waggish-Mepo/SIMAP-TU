@@ -19,7 +19,6 @@ class CreateEmployeeActivityTable extends Migration
             $table->string('nama_kegiatan')->nullable();
             $table->date('tgl_kegiatan')->nullable();
             $table->string('kategori')->nullable();
-            $table->string('sertifikat')->nullable();
             $table->timestamps();
         });
     }
