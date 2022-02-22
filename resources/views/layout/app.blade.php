@@ -42,32 +42,7 @@
                         </path>
                         </svg>
 
-                  </div>
-                </div>
-
-                <button type="submit" class="px-5 py-2 text-sm font-medium text-center text-white bg-blue-900 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 w-72 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 xl:px-0 xl:h-11 xl:text-base sm:h-16 sm:px-72 sm:text-2xl">Login</button>
-            </form>
-        </div>
-    </div>
-    <div class="xl:flex sm:hidden ">
-         <img class="bg-blue-900 xl:w-full xl:h-screen ml-52 " src="{{ asset('src/wave.png') }}" alt="description of myimage">
-    </div>
-    <div class="flex w-full h-screen text-center bg-blue-900 ml-36 flex-nowrap xl:flex sm:hidden">
-        <div class="w-2/3 mt-24 ml-20 transition-transform bg-blue-900 sm:max-w-7xl">
-                <img class="max-w-sm mx-6 ml-9" src="{{ asset('src/pic1.png') }}" alt="description of myimage">
-                <br/>
-            <div class="w-full max-w-md mx-6 ">
-                <h6 class="text-lg font-bold text-white">Sistem Informasi Management Tata Usaha</h6>
-                <a class="text-sm text-white font-poppins">
-                    simapTu merupakan inovasi dibidang IT yang dikembangkan
-                untuk memudahkan pelayanan persuratan dan layanan
-            informasi secara praktis dan efesien.
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
 @include('layout.script')
 </body>
-</html>
+</html>-
 

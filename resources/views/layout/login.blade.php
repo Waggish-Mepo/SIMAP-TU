@@ -49,7 +49,7 @@
             </form>
         </div>
     </div>
-    <div class="xl:flex sm:hidden ">
+    <div class="hidden sm:flex-none xl:flex">
          <img class="bg-blue-900 xl:w-full xl:h-screen ml-52 " src="{{ asset('src/wave.png') }}" alt="description of myimage">
     </div>
     <div class="flex w-full h-screen text-center bg-blue-900 ml-36 flex-nowrap xl:flex sm:hidden">
