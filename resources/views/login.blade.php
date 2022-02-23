@@ -56,17 +56,6 @@
     <script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script>
     <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
     <script>
-        (function(){
-            if($('#password').is(':focus')) {
-                $('#input-hide').toggleClass('border-gray-300');
-                $('#input-hide').toggleClass('border-primary');
-                $('#input-hide').toggleClass('ring-primary');
-            }else {
-                $('#input-hide').toggleClass('border-gray-300');
-                $('#input-hide').toggleClass('border-primary');
-                $('#input-hide').toggleClass('ring-primary');
-            }
-        });
         $('#btn-hide-pass').click(function (e) {
             const type = $('#password').attr('type') === 'password' ? 'text' : 'password';
             $('#password').attr('type', type);
