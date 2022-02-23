@@ -15,7 +15,7 @@ class CreateVisitLettersTable extends Migration
     {
         Schema::create('visit_letters', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->numeric('no_surat');
+            $table->string('no_surat');
             $table->string('lampiran');
             $table->string('perihal');
             $table->string('kepada');
