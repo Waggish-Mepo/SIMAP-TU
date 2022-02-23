@@ -16,8 +16,8 @@ class CreateCertificatesTable extends Migration
         Schema::create('certificates', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('employee_id');
-            $table->string('nama_kegiatan');
-            $table->date('tgl_kegiatan');
+            $table->string('nama');
+            $table->date('tanggal');
         });
     }
 
