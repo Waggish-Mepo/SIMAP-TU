@@ -43,8 +43,8 @@
                     <button type="submit" class="text-white bg-primary hover:bg-primary focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-primary dark:hover:bg-primary dark:focus:ring-primary">Masuk</button>
                 </form>
                 <div class="mt-6 bg-gray-100 rounded border-2 border-gray-300 p-4 text-center invisible text-md font-bold">
-                    <p>Login  gagal</p>
-                    <p>Mohon diperiksa kembali username dan password</p>
+                    <p>Gagal Masuk</p>
+                    <p>Mohon periksa kembali username dan password</p>
                     <p>yang digunakan.</p>
                 </div>
             </div>
