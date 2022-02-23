@@ -16,7 +16,13 @@ class CreateMeetingsTable extends Migration
         Schema::create('meetings', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('notula_id');
+            $table->string('pimpinan_rapat')->nullable();
+            $table->string('materi')->nullable();
             $table->integer('daftar_hadir')->nullable();
+            $table->date('tanggal')->nullable();
+            $table->string('waktu')->nullable();
+            $table->string('tempat')->nullable();
+            $table->boolean('status')->nullable();
             $table->string('dokumentasi')->nullable();
             $table->timestamps();
         });

@@ -13,14 +13,9 @@ class CreateNotulaTable extends Migration
      */
     public function up()
     {
-        Schema::create('notula', function (Blueprint $table) {
+        Schema::create('notulas', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('meeting_id');
-            $table->date('tanggal')->nullable();
-            $table->time('waktu')->nullable();
-            $table->string('materi')->nullable();
-            $table->string('tempat')->nullable();
-            $table->string('pimpinan_rapat')->nullable();
             $table->string('notulis')->nullable();
             $table->integer('presensi')->nullable();
             $table->string('pembukaan')->nullable();
@@ -39,6 +34,6 @@ class CreateNotulaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notula');
+        Schema::dropIfExists('notulas');
     }
 }

@@ -16,12 +16,11 @@ class CreateAgendaMeetingsTable extends Migration
         Schema::create('agenda_meetings', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('meeting_id');
+            $table->integer('order')->nullable();
             $table->string('narasumber')->nullable();
-            $table->date('tanggal')->nullable();
-            $table->string('tempat')->nullable();
-            $table->jsonb('waktu')->nullable();
-            $table->jsonb('acara')->nullable();
-            $table->jsonb('pengisi_acara')->nullable();
+            $table->time('waktu')->nullable();
+            $table->string('pengisi_acara')->nullable();
+            $table->string('acara')->nullable();
             $table->timestamps();
         });
     }
