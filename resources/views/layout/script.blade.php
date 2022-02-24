@@ -2,6 +2,6 @@
 <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
 <script>
     $('.btn-mobile-sidebar').click(function(){
-        $('aside').toggleClass("-translate-x-full");
+        $('aside').toggleClass("-translate-x-full relative");
     });
 </script>
