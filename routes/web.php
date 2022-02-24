@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', function () {
-    return view('login');
-});
+// Auth
+Route::get('/', [AuthController::class, 'check']);
+Route::get('/login', [AuthController::class, 'check'])->name('login');
+Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('auth');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/example-layout', function () {
-    return view('example');
+Route::group(['middleware' => ['auth', 'role:ADMIN,TEACHER,HEADMASTER']], function(){
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+    // Route::get('/change-password', function () {
+    //     return view('shared.change_password');
+    // })->name('change-password');
+    // Route::patch('/change-password/update', [ManageAccountController::class, 'updatePassword'])->name('update-password');
 });

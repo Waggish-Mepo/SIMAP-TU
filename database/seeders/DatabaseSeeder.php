@@ -20,21 +20,28 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'adminuser',
                 'username' => 'adminuser123',
-                'password' => Hash::make('adminuser123'), 
-                'role' => USER::ADMIN,
+                'password' => Hash::make('adminuser123'),
+                'role' => User::ADMIN,
+                'status' => true
             ],
             [
-                'name' => 'teacheruser',
-                'username' => 'teacheruser123',
-                'password' => Hash::make('teacheruser123'), 
-                'role' => USER::TEACHER,
+                'name' => 'employeeuser',
+                'username' => 'employeeuser123',
+                'password' => Hash::make('employeeuser123'),
+                'role' => User::EMPLOYEE,
+                'status' => true
             ],
             [
                 'name' => 'headmasteruser',
                 'username' => 'headmasteruser123',
-                'password' => Hash::make('headmasteruser123'), 
-                'role' => USER::HEADMASTER,
+                'password' => Hash::make('headmasteruser123'),
+                'role' => User::HEADMASTER,
+                'status' => true
             ],
-        ];;
+        ];
+
+        foreach ($users as $user) {
+            User::factory($user)->create();
+        }
     }
 }

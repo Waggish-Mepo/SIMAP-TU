@@ -22,7 +22,7 @@ class UserFactory extends Factory
 
         $roles = [
             User::ADMIN,
-            User::TEACHER,
+            User::EMPLOYEE,
             User::HEADMASTER,
         ];
 
@@ -31,10 +31,9 @@ class UserFactory extends Factory
             'userable_id' => $this->faker->uuid(),
             'name' => $name,
             'username' => $username,
-            'password' => Hash::make($username), 
+            'password' => Hash::make($username),
             'role' => $this->faker->randomElement($roles),
             'status' => true
-            
         ];
     }
 

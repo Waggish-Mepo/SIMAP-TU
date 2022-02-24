@@ -11,7 +11,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
    const ADMIN = 'ADMIN';
-   const TEACHER = 'TEACHER';
+   const EMPLOYEE = 'EMPLOYEE';
    const HEADMASTER = 'HEADMASTER';
 
    public $incrementing = false;
@@ -30,5 +30,5 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-    
+
 }
