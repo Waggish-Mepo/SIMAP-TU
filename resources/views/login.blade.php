@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="h-screen hidden lg:block xl:-ml-28 2xl:-ml-36" style="background-color: #1F3986">
-            <img class="h-screen" src="{{asset('img/svg/login-right.svg')}}" alt="" srcset="">
+            <div class="h-screen bg-no-repeat" style="background-image: url('{{asset('img/svg/login-right.svg')}}')"></div>
         </div>
     </div>
     <script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script>
