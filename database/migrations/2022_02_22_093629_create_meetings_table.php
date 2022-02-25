@@ -18,7 +18,7 @@ class CreateMeetingsTable extends Migration
             $table->uuid('notula_id');
             $table->string('pimpinan_rapat')->nullable();
             $table->string('materi')->nullable();
-            $table->integer('daftar_hadir')->nullable();
+            $table->jsonb('daftar_hadir')->nullable();
             $table->date('tanggal')->nullable();
             $table->string('waktu')->nullable();
             $table->string('tempat')->nullable();
