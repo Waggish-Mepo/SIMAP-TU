@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Employee;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
@@ -40,8 +41,17 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
+        $employeeId = '';
+        $employeeNama = '';
+
         foreach ($users as $user) {
-            User::factory($user)->create();
+            $createUser = User::factory($user)->create();
+            $employeeId = $createUser->userable_id;
+            $employeeNama = $createUser->name;
+
+            Employee::factory(['id' => $employeeId, 'nama' => $employeeNama])->create();
+
+            $createUser->save();
         }
     }
 }
