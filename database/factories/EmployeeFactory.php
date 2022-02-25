@@ -63,25 +63,20 @@ class EmployeeFactory extends Factory
         ];
 
         return [
-            'id' => $this->faker->uuid(),
-            'nama' => $nama,
             'status_pegawai' => $this->faker->randomElement($status_pegawai),
-            'nip' => $this->faker->numerify('#################'),
-            'nigk' => $this->faker->numerify('############'),
-            'nuptk' => $this->faker->numerify('###############'),
+            'nip' => $this->faker->numerify('#######'),
+            'nigk' => $this->faker->numerify('######'),
+            'nuptk' => $this->faker->numerify('#####'),
             'jenis_ptk' => $this->faker->randomElement($jenis_ptk),
-            'sk_pengangkatan' => $this->faker->numerify('###############'),
+            'sk_pengangkatan' => $this->faker->numerify('######'),
             'tmt_pengangkatan' => $this->faker->date(),
             'lembaga_pengangkatan' => $this->faker->randomElement($lembaga_pengangkatan),
-            'sk_cpns' => $this->faker->numerify('###############'),
+            'sk_cpns' => $this->faker->numerify('########'),
             'tmt_pns' => $this->faker->date(),
-            'pangkat' => '',
             'sumber_gaji' => $this->faker->randomElement($sumber_gaji),
             'kartu_pegawai' => $this->faker->numerify('#########'),
             'kartu_suami' => $this->faker->numerify('#########'),
             'kartu_istri' => $this->faker->numerify('#########'),
-            'ktp' => '',
-            'kk' => '',
         ];
     }
 }
