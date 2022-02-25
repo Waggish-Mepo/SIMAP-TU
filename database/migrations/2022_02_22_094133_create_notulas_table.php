@@ -16,13 +16,13 @@ class CreateNotulasTable extends Migration
         Schema::create('notulas', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('meeting_id');
-            $table->string('notulis')->nullable();
-            $table->integer('presensi')->nullable();
-            $table->string('pembukaan')->nullable();
-            $table->string('pembahasan_rapat')->nullable();
-            $table->string('penutup')->nullable();
-            $table->string('pokok_pembahasan')->nullable();
-            $table->string('hasil_pembahasan')->nullable();
+            $table->string('notulis');
+            $table->integer('presensi');
+            $table->string('pembukaan');
+            $table->string('pembahasan_rapat');
+            $table->string('penutup');
+            $table->string('pokok_pembahasan');
+            $table->string('hasil_pembahasan');
             $table->timestamps();
         });
     }
