@@ -10,7 +10,7 @@
             <span class="ml-3">Dashboard</span>
         </a>
     </li>
-    <li>
+    {{-- <li>
         <button type="button"
             class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
             aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
@@ -120,5 +120,5 @@
             </svg>
             <span class="flex-1 ml-3 whitespace-nowrap">Sign Up</span>
         </a>
-    </li>
+    </li> --}}
 </ul>
