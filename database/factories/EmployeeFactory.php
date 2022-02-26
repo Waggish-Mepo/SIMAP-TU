@@ -64,6 +64,7 @@ class EmployeeFactory extends Factory
 
         return [
             'status_pegawai' => $this->faker->randomElement($status_pegawai),
+            'alamat' => $this->faker->address,
             'nip' => $this->faker->numerify('#######'),
             'nigk' => $this->faker->numerify('######'),
             'nuptk' => $this->faker->numerify('#####'),
