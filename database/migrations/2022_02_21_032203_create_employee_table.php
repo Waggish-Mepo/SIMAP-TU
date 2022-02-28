@@ -20,6 +20,7 @@ class CreateEmployeeTable extends Migration
             $table->string('alamat')->nullable();
             $table->integer('nip')->nullable();
             $table->integer('nigk')->nullable();
+            $table->integer('nuptk')->nullable();
             $table->string('jenis_ptk')->nullable();
             $table->integer('sk_pengangkatan')->nullable();
             $table->date('tmt_pengangkatan')->nullable();
