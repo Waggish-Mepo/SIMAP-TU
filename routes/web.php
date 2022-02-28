@@ -21,7 +21,7 @@ Route::get('/login', [AuthController::class, 'check'])->name('login');
 Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('auth');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::group(['middleware' => ['auth', 'role:ADMIN,TEACHER,HEADMASTER']], function(){
+Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], function(){
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
     // Route::get('/change-password', function () {
