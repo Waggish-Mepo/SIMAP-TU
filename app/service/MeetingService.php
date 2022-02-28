@@ -24,17 +24,13 @@ class Meeting
         return $meet;
     }
 
-    public function detail($meetingId, $agendaId, $employeeId)
+    public function detail($meetingId)
     {
         ModelsMeeting::findOrFail($meetingId);
-        AgendaMeeting::findOrFail($agendaId);
-        Employee::findOrFail($employeeId);
 
         $meet = ModelsMeeting::findOrFail($meetingId);
-        $agenda = AgendaMeeting::findOrFail($agendaId);
-        $employee = Employee::findOrFail($employeeId);
 
-        return [$meet->toarray(), $agenda->toarray(), $employee->toarray()];
+        return $meet->toarray();
     }
 
     public function create($notulaId)
