@@ -19,21 +19,18 @@ class DatabaseSeeder extends Seeder
     {
         $users = [
             [
-                'name' => 'adminuser',
                 'username' => 'adminuser123',
                 'password' => Hash::make('adminuser123'),
                 'role' => User::ADMIN,
                 'status' => true
             ],
             [
-                'name' => 'employeeuser',
                 'username' => 'employeeuser123',
                 'password' => Hash::make('employeeuser123'),
                 'role' => User::EMPLOYEE,
                 'status' => true
             ],
             [
-                'name' => 'headmasteruser',
                 'username' => 'headmasteruser123',
                 'password' => Hash::make('headmasteruser123'),
                 'role' => User::HEADMASTER,
@@ -41,17 +38,8 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
-        $employeeId = '';
-        $employeeNama = '';
-
         foreach ($users as $user) {
-            $createUser = User::factory($user)->create();
-            $employeeId = $createUser->userable_id;
-            $employeeNama = $createUser->name;
-
-            Employee::factory(['id' => $employeeId, 'nama' => $employeeNama])->create();
-
-            $createUser->save();
+            User::factory($user)->create();
         }
     }
 }
