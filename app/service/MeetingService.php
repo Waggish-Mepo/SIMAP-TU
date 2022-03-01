@@ -44,13 +44,9 @@ class Meeting
     public function create($payload)
     {
         $meet = new ModelsMeeting;
-        $notula = new AgendaMeeting;
 
         $meet->id = Uuid::uuid();
-        $notula->id = $meet->id;
         $meet = $this->fill($meet, $payload);
-
-        $notula->save();
         $meet->save();
 
         return $meet->toarray();
@@ -73,7 +69,7 @@ class Meeting
             $meeting->$key = $value;
         }
 
-        Validator::make($meeting->toarray(), [
+        $validate = Validator::make($meeting->toarray(), [
             'materi' => 'nullable|string',
             'tempat' => 'nullable|string',
             'pimpinan_rapat' => 'nullable|string',
@@ -81,7 +77,11 @@ class Meeting
             'waktu' => 'nullable|string',
             'status' => 'nullable|boolean',
             'dokumentasi' => 'nullable|string',
-        ])->validate();
+        ]);
+
+        if ($validate->fails()) {
+            return $validate->errors();
+        }
 
         return $meeting;
     }
