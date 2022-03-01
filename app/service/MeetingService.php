@@ -10,18 +10,26 @@ use Illuminate\Support\Facades\Validator;
 
 class Meeting
 {
-
-    public function index(ModelsMeeting $meeting, AgendaMeeting $agenda)
+    public function index($fillter = [])
     {
-        $meet = [
-            'materi' => $meeting->materi,
-            'tanggal' => $meeting->tanggal,
-            'narasumber' => $agenda->narasumber,
-            'waktu' => $meeting->waktu,
-            'status' => $meeting->status,
-        ];
+        $orderBy = $fillter['orderBy'] ?? 'DESC';
+        $per_page = $fillter['per_page'] ?? 99;
+        $materi = $fillter['materi'] ?? null;
+        $status = $fillter['status'] ?? null;
 
-        return $meet;
+        $query = ModelsMeeting::orderBy('ceated_at', $orderBy);
+
+        if ($materi === null) {
+            $query->where('materi', 'LIKE', '%' . $materi . '%');
+        }
+
+        if ($status === null) {
+            $query->where('status', $status);
+        }
+
+        $meet = $query->simplePaginate($per_page);
+
+        return $meet->toarray();
     }
 
     public function detail($meetingId)
@@ -33,42 +41,46 @@ class Meeting
         return $meet->toarray();
     }
 
-    public function create($notulaId)
+    public function create($payload)
     {
-        Notula::findOrFail($notulaId);
-
         $meet = new ModelsMeeting;
+        $notula = new AgendaMeeting;
 
         $meet->id = Uuid::uuid();
-        $meet->notula_id = $notulaId;
-        $meet = $this->fill($meet);
+        $notula->id = Uuid::uuid();
+        $meet = $this->fill($meet, $payload);
 
+        $notula->save();
         $meet->save();
 
         return $meet->toarray();
     }
 
-    public function update($meetingId)
+    public function update($meetingId, $payload)
     {
         ModelsMeeting::findOrFail($meetingId);
 
         $meet = ModelsMeeting::findOrFail($meetingId);
-        $meet = $this->fill($meet);
+        $meet = $this->fill($meet, $payload);
         $meet->save();
 
         return $meet->toarray();
     }
 
-    public function fill(ModelsMeeting $meeting)
+    public function fill(ModelsMeeting $meeting, array $attributes)
     {
+        foreach ($attributes as $key => $value) {
+            $meeting->$key = $value;
+        }
+
         Validator::make($meeting->toarray(), [
-            'materi' => 'required',
-            'tempat' => 'required',
-            'pimpinan_rapat' => 'required',
-            'tanggal' => 'required|date',
-            'waktu' => 'required',
-            'status' => 'required',
-            'dokumentasi' => 'required',
+            'materi' => 'nullable|string',
+            'tempat' => 'nullable|string',
+            'pimpinan_rapat' => 'nullable|string',
+            'tanggal' => 'nullable|date',
+            'waktu' => 'nullable|string',
+            'status' => 'nullable|boolean',
+            'dokumentasi' => 'nullable|string',
         ])->validate();
 
         return $meeting;
