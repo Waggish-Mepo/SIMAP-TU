@@ -13,10 +13,10 @@ class DashboardController extends Controller
 
         // Admin Dashboard
         if ($user->role === 'ADMIN') {
-            return view('admin.dashboard');
+            return view('admin.dashboard', compact('user'));
         }
 
         // Headmaster & Employee Dashboard
-        return view('dashboard');
+        return view('dashboard', compact('user'));
     }
 }
