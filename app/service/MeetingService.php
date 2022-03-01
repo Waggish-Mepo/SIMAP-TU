@@ -47,7 +47,7 @@ class Meeting
         $notula = new AgendaMeeting;
 
         $meet->id = Uuid::uuid();
-        $notula->id = Uuid::uuid();
+        $notula->id = $meet->id;
         $meet = $this->fill($meet, $payload);
 
         $notula->save();
