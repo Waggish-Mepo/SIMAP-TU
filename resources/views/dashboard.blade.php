@@ -17,25 +17,22 @@
         <div class="bg-white rounded shadow ">
 
             <div class="p-5">
-            <canvas id="myChart" width="400" height="400"></canvas>
-                <script>
-                const ctx = document.getElementById('myChart');
-                const myChart = new Chart(ctx, {
-                    type: 'line',
-                    data: data,
-                    options: {q
-                        responsive: true,
-                        plugins: {
-                        legend: {
-                            position: 'top',
+                <canvas id="chartjs-0" class="chartjs" width="undefined" height="undefined"></canvas>
+                <script >
+                    new Chart(document.getElementById("chartjs-0"), {
+                        "type": "line",
+                        "data": {
+
+                            "datasets": [{
+                                "label": "Views",
+                                "data": [65, 59, 80, 81, 56, 55, 40],
+                                "fill": false,
+                                "borderColor": "rgb(75, 192, 192)",
+                                "lineTension": 0.2
+                            }]
                         },
-                        title: {
-                            display: true,
-                            text: 'Chart.js Line Chart'
-                            }
-                        }
-                    }
-                });
+                        "options": {}
+                    });
                 </script>
             </div>
         </div>
@@ -53,11 +50,11 @@
                     new Chart(document.getElementById("chartjs-4"), {
                         "type": "doughnut",
                         "data": {
-                            "labels": ["Admin", "Guru", "Staff"],
+                            "labels": ["Guru", "Staff",],
                             "datasets": [{
                                 "label": "Issues",
-                                "data": [25, 50, 25],
-                                "backgroundColor": ["rgb(200, 67, 97)", "rgb(231, 135, 117)", "rgb(171, 205, 203)"]
+                                "data": [50, 50,],
+                                "backgroundColor": ["rgb(200, 67, 97)", "rgb(171, 205, 203)",]
                             }]
                         }
                     });
@@ -68,55 +65,41 @@
     </div>
 			<!--Console Content-->
 
-			<div class="flex flex-wrap items-start justify-center w-full xl:h-96">
-                <div class="flex flex-wrap w-full xl:justify-around md:-mr-0 md:justify-around">
-                <div class="w-full p-3 md:w-1/2 xl:w-1/4 ">
+			<div class="flex flex-wrap items-start justify-around w-full">
+                <div class="flex flex-wrap w-full xl:justify-between md:justify-around">
+                <div class="w-full p-3 md:w-1/2 xl:w-1/2 xl:h-full ">
                     <!--Metric Card-->
-                    <div class="p-2 bg-white border border-pink-700 shadow-lg rounded-xl xl:w-72 md:w-full">
+                    <div class="p-2 bg-red-400 border shadow-lg rounded-xl xl:w-full md:w-full">
                         <div class="flex flex-row items-center">
                             <div class="flex-shrink pr-4">
-                                <div class="p-3 bg-pink-700 rounded"><i class="fas fa-users fa-1x fa-fw fa-inverse"></i></div>
+                                <div class="p-3 bg-red-400"><i class="fas fa-users fa-2x fa-fw fa-inverse"></i></div>
                             </div>
-                            <div class="text-right md:text-center">
-                                <h5 class="font-bold text-gray-400 uppercase">Total Admin</h5>
-                                <h3 class="text-lg font-bold text-left textbg-gray-600">249 <span class="text-pink-500"></span></h3>
+                            <div class="text-right md:text-center xl:ml-28">
+                                <h5 class="font-bold text-center text-white uppercase">Total Guru</h5>
+                                <h3 class="text-lg font-semibold text-center text-white textbg-gray-600">249 <span class="text-pink-500"></span></h3>
                             </div>
                         </div>
                     </div>
                     <!--/Metric Card-->
                 </div>
 
-                <div class="max-w-sm p-3 md:w-1/2 xl:w-1/4 ">
+
+
+                <div class="w-full p-3 md:w-1/2 xl:w-1/2 ">
                     <!--Metric Card-->
-                    <div class="p-2 bg-white border border-pink-700 shadow-lg rounded-xl xl:w-72 md:w-full">
+                    <div class="p-2 bg-blue-200 border border-blue-200 shadow-lg rounded-xl xl:w-full md:w-full">
                         <div class="flex flex-row items-center">
                             <div class="flex-shrink pr-4">
-                                <div class="p-3 bg-red-400 rounded"><i class="fas fa-users fa-1x fa-fw fa-inverse"></i></div>
+                                <div class="p-3 bg-blue-200 rounded"><i class="fas fa-users fa-2x fa-fw fa-inverse"></i></div>
                             </div>
-                            <div class="text-left md:text-center">
-                                <h5 class="font-bold text-gray-400 uppercase">Total Guru</h5>
-                                <h3 class="text-lg font-bold text-left textbg-gray-600">249 <span class="text-pink-500"></span></h3>
+                            <div class="text-right md:text-center xl:ml-28">
+                                <h5 class="font-bold text-center text-white uppercase">Total Staff</h5>
+                                <h3 class="text-lg font-bold text-center text-white">249 <span class="text-pink-500"></span></h3>
                             </div>
                         </div>
                     </div>
                     <!--/Metric Card-->
                 </div>
-
-                <!-- <div class="w-full p-3 md:w-1/2 xl:w-1/4 "> -->
-                    <!--Metric Card-->
-                    <!-- <div class="p-2 bg-white border border-pink-700 shadow-lg rounded-xl xl:w-72 md:w-full">
-                        <div class="flex flex-row items-center">
-                            <div class="flex-shrink pr-4">
-                                <div class="p-3 bg-blue-300 rounded"><i class="fas fa-users fa-1x fa-fw fa-inverse"></i></div>
-                            </div>
-                            <div class="text-left md:text-center">
-                                <h5 class="font-bold text-gray-400 uppercase">Total Staff</h5>
-                                <h3 class="text-lg font-bold text-left textbg-gray-600">249 <span class="text-pink-500"></span></h3>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!--/Metric Card-->
-                <!-- </div> -->
                 </div>
 
                 <div class="w-full p-3">
@@ -164,6 +147,7 @@
 	</div>
 </div>
     </Container>
+
 @endsection
 
 
