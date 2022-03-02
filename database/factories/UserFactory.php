@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Employee;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -17,22 +18,16 @@ class UserFactory extends Factory
     public function definition()
     {
 
-        $name = $this->faker->firstName();
+        $name = $this->faker->firstName().' '.$this->faker->lastName();
         $username = $name.$this->faker->numerify('###');
-
-        $roles = [
-            User::ADMIN,
-            User::EMPLOYEE,
-            User::HEADMASTER,
-        ];
 
         return [
             'id' => $this->faker->uuid(),
-            'userable_id' => $this->faker->uuid(),
+            'userable_id' => Employee::factory(['nama' => $name])->create()->id,
             'name' => $name,
             'username' => $username,
             'password' => Hash::make($username),
-            'role' => $this->faker->randomElement($roles),
+            'role' => $this->faker->randomElement(config('constant.user.roles')),
             'status' => true
         ];
     }
