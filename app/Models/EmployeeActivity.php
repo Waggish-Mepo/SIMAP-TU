@@ -14,7 +14,7 @@ class EmployeeActivity extends Model
     // const WORKSHOP = 'WORKSHOP';
     // const SEMINAR = 'SEMINAR';
 
-    protected $table = 'employee_activity';
+    protected $table = 'employee_activities';
     protected $incrementing = false;
 
     protected $fillable = [

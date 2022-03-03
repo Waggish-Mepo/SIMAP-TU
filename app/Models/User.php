@@ -10,25 +10,19 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-   const ADMIN = 'ADMIN';
-   const EMPLOYEE = 'EMPLOYEE';
-   const HEADMASTER = 'HEADMASTER';
+    const ADMIN = 'ADMIN';
+    const EMPLOYEE = 'EMPLOYEE';
+    const HEADMASTER = 'HEADMASTER';
 
-   public $incrementing = false;
-
-    protected $fillable = [
-        'id',
-        'userable_id',
-        'nama',
-        'username',
-        'password',
-        'role',
-        'status'
-    ];
+    public $incrementing = false;
 
     protected $hidden = [
         'password',
         'remember_token',
     ];
+
+    public function employee() {
+        return $this->hasOne(Employee::class, 'id', 'userable_id');
+    }
 
 }
