@@ -14,6 +14,4 @@ class LetterIn extends Model
     const Penting = 'Penting';
     const Segera = 'Segera';
     const Biasa = 'Biasa';
-
-    protected $incrementing = false;
 }
