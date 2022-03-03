@@ -25,6 +25,7 @@ class CreateVisitLettersTable extends Migration
             $table->integer('jumlah_peserta');
             $table->string('keterangan');
             $table->string('status');
+            $table->timestamps();
         });
     }
 

@@ -50,7 +50,7 @@ class VisitLetterService{
         $visit_letter = $this->fill($visit_letter, $payload);
         $visit_letter->save();
 
-        return $visit_letter;
+        return $visit_letter->toArray();
     }
 
     public function update($visitLetterId, $payload)
@@ -69,16 +69,16 @@ class VisitLetterService{
         }
 
         $validate = Validator::make($visit_letter->toArray(), [
-            'no_surat' => 'string',
-            'lampiran' => 'string',
-            'perihal' => 'string',
-            'kepada' => 'string',
-            'hari' => 'string',
-            'waktu' => 'date',
-            'tempat' => 'string',
-            'jumlah_peserta' => 'integer',
-            'keterangan' => 'string',
-            'status' => 'string'
+            'no_surat' => 'nullable|string',
+            'lampiran' => 'nullable|string',
+            'perihal' => 'nullable|string',
+            'kepada' => 'nullable|string',
+            'hari' => 'nullable|string',
+            'waktu' => 'nullable|date',
+            'tempat' => 'nullable|string',
+            'jumlah_peserta' => 'nullable|integer',
+            'keterangan' => 'nullable|string',
+            'status' => 'nullable|string'
         ]);
 
         if($validate->fails()) {
