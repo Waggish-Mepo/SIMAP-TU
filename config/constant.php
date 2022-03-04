@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Employee;
+use App\Models\LetterIn;
+use App\Models\LetterOut;
 use App\Models\User;
 
 return [
@@ -51,6 +53,24 @@ return [
             Employee::Yayasan,
             Employee::Sekolah,
             Employee::Lembaga_Donor,
+        ],
+    ],
+
+    'letter_out' => [
+        'sifat' => [
+            LetterOut::Rahasia,
+            LetterOut::Penting,
+            LetterOut::Segera,
+            LetterOut::Biasa,
+        ],
+    ],
+
+    'letter_in' => [
+        'sifat' => [
+            LetterIn::Rahasia,
+            LetterIn::Penting,
+            LetterIn::Segera,
+            LetterIn::Biasa,
         ],
     ],
 ];
