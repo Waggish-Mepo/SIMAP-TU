@@ -14,4 +14,9 @@ class LetterIn extends Model
     const Penting = 'Penting';
     const Segera = 'Segera';
     const Biasa = 'Biasa';
+
+    protected $casts = [
+        'tgl_surat' => 'datetime:d-m-Y',
+        'tgl_terima' => 'datetime:d-m-Y',
+    ];
 }
