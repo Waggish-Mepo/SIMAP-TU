@@ -20,7 +20,8 @@ class CreateVisitLettersTable extends Migration
             $table->string('perihal');
             $table->string('kepada');
             $table->string('hari');
-            $table->date('waktu');
+            $table->date('tanggal');
+            $table->string('jam');
             $table->string('tempat');
             $table->integer('jumlah_peserta');
             $table->string('keterangan');
