@@ -78,6 +78,7 @@ class VisitLetterService{
             'jam' => 'nullable|string',
             'tempat' => 'nullable|string',
             'jumlah_peserta' => 'nullable|integer',
+            'dokumentasi' => 'nullable|string',
             'keterangan' => 'nullable|string',
             'status' => 'nullable|string'
         ]);
