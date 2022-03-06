@@ -19,7 +19,7 @@ class UserFactory extends Factory
     {
 
         $name = $this->faker->firstName().' '.$this->faker->lastName();
-        $username = $name.$this->faker->numerify('###');
+        $username = strtolower(explode(" ",$name)[0]).$this->faker->numerify('####');
 
         return [
             'id' => $this->faker->uuid(),

@@ -1,3 +1,74 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@layer base {
+    html {
+        font-family: Poppins, sans-serif;
+    }
+}
+
+@layer components {
+    .table-spacing {
+        border-spacing: 0px theme('spacing.3');
+    }
+}
+
+/*
+    Custom CSS mixed with Tailwind
+ */
+
+/* Active Tab */
+[role="tab"].active {
+    @apply text-white bg-primary border-primary dark:text-primary dark:border-primary hover:text-white hover:border-primary dark:hover:text-primary dark:hover:border-primary;
+}
+
+/* Datatable */
+.dataTables_wrapper {
+    @apply min-w-full !important;
+}
+
+.dataTables_length select {
+    @apply w-14;
+}
+
+div.dataTables_length, div.dataTables_filter {
+    @apply pb-4;
+}
+
+.dataTables_wrapper .dataTables_paginate a.paginate_button.current {
+    @apply border-0 text-white bg-primary hover:bg-primary hover:text-white focus:ring-4 focus:ring-primary font-medium rounded-lg text-sm px-3 py-1.5 text-center mr-2 dark:bg-primary dark:hover:bg-primary dark:focus:ring-primary !important;
+    background: none;
+}
+
+.dataTables_wrapper .dataTables_paginate a.paginate_button:hover, a.paginate_button.previous:hover, a.paginate_button.next:hover {
+    @apply text-primary border-0 rounded-lg text-center !important;
+    background: theme('colors.gray.200') !important;
+}
+
+a.paginate_button.previous.disabled:hover,  a.paginate_button.next.disabled:hover {
+    background: transparent !important;
+}
+
+/* Custom Scroll Bar */
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 6px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 6px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	@apply bg-primary;
+}
