@@ -81,6 +81,7 @@ return [
             EmployeeActivity::WORKSHOP,
             EmployeeActivity::SEMINAR,
             EmployeeActivity::EVENT,
+            EmployeeActivity::LAINNYA,
         ],
     ],
 ];
