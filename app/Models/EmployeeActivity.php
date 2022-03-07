@@ -14,6 +14,7 @@ class EmployeeActivity extends Model
     const WORKSHOP = 'Workshop';
     const SEMINAR = 'Seminar';
     const EVENT = 'Event';
+    const LAINNYA = 'Lainnya';
 
     protected $table = 'employee_activities';
     public $incrementing = false;
