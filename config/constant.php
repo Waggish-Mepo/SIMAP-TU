@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Employee;
+use App\Models\EmployeeActivity;
 use App\Models\LetterIn;
 use App\Models\LetterOut;
 use App\Models\User;
@@ -71,6 +72,15 @@ return [
             LetterIn::Penting,
             LetterIn::Segera,
             LetterIn::Biasa,
+        ],
+    ],
+
+    'employee_activity' => [
+        'kategori' => [
+            EmployeeActivity::WEBINAR,
+            EmployeeActivity::WORKSHOP,
+            EmployeeActivity::SEMINAR,
+            EmployeeActivity::EVENT,
         ],
     ],
 ];

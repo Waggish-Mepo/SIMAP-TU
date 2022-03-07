@@ -10,16 +10,15 @@ class EmployeeActivity extends Model
     use HasFactory;
 
     // // kategori
-    // const WEBINAR = 'WEBINAR';
-    // const WORKSHOP = 'WORKSHOP';
-    // const SEMINAR = 'SEMINAR';
+    const WEBINAR = 'Webinar';
+    const WORKSHOP = 'Workshop';
+    const SEMINAR = 'Seminar';
+    const EVENT = 'Event';
 
     protected $table = 'employee_activities';
-    protected $incrementing = false;
+    public $incrementing = false;
 
     protected $fillable = [
-        'id',
-        'employee_id',
         'nama_kegiatan',
         'tgl_kegiatan',
         'kategori',
