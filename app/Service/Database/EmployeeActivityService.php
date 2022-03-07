@@ -72,7 +72,7 @@ class EmployeeActivityService
         $validate = Validator::make($activity->toArray(), [
             'nama_kegiatan' => 'nullable|string',
             'tgl_kegiatan' => 'nullable|date',
-            'kategori' => ['nullable', Rule::in(config('constants.employee_activity.kategori'))],
+            'kategori' => ['nullable', Rule::in(config('constant.employee_activity.kategori'))],
         ]);
 
         if ($validate->fails()) {
