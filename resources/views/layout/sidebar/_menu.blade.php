@@ -23,7 +23,7 @@
             </svg>
         </button>
         <ul id="dropdown-kepegawaian"
-            class="{{ Route::currentRouteName() === 'employee.index' ||Route::currentRouteName() === 'employee.detail' ||Route::currentRouteName() === 'employee.edit'? '': 'hidden' }} py-2 space-y-2">
+            class="{{ Route::currentRouteName() === 'employee.index' ||Route::currentRouteName() === 'employee.detail' ||Route::currentRouteName() === 'employee.edit' ||Route::currentRouteName() === 'employee.activity.index' ||Route::currentRouteName() === 'employee.activity.detail' ||Route::currentRouteName() === 'employee.activity.edit'? '': 'hidden' }} py-2 space-y-2">
             <li>
                 <a href="{{ route('employee.index') }}"
                     class="{{ Route::currentRouteName() === 'employee.index' ||Route::currentRouteName() === 'employee.detail' ||Route::currentRouteName() === 'employee.edit'? 'border-l-8 border-l-primary bg-gray-100 -ml-2': '' }}
@@ -35,7 +35,7 @@
                 <a href="{{ route('employee.activity.index') }}"
                     class="{{ Route::currentRouteName() === 'employee.activity.index' ||Route::currentRouteName() === 'employee.activity.detail' ||Route::currentRouteName() === 'employee.activity.edit'? 'border-l-8 border-l-primary bg-gray-100 -ml-2': '' }}
                     rounded-lg flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11">
-                    {{ $user->role === 'ADMIN' ? 'Kegiatan' : 'Pegawai' }} Pegawai
+                    Kegiatan Pegawai
                 </a>
             </li>
         </ul>

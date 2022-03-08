@@ -4,11 +4,11 @@
     <link rel="stylesheet" href="{{ asset('css/jquery.dataTables.min.css') }}">
 @endsection
 
-@section('title', $user->role === 'ADMIN' ? 'Activity' : 'Pegawai')
+@section('title', 'Kegiatan Pegawai')
 
 @section('content')
     <p class="mb-4 text-2xl font-semibold text-gray-800">
-        {{ $user->role === 'ADMIN' ? 'Activity' : 'Pegawai' }}
+        Kegiatan Pegawai
     </p>
 
     <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
@@ -17,7 +17,7 @@
                 <button
                     class="inline-block py-2 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300 active"
                     id="employee-tab" data-tabs-target="#employee" type="button" role="tab" aria-controls="employee"
-                    aria-selected="true">Data Pegawai</button>
+                    aria-selected="true">Data Kegiatan</button>
             </li>
             <li class="mr-2" role="presentation">
                 <button
@@ -35,7 +35,7 @@
                         <button type="button" data-modal-toggle="modal-add-activity"
                             class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                             <i class="fa-solid fa-user-plus mr-2"></i>
-                            Tambah Activity
+                            Tambah Kegiatan
                         </button>
                     @endif
                 </div>
@@ -79,43 +79,47 @@
                                     @foreach ($activities['employees'] as $activity)
                                         <tr
                                             class="border-b odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 dark:border-gray-600">
-                                            @if ($user->role === 'ADMIN')
+
+                                            <td
+                                                class="rounded-l-lg py-6 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                {{ $loop->iteration }}
+                                            </td>
+                                            <td
+                                                class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                {{ $activity['nama_pegawai'] }}
+                                            </td>
+                                            <td
+                                                class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                {{ $activity['nama_kegiatan'] }}
+                                            </td>
+                                            <td
+                                                class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                {{ $activity['tgl_kegiatan'] }}
+                                            </td>
+                                            <td
+                                                class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                {{ $activity['kategori'] }}
+                                            </td>
+                                            @if ($user->role == 'ADMIN')
                                                 <td
-                                                    class="rounded-l-lg py-6 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    {{ $loop->iteration }}
+                                                    class="rounded-r-lg py-6 px-6 text-sm text-center font-medium flex-nowrap">
+                                                    <div class="inline-flex" role="group">
+                                                        <a href="/employee/activity/{{ $activity['id'] }}/edit"
+                                                            class="text-white bg-yellow-400 opacity-90 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
+                                                            <i class="fa-solid fa-pen-to-square"></i>
+                                                        </a>
+                                                        <form
+                                                            action="{{ route('employee.activity.delete', $activity['id']) }}"
+                                                            method="POST" enctype="multipart/form-data">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button type="submit"
+                                                                class="text-white bg-red-700 opacity-90 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                                                <i class="fa-solid fa-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
                                                 </td>
-                                                <td
-                                                    class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                    {{ $activity['nama_pegawai'] }}
-                                                </td>
-                                                <td
-                                                    class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                    {{ $activity['nama_kegiatan'] }}
-                                                </td>
-                                                <td
-                                                    class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                    {{ $activity['tgl_kegiatan'] }}
-                                                </td>
-                                                <td
-                                                    class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                    {{ $activity['kategori'] }}
-                                                </td>
-                                                @if ($user->role == 'ADMIN')
-                                                    <td
-                                                        class="rounded-r-lg py-6 px-6 text-sm text-center font-medium flex-nowrap">
-                                                        <div class="inline-flex" role="group">
-                                                            <a href="/employee/activity/{{ $activity['id'] }}/detail"
-                                                                class="text-white bg-primary opacity-90 hover:bg-blue-900 focus:ring-4 focus:ring-blue-700 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:bg-primary dark:hover:bg-blue-900 dark:focus:ring-blue-700">
-                                                                <i class="fa-solid fa-eye"></i>
-                                                            </a>
-                                                            <a href="#"
-                                                                class="text-white bg-yellow-400 opacity-90 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
-                                                                <i class="fa-solid fa-pen-to-square"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                @endif
-                                            @else
                                             @endif
                                         </tr>
                                     @endforeach
@@ -132,7 +136,7 @@
                     <button type="button" data-modal-toggle="modal-add-activity"
                         class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         <i class="fa-solid fa-user-plus mr-2"></i>
-                        Tambah Activity
+                        Tambah Kegiatan
                     </button>
                 </div>
             </div>
@@ -196,14 +200,20 @@
                                             </td>
                                             <td class="rounded-r-lg py-6 px-6 text-sm text-center font-medium flex-nowrap">
                                                 <div class="inline-flex" role="group">
-                                                    <a href="/employee/activity/{{ $activity['id'] }}/detail"
-                                                        class="text-white bg-primary opacity-90 hover:bg-blue-900 focus:ring-4 focus:ring-blue-700 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:bg-primary dark:hover:bg-blue-900 dark:focus:ring-blue-700">
-                                                        <i class="fa-solid fa-eye"></i>
-                                                    </a>
-                                                    <a href="#"
+                                                    <a href="/employee/activity/{{ $activity['id'] }}/edit"
                                                         class="text-white bg-yellow-400 opacity-90 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
                                                         <i class="fa-solid fa-pen-to-square"></i>
                                                     </a>
+                                                    <form
+                                                        action="{{ route('employee.activity.delete', $activity['id']) }}"
+                                                        method="POST" enctype="multipart/form-data">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit"
+                                                            class="text-white bg-red-700 opacity-90 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                                            <i class="fa-solid fa-trash"></i>
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
@@ -224,6 +234,14 @@
 @section('script')
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
     <script>
+        @if (session('success'))
+            toast('{{ session('success') }}', 'success');
+        @endif
+
+        @if (session('error'))
+            toast('{{ session('error') }}', 'danger');
+        @endif
+
         const role = '{{ $user->role }}';
 
         $.ajaxSetup({

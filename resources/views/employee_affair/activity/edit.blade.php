@@ -4,7 +4,7 @@
 
 @section('content')
     <p class="mb-4 text-2xl font-semibold text-gray-500">
-        <a href="{{ route('employee.activity.index') }}" class="text-gray-800" href="">Activity</a>
+        <a href="{{ route('employee.activity.index') }}" class="text-gray-800" href="">Kegiatan Pegawai</a>
         <i class="fa-solid fa-chevron-right text-lg text-primary mx-2"></i>
         {{ $activity['nama_kegiatan'] }}
     </p>
@@ -21,7 +21,9 @@
     </div>
     <div>
         <div class="p-4 bg-white rounded-md dark:bg-gray-800" id="pegawai" role="tabpanel" aria-labelledby="pegawai-tab">
-            <form>
+            <form action="{{ route('employee.activity.update', $activity['id']) }}" method="post">
+                @csrf
+                @method('PATCH')
                 <div class="flex flex-row flex-wrap">
                     <div class="flex-1 px-3">
                         <div class="mb-6">
@@ -37,22 +39,32 @@
                                 Kegiatan</label>
                             <input type="text" id="nama_kegiatan" name="nama_kegiatan"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                                value="{{ $activity['nama_kegiatan'] }}" disabled>
+                                value="{{ $activity['nama_kegiatan'] }}">
                         </div>
                         <div class="mb-6">
                             <label for="tgl_kegiatan"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tanggal
                                 Kegiatan</label>
-                            <input type="text" id="tgl_kegiatan" name="tgl_kegiatan"
+                            <input type="date" id="tgl_kegiatan" name="tgl_kegiatan"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                                value="{{ $activity['tgl_kegiatan'] }}" disabled>
+                                value="{{ $activity['tgl_kegiatan'] }}">
                         </div>
                         <div class="mb-6">
                             <label for="kategori"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">kategori</label>
-                            <input type="text" id="kategori" name="kategori"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Kategori</label>
+                            <select id="kategori" name="kategori"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                                value="{{ $activity['kategori'] }}" disabled>
+                                required>
+                                <option disabled selected value="{{ $activity['kategori'] }}">
+                                    {{ $activity['kategori'] }}</option>
+                                @foreach (config('constant.employee_activity.kategori') as $kategori)
+                                    <option value="{{ $kategori }}">{{ $kategori }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="flex justify-end p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
+                            <button id="btn-add-employee" type="submit"
+                                class="text-white bg-primary hover:bg-primary focus:ring-4 focus:ring-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary dark:hover:bg-primary dark:focus:ring-primary">Simpan</button>
                         </div>
                     </div>
             </form>

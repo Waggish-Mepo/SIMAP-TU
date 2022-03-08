@@ -135,7 +135,7 @@ class EmployeeController extends Controller
 
         $employeeDB->update($employeeId, $payload);
 
-        return redirect()->back()->with('success', 'true');
+        return redirect()->back()->with('success', 'Berhasil memperbarui data pegawai');
     }
 
     public function toggleStatus($employeeId)

@@ -65,7 +65,7 @@ class ActivityController extends Controller
         return response()->json($activities);
     }
 
-    public function detail($activityId)
+    public function edit($activityId)
     {
         $user = Auth::user();
 
@@ -79,21 +79,7 @@ class ActivityController extends Controller
         $employeeDb = new EmployeeService;
         $activity['nama_pegawai'] = $employeeDb->detail($activity['employee_id'])['nama'];
 
-        return view('employee_affair.activity.detail', compact('activity', 'user'));
-    }
-
-    public function edit($employeeId, $activityId)
-    {
-        $user = Auth::user();
-        if (
-            $user->userable_id !== $employeeId &&
-            $user->role !== User::ADMIN
-        ) return redirect()->route('employee.index');
-
-        $activityDb = new EmployeeActivityService;
-        $activity = $activityDb->detail($activityId);
-
-        return view('employee_affair.activity.detail', compact('activity', 'user'));
+        return view('employee_affair.activity.edit', compact('activity', 'user'));
     }
 
     public function update(Request $request, $activityId)
@@ -108,9 +94,18 @@ class ActivityController extends Controller
 
         $activityDb->update($activityId, $payload);
 
-        return redirect()->route('employee.activity.index');
+        return redirect()->route('employee.activity.index')
+            ->with('success', 'Data berhasil diubah');
     }
 
+    public function delete($activityId)
+    {
+        $activityDb = new EmployeeActivityService;
+        $activityDb->delete($activityId);
+
+        return redirect()->route('employee.activity.index')
+            ->with('success', 'Data berhasil dihapus');
+    }
 
     public function store(Request $request)
     {
@@ -127,6 +122,7 @@ class ActivityController extends Controller
 
         // dd($tes);
 
-        return redirect()->route('employee.activity.index');
+        return redirect()->route('employee.activity.index')
+            ->with('success', 'Data berhasil ditambahkan');
     }
 }

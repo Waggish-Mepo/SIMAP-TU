@@ -40,6 +40,14 @@ class EmployeeActivityService
         return $activity->toArray();
     }
 
+    public function delete($activityId)
+    {
+        $activity = EmployeeActivity::findOrFail($activityId);
+        $activity->delete();
+
+        return $activity->toArray();
+    }
+
     public function detail($employeeId)
     {
         $employee = EmployeeActivity::findOrFail($employeeId);

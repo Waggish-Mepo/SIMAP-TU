@@ -9,7 +9,7 @@ class Certificate extends Model
 {
     use HasFactory;
 
-    protected $incrementing = false;
+    public $incrementing = false;
 
     // Jenis
     const WEBINAR = 'Webinar';
@@ -24,4 +24,8 @@ class Certificate extends Model
     const NASIONAL = 'Nasional';
     const INTERNASIONAL = 'Internasional';
     const LAINNYA = 'Lainnya';
+
+    protected $casts = [
+        'tanggal' => 'datetime:d/m/Y',
+    ];
 }

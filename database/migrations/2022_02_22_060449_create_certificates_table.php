@@ -18,6 +18,11 @@ class CreateCertificatesTable extends Migration
             $table->uuid('employee_id');
             $table->string('nama');
             $table->date('tanggal');
+            $table->string('sertifikat');
+            $table->string('penyelenggara');
+            $table->string('jenis');
+            $table->string('tingkat');
+            $table->timestamps();
         });
     }
 
