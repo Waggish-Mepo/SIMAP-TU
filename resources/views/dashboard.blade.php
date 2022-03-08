@@ -12,40 +12,62 @@
         <!-- <hr class="mx-4 my-8 border-b-2 border-gray-600"> -->
 
 <div class="flex flex-row flex-wrap flex-grow mt-2">
-    <div class="w-full h-full p-3 md:w-1/2">
+    <div class="w-full p-3 md:w-1/2 xl:w-6/12">
         <!--Graph Card-->
         <div class="bg-white rounded shadow ">
 
-            <div class="p-5">
-                <canvas id="chartjs-0" class="chartjs" width="undefined" height="undefined"></canvas>
-                <script >
-                    new Chart(document.getElementById("chartjs-0"), {
-                        "type": "line",
-                        "data": {
+            <div class="p-5 w-96">
+            <canvas id="myChart" class="chartjs" width="600" height="250"></canvas>
+                <script>
 
-                            "datasets": [{
-                                "label": "Views",
-                                "data": [65, 59, 80, 81, 56, 55, 40],
-                                "fill": false,
-                                "borderColor": "rgb(75, 192, 192)",
-                                "lineTension": 0.2
-                            }]
-                        },
-                        "options": {}
-                    });
+new Chart(document.getElementById('myChart').getContext('2d'), {
+  type: 'line',
+  data: data,
+  options: {
+    responsive: true,
+    interaction: {
+      mode: 'index',
+      intersect: false,
+    },
+    stacked: false,
+    plugins: {
+      title: {
+        display: true,
+        text: 'Chart.js Line Chart - Multi Axis'
+      }
+    },
+    scales: {
+      y: {
+        type: 'linear',
+        display: true,
+        position: 'left',
+      },
+      y1: {
+        type: 'linear',
+        display: true,
+        position: 'right',
+
+        grid: {
+          drawOnChartArea: false,
+        },
+      },
+    }
+  },
+});
                 </script>
             </div>
         </div>
         <!--/Graph Card-->
     </div>
 
-    <div class="flex justify-end w-full p-3 md:w-1/2 xl:w-1/2">
+    <div class="flex justify-end w-full p-3 md:w-1/2 xl:w-1/2 ">
         <!--Graph Card-->
-        <div class="w-9/12 h-full bg-white border rounded shadow">
+        <div class="w-1/2 bg-white border rounded shadow xl:w-1/2 md:w-full">
             <div class="p-3 ">
                 <h5 class="font-bold text-gray-600 uppercase">Traffic</h5>
             </div>
-            <div class=""><canvas id="chartjs-4" class="chartjs" width="undefined" height="undefined"></canvas>
+            <div class="w-96 xl:w-96 xl:-ml-16 md:-ml-6 ">
+                <canvas id="chartjs-4" class="chartjs" width="undefined" height="undefined"></canvas>
                 <script>
                     new Chart(document.getElementById("chartjs-4"), {
                         "type": "doughnut",

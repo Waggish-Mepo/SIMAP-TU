@@ -3,10 +3,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="icon" href="{{asset('img/svg/icon.svg')}}" type="image/x-icon">
 <link href="/css/app.css" rel="stylesheet">
-<<<<<<< HEAD
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
 <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-=======
 <script src="https://kit.fontawesome.com/6b35a228d3.js" crossorigin="anonymous"></script>
->>>>>>> 5a7735a5864c68a2ae542b75a3e1184ae3186865
