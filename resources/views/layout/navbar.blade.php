@@ -13,14 +13,12 @@
                     <span class="block text-sm text-gray-900 dark:text-white">{{$user->name}}</span>
                 </div>
                 <ul class="py-1" aria-labelledby="dropdown">
-                    @if ($user->role !== 'ADMIN')
-                        <li>
-                            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Perbarui Data</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Ganti Password</a>
-                        </li>
-                    @endif
+                    <li>
+                        <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Perbarui Data</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Ganti Password</a>
+                    </li>
                     <li>
                         <a href="{{route('logout')}}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Keluar</a>
                     </li>

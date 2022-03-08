@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Certificate;
 use App\Models\Employee;
 use App\Models\EmployeeActivity;
 use App\Models\LetterIn;
@@ -56,7 +57,23 @@ return [
             Employee::Lembaga_Donor,
         ],
     ],
-
+    'certificate' => [
+        'jenis' => [
+            Certificate::WEBINAR,
+            Certificate::PENGHARGAAN,
+            Certificate::PELATIHAN,
+            Certificate::SEMINAR,
+            Certificate::WORKSHOP,
+            Certificate::LAINNYA,
+        ],
+        'tingkat' => [
+            Certificate::KOTA,
+            Certificate::PROVINSI,
+            Certificate::NASIONAL,
+            Certificate::INTERNASIONAL,
+            Certificate::LAINNYA,
+        ],
+    ],
     'letter_out' => [
         'sifat' => [
             LetterOut::Rahasia,
@@ -65,7 +82,6 @@ return [
             LetterOut::Biasa,
         ],
     ],
-
     'letter_in' => [
         'sifat' => [
             LetterIn::Rahasia,
@@ -74,7 +90,6 @@ return [
             LetterIn::Biasa,
         ],
     ],
-
     'employee_activity' => [
         'kategori' => [
             EmployeeActivity::WEBINAR,

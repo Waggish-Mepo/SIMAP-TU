@@ -19,7 +19,7 @@ class CreateEmployeesTable extends Migration
             $table->string('status_pegawai')->nullable();
             $table->string('alamat')->nullable();
             $table->integer('nip')->nullable();
-            $table->integer('nigk')->nullable();
+            $table->integer('niy_nigk')->nullable();
             $table->integer('nuptk')->nullable();
             $table->string('jenis_ptk')->nullable();
             $table->integer('sk_pengangkatan')->nullable();
@@ -27,7 +27,6 @@ class CreateEmployeesTable extends Migration
             $table->string('lembaga_pengangkatan')->nullable();
             $table->integer('sk_cpns')->nullable();
             $table->date('tmt_pns')->nullable();
-            $table->string('pangkat')->nullable();
             $table->string('sumber_gaji')->nullable();
             $table->integer('kartu_pegawai')->nullable();
             $table->integer('kartu_suami')->nullable();

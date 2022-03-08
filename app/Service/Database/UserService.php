@@ -74,7 +74,7 @@ class UserService{
         $validate = Validator::make($user->toArray(), [
             'nama' => 'required|string',
             'username' => 'required|string',
-            'password' => 'required|numeric',
+            'password' => 'required|string',
             'role' => ['required', Rule::in(config('constant.user.roles'))],
             'status' => 'nullable|boolean',
         ]);
