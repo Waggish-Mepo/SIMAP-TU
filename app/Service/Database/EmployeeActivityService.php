@@ -5,6 +5,7 @@ namespace App\Service\Database;
 use App\Models\Employee;
 use Illuminate\Validation\Rule;
 use App\Models\EmployeeActivity;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Ramsey\Uuid\Uuid;
 
@@ -17,18 +18,32 @@ class EmployeeActivityService
         $per_page = $filter['per_page'] ?? 99;
         $nama_kegiatan = $filter['nama_kegiatan'] ?? null;
         $kategori = $filter['kategori'] ?? null;
+        $employeeId = $filter['employee_id'] ?? null;
 
         $query = EmployeeActivity::orderBy('created_at', $orderBy);
+
+        if ($employeeId !== null) {
+            $query->where('employee_id', $employeeId);
+        }
 
         if ($nama_kegiatan !== null) {
             $query->where('nama_kegiatan', 'LIKE', '%' . $nama_kegiatan . '%');
         }
+
 
         if ($kategori !== null) {
             $query->where('kategori', $kategori);
         }
 
         $activity = $query->simplePaginate($per_page);
+
+        return $activity->toArray();
+    }
+
+    public function delete($activityId)
+    {
+        $activity = EmployeeActivity::findOrFail($activityId);
+        $activity->delete();
 
         return $activity->toArray();
     }
@@ -40,13 +55,14 @@ class EmployeeActivityService
         return $employee->toArray();
     }
 
-    public function create($payload, $employeeId)
+    public function create($payload)
     {
-        Employee::findOrFail($employeeId);
+
+        $user = Auth::user();
 
         $activity = new EmployeeActivity;
         $activity->id = Uuid::uuid4()->toString();
-        $activity->employee_id = $employeeId;
+        $activity->employee_id = $user->userable_id;
         $activity = $this->fill($activity, $payload);
 
         $activity->save();
