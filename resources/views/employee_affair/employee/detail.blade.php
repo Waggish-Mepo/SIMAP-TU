@@ -1,5 +1,9 @@
 @extends('layout.app')
 
+@section('head')
+    <link rel="stylesheet" href="{{asset('css/jquery.dataTables.min.css')}}">
+@endsection
+
 @section('title', $employee['nama'])
 
 @section('content')
@@ -22,6 +26,18 @@
                     class="inline-block py-2 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
                     id="kepegawaian-tab" data-tabs-target="#kepegawaian" type="button" role="tab" aria-controls="kepegawaian"
                     aria-selected="false">Kepegawaian</button>
+            </li>
+            <li class="mr-2" role="presentation">
+                <button
+                    class="inline-block py-2 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                    id="sertifikat-tab" data-tabs-target="#sertifikat" type="button" role="tab" aria-controls="sertifikat"
+                    aria-selected="false">Sertifikat</button>
+            </li>
+            <li class="mr-2" role="presentation">
+                <button
+                    class="inline-block py-2 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                    id="ijazah-tab" data-tabs-target="#ijazah" type="button" role="tab" aria-controls="ijazah"
+                    aria-selected="false">Ijazah</button>
             </li>
         </ul>
     </div>
@@ -218,13 +234,88 @@
                 </div>
             </form>
         </div>
+        <div class="hidden p-4 rounded-md dark:bg-gray-800" id="sertifikat" role="tabpanel" aria-labelledby="sertifikat-tab">
+            @if (Route::currentRouteName() === 'employee.edit')
+                <div class="grid justify-items-end mb-4">
+                    <div class="flex flex-row">
+                        <button type="button" data-modal-toggle="modal-add-certificate" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                            <i class="fa-solid fa-file-certificate"></i>
+                            Tambah Sertifikat
+                        </button>
+                    </div>
+                </div>
+            @endif
+            <div class="flex flex-col">
+                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
+                        <div class="overflow-hidden">
+                            <table id="table-certificate" class="min-w-full border-separate table-spacing">
+                                <thead class="bg-primary dark:bg-primary">
+                                    <tr>
+                                        <th scope="col"
+                                            class="rounded-l-lg py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            #
+                                        </th>
+                                        <th scope="col"
+                                            class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            Nama
+                                        </th>
+                                        <th scope="col"
+                                            class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            Tanggal
+                                        </th>
+                                        <th scope="col"
+                                            class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            Penyelenggara
+                                        </th>
+                                        <th scope="col"
+                                            class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            Jenis
+                                        </th>
+                                        <th scope="col"
+                                            class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            Tingkat
+                                        </th>
+                                        <th scope="col"
+                                            class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            Sertifikat
+                                        </th>
+                                        <th scope="col"
+                                            class="rounded-r-lg py-6 px-6 text-xs font-medium tracking-wider text-center text-white uppercase dark:text-gray-400">
+                                            Aksi
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="render-certificate"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hidden p-4 bg-white rounded-md dark:bg-gray-800" id="ijazah" role="tabpanel" aria-labelledby="ijazah-tab">
+
+        </div>
     </div>
+
+    @include('employee_affair.modal._add_certificate')
+    @include('employee_affair.modal._edit_certificate')
 @endsection
 
 @section('script')
+    <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
     <script>
         @if (session('success'))
-            toast('Berhasil memperbarui data pegawai', 'success');
+            toast('{{ session('success') }}', 'success');
+        @endif
+
+        @if (session('error'))
+            toast({{error}}, 'danger');
+        @endif
+
+        @if (Route::currentRouteName() === 'employee.detail')
+            $('input').attr('disabled', true);
+            $('select').attr('disabled', true);
         @endif
 
         $.ajaxSetup({
@@ -251,9 +342,102 @@
             });
         }
 
-        @if (Route::currentRouteName() === 'employee.detail')
-            $('input').attr('disabled', true);
-            $('select').attr('disabled', true);
-        @endif
+        getCertificates();
+        function getCertificates(){
+            url = '{{route('employee.certificates.index', $employee['id'])}}';
+            $.ajax({
+                type: 'GET',
+                url: url,
+                success: function(data){
+                    renderCertificate(data);
+                }
+            });
+        }
+
+        function renderCertificate(data){
+            let html = ``;
+
+            if (data.length < 1) {
+                html += `
+                    <tr
+                        class="border-b odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 dark:border-gray-600">
+                        <td class="rounded-lg py-6 px-6 text-sm font-medium text-center text-gray-900 whitespace-nowrap dark:text-white" colspan="8">
+                            Tidak dapat menemukan data sertifikat
+                        </td>
+                    </tr>
+                `
+                return $(`#render-certificate`).html(html);
+            }
+            $.each(data, function (key, data) {
+            html += `
+                <tr
+                    class="border-b odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 dark:border-gray-600">
+                    <td
+                        class="rounded-l-lg py-6 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        ${key + 1}
+                    </td>
+                    <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                        <div id="data-nama-${data.id}" class="whitespace-normal w-44">${data.nama}</div>
+                    </td>
+                    <td id="data-tanggal-${data.id}" class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">${data.tanggal}</td>
+                    <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                        <div id="data-penyelenggara-${data.id}" class="whitespace-normal w-24">${data.penyelenggara}</div>
+                    </td>
+                    <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                        <div id="data-jenis-${data.id}" class="whitespace-normal w-24">${data.jenis}</div>
+                    </td>
+                    <td id="data-tingkat-${data.id}" class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">${data.tingkat}</td>
+                    <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                        <img id="data-sertifikat-${data.id}" class="w-24 " src="{{ asset('storage/${data.sertifikat}')}}"></img>
+                    </td>
+                    <td class="rounded-r-lg py-6 px-6 text-sm text-center font-medium flex-nowrap">
+                        <div class="inline-flex" role="group">
+                            <button type="button" onclick="btnEditCertificate('${data.id}')" class="text-white bg-yellow-400 opacity-90 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                            <button type"button" onclick="btnDeleteCertificate('${data.id}')" class="text-white bg-red-700 opacity-90 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                    `
+            });
+            html += `</tr>`
+
+            $(`#render-certificate`).html(html);
+            $(`#table-certificate`).DataTable();
+            $(`#table-certificate`).removeClass('dataTable');
+        };
+
+        function btnDeleteCertificate(id){
+            url = `{{route('employee.certificates.delete', ['employeeId' => "employeeId", 'certificateId' => "certificateId"])}}`;
+            url = url.replace('employeeId', id).replace('certificateId', id);
+            $.ajax({
+                type: 'DELETE',
+                url: url,
+                success: function(data){
+                    toast('Berhasil menghapus sertifikat', 'success');
+                    getCertificates();
+                }
+            });
+        }
+
+        function btnEditCertificate(id){
+            toggleModal('modal-edit-certificate');
+            const jenis = $('#data-jenis-'+id).html(),
+                tingkat = $('#data-tingkat-'+id).html(),
+                tanggal = new Date($('#data-tanggal-'+id).html()).toISOString().substring(0, 10);
+
+            $(`#modal-edit-certificate #jenis option`).attr('selected', false);
+            $(`#modal-edit-certificate #tingkat option`).attr('selected', false);
+
+            $('#modal-edit-certificate #sertifikat-id').val(id);
+            $('#modal-edit-certificate #nama_s').val($('#data-nama-'+id).html());
+            $('#modal-edit-certificate #tanggal').val(tanggal);
+            $('#modal-edit-certificate #penyelenggara').val($('#data-penyelenggara-'+id).html());
+            $(`#modal-edit-certificate #jenis option[value=${jenis}]`).attr('selected', 'selected');
+            $(`#modal-edit-certificate #tingkat option[value=${tingkat}]`).attr('selected', 'selected');
+            $('#modal-edit-certificate #sertifikat-imgs').attr('src', $(`#data-sertifikat-${id}`).attr(`src`));
+        }
     </script>
 @endsection

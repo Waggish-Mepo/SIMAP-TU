@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Certificate;
 use App\Models\Employee;
 use App\Models\User;
 
@@ -53,4 +54,21 @@ return [
             Employee::Lembaga_Donor,
         ],
     ],
+    'certificate' => [
+        'jenis' => [
+            Certificate::WEBINAR,
+            Certificate::PENGHARGAAN,
+            Certificate::PELATIHAN,
+            Certificate::SEMINAR,
+            Certificate::WORKSHOP,
+            Certificate::LAINNYA,
+        ],
+        'tingkat' => [
+            Certificate::KOTA,
+            Certificate::PROVINSI,
+            Certificate::NASIONAL,
+            Certificate::INTERNASIONAL,
+            Certificate::LAINNYA,
+        ],
+    ]
 ];

@@ -26,11 +26,6 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], function(){
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
-    // Route::get('/change-password', function () {
-    //     return view('shared.change_password');
-    // })->name('change-password');
-    // Route::patch('/change-password/update', [ManageAccountController::class, 'updatePassword'])->name('update-password');
-
     // Kepegawaian
     Route::prefix('employee')->name('employee.')->group(function () {
         //
@@ -39,6 +34,7 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], funct
         Route::get('/{employeeId}/edit', [EmployeeAffair\EmployeeController::class, 'edit'])->name('edit');
 
         Route::patch('/{employeeId}/update', [EmployeeAffair\EmployeeController::class, 'updateUser'])->name('update');
+
 
         // Aktivitas Pegawai
         Route::prefix('/activity')->name('activity.')->group(function () {
@@ -53,10 +49,26 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], funct
             Route::get('/export/staff', [EmployeeAffair\EmployeeController::class, 'exportStaff'])->name('export.staff');
         });
 
+        // Sertifikat Pegawai
+        Route::prefix('/certificates/{employeeId}')->name('certificates.')->group(function () {
+            Route::post('/', [EmployeeAffair\CertificateController::class, 'create'])->name('create');
+            Route::patch('/', [EmployeeAffair\CertificateController::class, 'update'])->name('update');
+            Route::delete('/{certificateId}', [EmployeeAffair\CertificateController::class, 'delete'])->name('delete');
+        });
+
+        // Ijazah Pegawai
+        Route::prefix('/ijazah')->name('ijazah.')->group(function () {
+            Route::get('/', [EmployeeAffair\IjazahController::class, 'index'])->name('index');
+            Route::post('/', [EmployeeAffair\IjazahController::class, 'create'])->name('create');
+            Route::patch('/', [EmployeeAffair\IjazahController::class, 'update'])->name('update');
+            Route::delete('/', [EmployeeAffair\IjazahController::class, 'delete'])->name('delete');
+        });
+
         // Ajax Request
+        Route::get('/database/certificate/{employeeId}', [EmployeeAffair\CertificateController::class, 'index'])->name('certificates.index');
         Route::get('/database/users', [EmployeeAffair\EmployeeController::class, 'getUsers']);
-        Route::patch('/database/users', [EmployeeAffair\EmployeeController::class, 'resetPassword']);
         Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
+            Route::patch('/database/users', [EmployeeAffair\EmployeeController::class, 'resetPassword']);
             Route::post('/database/users', [EmployeeAffair\EmployeeController::class, 'createUser']);
             Route::patch('/{employeeId}/update-status', [EmployeeAffair\EmployeeController::class, 'toggleStatus'])->name('update.status');
         });
