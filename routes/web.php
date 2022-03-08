@@ -23,7 +23,7 @@ Route::get('/login', [AuthController::class, 'check'])->name('login');
 Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('auth');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], function(){
+Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
     // Kepegawaian
@@ -39,11 +39,16 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], funct
         // Aktivitas Pegawai
         Route::prefix('/activity')->name('activity.')->group(function () {
             Route::get('/', [EmployeeAffair\ActivityController::class, 'index'])->name('index');
-            Route::get('/{activityId}', [EmployeeAffair\ActivityController::class, 'detail'])->name('detail');
+            Route::post('/', [EmployeeAffair\ActivityController::class, 'store'])->name('store');
+            Route::get('/{activityId}/edit', [EmployeeAffair\ActivityController::class, 'edit'])->name('edit');
+            Route::patch('/{activityId}/update', [EmployeeAffair\ActivityController::class, 'update'])->name('update');
+            Route::delete('/{activityId}/delete', [EmployeeAffair\ActivityController::class, 'delete'])->name('delete');
+
+            Route::get('/database/activity', [EmployeeAffair\ActivityController::class, 'getActivity']);
         });
 
         // Export Excel
-        Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
+        Route::group(['middleware' => ['auth', 'role:ADMIN']], function () {
             Route::get('/export/employee', [EmployeeAffair\EmployeeController::class, 'exportEmployee'])->name('export.employee');
             Route::get('/export/teacher', [EmployeeAffair\EmployeeController::class, 'exportTeacher'])->name('export.teacher');
             Route::get('/export/staff', [EmployeeAffair\EmployeeController::class, 'exportStaff'])->name('export.staff');
@@ -67,8 +72,8 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], funct
         // Ajax Request
         Route::get('/database/certificate/{employeeId}', [EmployeeAffair\CertificateController::class, 'index'])->name('certificates.index');
         Route::get('/database/users', [EmployeeAffair\EmployeeController::class, 'getUsers']);
-        Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
-            Route::patch('/database/users', [EmployeeAffair\EmployeeController::class, 'resetPassword']);
+        Route::patch('/database/users', [EmployeeAffair\EmployeeController::class, 'resetPassword']);
+        Route::group(['middleware' => ['auth', 'role:ADMIN']], function () {
             Route::post('/database/users', [EmployeeAffair\EmployeeController::class, 'createUser']);
             Route::patch('/{employeeId}/update-status', [EmployeeAffair\EmployeeController::class, 'toggleStatus'])->name('update.status');
         });
@@ -100,4 +105,3 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], funct
         });
     });
 });
-
