@@ -50,4 +50,9 @@ class Employee extends Model
     const Lembaga_Donor = 'Lembaga Donor';
 
     public $incrementing = false;
+
+    protected $casts = [
+        'tmt_pengangkatan' => 'datetime:d/m/Y',
+        'tmt_pns' => 'datetime:d/m/Y',
+    ];
 }

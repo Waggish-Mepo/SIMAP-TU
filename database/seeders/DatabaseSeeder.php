@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Employee;
 use App\Models\User;
+use Faker\Factory as Faker;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
 
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker::create();
         $users = [
             [
                 'username' => 'adminuser123',
@@ -39,7 +41,9 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($users as $user) {
-            User::factory($user)->create();
+            $createdUser = User::factory($user)->create();
+            if ($createdUser['role'] === User::ADMIN) Employee::where('id', $createdUser['userable_id'])->update(['jenis_ptk' => Employee::Tenaga_Administrasi_Sekolah]);
+            elseif ($createdUser['role'] === User::HEADMASTER) Employee::where('id', $createdUser['userable_id'])->update(['jenis_ptk' => Employee::Kepala_Sekolah]);
         }
     }
 }

@@ -4,8 +4,10 @@ namespace App\Service\Database;
 
 use App\Models\Employee;
 use App\Models\User;
+use Faker\Factory as Faker;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Ramsey\Uuid\Uuid;
 
 class EmployeeService{
 
@@ -31,9 +33,51 @@ class EmployeeService{
         return $employees->toArray();
     }
 
+    public function create($payload)
+    {
+        $employee = new Employee;
+        $employee->id = Uuid::uuid4()->toString();
+        $employee = $this->fill($employee, $payload);
+        $employee->save();
+
+        $faker = Faker::create();
+        $user = new User;
+        $user->id = Uuid::uuid4()->toString();
+        $user->userable_id = $employee->id;
+        $user->name = $payload['nama'];
+        $user->username = strtolower(explode(" ",$payload['nama'])[0]).$faker->numerify('####');
+        $user->password = bcrypt($user->username);
+        $user->status = true;
+        $user->role = User::EMPLOYEE;
+        if ($payload['jenis_ptk'] === 'Tenaga Administrasi Sekolah') $user->role = User::ADMIN;
+        if ($payload['jenis_ptk'] === 'Kepala Sekolah') $user->role = User::HEADMASTER;
+        $user->save();
+
+        return $employee->toArray();
+    }
+
+    public function resetPassword($employeeId)
+    {
+        $user = User::where('userable_id', $employeeId)->first();
+        $user->password = bcrypt($user->username);
+        $user->save();
+
+        return $user->toArray();
+    }
+
+    public function toggleStatus($employeeId)
+    {
+        $user = User::where('userable_id', $employeeId)->first();
+        $user->status = !$user->status;
+        $user->save();
+
+        return $user->toArray();
+    }
+
     public function detail($employeeId)
     {
         $employee = Employee::findOrFail($employeeId);
+        $employee['user'] = User::where('userable_id', $employeeId)->first()->toArray();
 
         return $employee->toArray();
     }
@@ -63,11 +107,11 @@ class EmployeeService{
             'status_pegawai' => ['nullable', 'string', Rule::in(config('constant.employee.status_pegawai'))],
             'alamat' => 'nullable|string',
             'nip' => 'nullable|numeric',
-            'nigk' => 'nullable|numeric',
+            'niy_nigk' => 'nullable|numeric',
             'nuptk' => 'nullable|numeric',
             'jenis_ptk' => ['nullable', Rule::in(config('constant.employee.jenis_ptk'))],
             'sk_pengangkatan' => 'nullable|numeric',
-            'tmt_pengangkatan' => 'nullable|date',
+            'tmt_pengangkatan' => 'nullable',
             'lembaga_pengangkatan' => ['nullable', Rule::in(config('constant.employee.lembaga_pengangkatan'))],
             'sk_cpns' => 'nullable|numeric',
             'tmt_cpns' => 'nullable|date',
