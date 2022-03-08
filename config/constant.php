@@ -2,6 +2,9 @@
 
 use App\Models\Certificate;
 use App\Models\Employee;
+use App\Models\EmployeeActivity;
+use App\Models\LetterIn;
+use App\Models\LetterOut;
 use App\Models\User;
 
 return [
@@ -70,5 +73,30 @@ return [
             Certificate::INTERNASIONAL,
             Certificate::LAINNYA,
         ],
-    ]
+    ],
+    'letter_out' => [
+        'sifat' => [
+            LetterOut::Rahasia,
+            LetterOut::Penting,
+            LetterOut::Segera,
+            LetterOut::Biasa,
+        ],
+    ],
+    'letter_in' => [
+        'sifat' => [
+            LetterIn::Rahasia,
+            LetterIn::Penting,
+            LetterIn::Segera,
+            LetterIn::Biasa,
+        ],
+    ],
+    'employee_activity' => [
+        'kategori' => [
+            EmployeeActivity::WEBINAR,
+            EmployeeActivity::WORKSHOP,
+            EmployeeActivity::SEMINAR,
+            EmployeeActivity::EVENT,
+            EmployeeActivity::LAINNYA,
+        ],
+    ],
 ];
