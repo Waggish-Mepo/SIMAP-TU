@@ -100,4 +100,3 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], funct
         });
     });
 });
-

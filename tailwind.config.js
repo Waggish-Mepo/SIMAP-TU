@@ -7,7 +7,9 @@ module.exports = {
     ],
     theme: {
         colors: {
-            primary: '#1F3986'
+            primary: '#1F3986',
+            orang: '#F1884F',
+            reb: '#EE504F'
         },
     },
     plugins: [
