@@ -80,8 +80,8 @@ class LetterService{
             'pengirim' => 'nullable|string',
             'sifat' => ['required', Rule::in(config('constant.letter.sifat'))],
             'jenis' => ['required', Rule::in(config('constant.letter.jenis'))],
-            'tgl_surat' => 'required|date',
-            'tgl_terima' => 'nullable|date',
+            'tgl_surat' => 'required',
+            'tgl_terima' => 'nullable',
             'perihal' => 'required|string',
             'lampiran' => 'nullable|string',
         ]);

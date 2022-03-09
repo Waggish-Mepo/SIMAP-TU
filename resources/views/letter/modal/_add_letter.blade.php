@@ -61,12 +61,12 @@
                     <div class="flex-1 px-3 space-y-6">
                         <div class="mb-6">
                             <label for="tgl-surat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tanggal Surat</label>
-                            <input name="tgl_surat" id="tgl-surat" datepicker-format="dd/mm/yyyy" type="date" value="" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Pilih tanggal surat">
+                            <input name="tgl_surat" id="tgl-surat" type="date" value="" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Pilih tanggal surat">
                         </div>
                         @if (Route::currentRouteName() === 'letter.in.index')
                         <div class="mb-6">
                             <label for="tgl-terima" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tanggal Terima</label>
-                            <input name="tgl_terima" id="tgl-terima" datepicker-format="dd/mm/yyyy" type="date" value="" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Pilih tanggal terima">
+                            <input name="tgl_terima" id="tgl-terima" type="date" value="" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Pilih tanggal terima">
                         </div>
                         @endif
                         <div class="mb-6">

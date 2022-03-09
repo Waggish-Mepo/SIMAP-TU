@@ -108,14 +108,18 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], funct
 
 Route::group(['middleware' => ['auth', 'role:ADMIN,HEADMASTER']], function () {
     // Surat Menyurat
-    Route::get('/letter-in', [Letter\LetterController::class, 'indexLetterIn'])->name('letter.in.index');
-    Route::get('/letter-out', [Letter\LetterController::class, 'indexLetterOut'])->name('letter.out.index');
-
+    Route::get('letter-in', [Letter\LetterController::class, 'indexLetterIn'])->name('letter.in.index');
+    Route::get('letter-out', [Letter\LetterController::class, 'indexLetterOut'])->name('letter.out.index');
     Route::prefix('letter')->name('letter.')->group(function () {
         Route::post('/', [Letter\LetterController::class, 'create'])->name('create');
         Route::get('/{letterId}', [Letter\LetterController::class, 'detail'])->name('detail');
         Route::get('/{letterId}/edit', [Letter\LetterController::class, 'edit'])->name('edit');
         Route::patch('/{letterId}/update', [Letter\LetterController::class, 'update'])->name('update');
         Route::delete('/{letterId}/delete', [Letter\LetterController::class, 'delete'])->name('delete');
+
+        Route::get('/export/letter-in', [Letter\LetterController::class, 'exportLetterIn'])->name('export.in');
+        Route::get('/export/letter-out', [Letter\LetterController::class, 'exportLetterOut'])->name('export.out');
     });
+
+
 });

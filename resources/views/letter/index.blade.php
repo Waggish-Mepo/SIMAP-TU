@@ -13,7 +13,9 @@
 
     <div class="grid justify-items-end mb-4">
         <div class="flex flex-row">
-            <a href="{{route('employee.export.employee')}}" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+            <a
+                href="{{Route::currentRouteName() === 'letter.in.index' ? route('letter.export.in') : route('letter.export.out')}}"')}}"
+                class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                 <i class="fa-solid fa-file-export mr-2"></i>
                 Export
             </a>

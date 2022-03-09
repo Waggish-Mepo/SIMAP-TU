@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Letter;
 
+use App\Exports\LetterInsExport;
+use App\Exports\LetterOutsExport;
 use App\Http\Controllers\Controller;
 use App\Service\Database\LetterService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LetterController extends Controller
 {
@@ -57,5 +61,17 @@ class LetterController extends Controller
         $letterDB->delete($letterId);
 
         return back()->with('success', 'Surat berhasil dihapus');
+    }
+
+    public function exportLetterIn()
+    {
+        $date = Carbon::now()->locale('id_ID')->isoFormat('DD-MM-YYYY');
+        return Excel::download(new LetterInsExport, 'DATA-SURAT-MASUK-SMK-WIKRAMA-BOGOR-'.$date.'.xlsx');
+    }
+
+    public function exportLetterOut()
+    {
+        $date = Carbon::now()->locale('id_ID')->isoFormat('DD-MM-YYYY');
+        return Excel::download(new LetterOutsExport, 'DATA-SURAT-KELUAR-SMK-WIKRAMA-BOGOR-'.$date.'.xlsx');
     }
 }
