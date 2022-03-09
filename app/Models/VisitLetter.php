@@ -8,13 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class VisitLetter extends Model
 {
     use HasFactory;
+
     public $incrementing = false;
 
-     protected $casts = [
-         'tanggal' => 'datetime:d-m-Y'
-     ];
+    const ARSIP = 'arsip';
 
-     protected $fillable = [
+    protected $casts = [
+        'tanggal' => 'datetime:d-m-Y'
+    ];
+
+    protected $fillable = [
         'lampiran',
         'dokumentasi',
     ];

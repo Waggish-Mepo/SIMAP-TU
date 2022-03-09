@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\exportVisitArchives;
+use App\Models\VisitLetter;
 
 class VisitLetterController extends Controller
 {
@@ -32,7 +33,7 @@ class VisitLetterController extends Controller
     public function edit($visitLetterId)
     {
         $user = Auth::user();
-        
+
         $visitDB = new VisitLetterService;
         $visit = $visitDB->detail($visitLetterId);
         return view('visit.detail', compact('visit', 'user'));
@@ -44,8 +45,14 @@ class VisitLetterController extends Controller
         $visitDB = new VisitLetterService;
 
         $visits = $visitDB->index(['order_by' => 'ASC'])['data'] ?? [];
+        $archives = $visitDB->index(['order_by' => 'ASC', 'status' => VisitLetter::ARSIP])['data'] ?? [];
 
-        return response()->json($visits);
+        $data = [
+            'visits' => $visits,
+            'archives' => $archives,
+        ];
+
+        return response()->json($data);
     }
 
     public function create(Request $request)

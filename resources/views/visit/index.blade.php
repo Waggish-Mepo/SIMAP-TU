@@ -146,7 +146,7 @@
     </div>
 
     @if ($user->role === 'ADMIN')
-        
+
         @include('visit.modal._add_visit')
     @endif
 
@@ -209,6 +209,7 @@
 
         function renderTables(data, id) {
             let html = ``;
+            data = id === 'arsip' ? data['archives'] : data['visits'];
 
             if (data.length < 1) {
                 html += `
@@ -282,6 +283,6 @@
             $(`#table-${id}`).removeClass('dataTable');
         }
 
-    
+
     </script>
 @endsection
