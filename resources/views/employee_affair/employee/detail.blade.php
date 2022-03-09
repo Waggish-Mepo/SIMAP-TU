@@ -310,7 +310,7 @@
         @endif
 
         @if (session('error'))
-            toast({{error}}, 'danger');
+            toast('{{ session('error') }}', 'danger');
         @endif
 
         @if (Route::currentRouteName() === 'employee.detail')
