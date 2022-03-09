@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeAffair;
 use App\Http\Controllers\EmployeeAffair\EmployeeController;
+use App\Http\Controllers\Meeting;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -87,10 +88,9 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], funct
 
     // Rapat
     Route::prefix('meeting')->name('meeting.')->group(function () {
-        Route::get('/', [Meeting\MeetingController::class, 'index'])->name('index');
-        Route::get('/{meetingId}', [Meeting\MeetingController::class, 'detail'])->name('detail');
-
         Route::prefix('/{meetingId}')->group(function () {
+            Route::get('/', [Meeting\MeetingController::class, 'detail'])->name('detail');
+
             Route::prefix('/agenda')->name('agenda.')->group(function () {
                 Route::get('/', [Meeting\AgendaController::class, 'index'])->name('index');
             });
