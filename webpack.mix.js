@@ -17,3 +17,8 @@ mix.js('resources/js/app.js', 'public/js')
     require("tailwindcss"),
 
     ]);
+
+mix.scripts([
+    'node_modules/flowbite/dist/flowbite.js',
+    'node_modules/flowbite/dist/datepicker.js',
+],  'public/js/app.js')
