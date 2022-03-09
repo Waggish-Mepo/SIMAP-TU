@@ -88,7 +88,7 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], funct
 
     // Rapat
     Route::prefix('meeting')->name('meeting.')->group(function () {
-        Route::prefix('/{meetingId}')->group(function () {
+        Route::prefix('/1')->group(function () {
             Route::get('/', [Meeting\MeetingController::class, 'detail'])->name('detail');
 
             Route::prefix('/agenda')->name('agenda.')->group(function () {
