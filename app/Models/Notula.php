@@ -10,5 +10,5 @@ class Notula extends Model
     use HasFactory;
 
     protected $table = 'notulas';
-    protected $incrementing = false;
+    public $incrementing = false;
 }
