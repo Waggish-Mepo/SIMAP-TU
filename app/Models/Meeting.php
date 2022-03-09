@@ -14,6 +14,5 @@ class Meeting extends Model
     public $incrementing = false;
 
     const SELESAI = 'Selesai';
-    const PROSESS = 'Prosess';
-    const BELUM_MULAI = 'Belum mulai';
+    const BELUM_MULAI = 'Belum Mulai';
 }
