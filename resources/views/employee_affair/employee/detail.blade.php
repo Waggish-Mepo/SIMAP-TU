@@ -424,9 +424,12 @@
 
         function btnEditCertificate(id){
             toggleModal('modal-edit-certificate');
+            console.log($('#data-tanggal-'+id).html());
             const jenis = $('#data-jenis-'+id).html(),
                 tingkat = $('#data-tingkat-'+id).html(),
                 tanggal = new Date($('#data-tanggal-'+id).html()).toISOString().substring(0, 10);
+
+                console.log(tanggal);
 
             $(`#modal-edit-certificate #jenis option`).attr('selected', false);
             $(`#modal-edit-certificate #tingkat option`).attr('selected', false);

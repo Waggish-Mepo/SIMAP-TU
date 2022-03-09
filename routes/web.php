@@ -3,8 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeAffair;
-use App\Http\Controllers\EmployeeAffair\EmployeeController;
 use App\Http\Controllers\Meeting;
+use App\Http\Controllers\Letter;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -103,5 +103,19 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], funct
         Route::prefix('/notula')->name('notula.')->group(function () {
             Route::get('/', [Meeting\NotulaController::class, 'index'])->name('index');
         });
+    });
+});
+
+Route::group(['middleware' => ['auth', 'role:ADMIN,HEADMASTER']], function () {
+    // Surat Menyurat
+    Route::get('/letter-in', [Letter\LetterController::class, 'indexLetterIn'])->name('letter.in.index');
+    Route::get('/letter-out', [Letter\LetterController::class, 'indexLetterOut'])->name('letter.out.index');
+
+    Route::prefix('letter')->name('letter.')->group(function () {
+        Route::post('/', [Letter\LetterController::class, 'create'])->name('create');
+        Route::get('/{letterId}', [Letter\LetterController::class, 'detail'])->name('detail');
+        Route::get('/{letterId}/edit', [Letter\LetterController::class, 'edit'])->name('edit');
+        Route::patch('/{letterId}/update', [Letter\LetterController::class, 'update'])->name('update');
+        Route::delete('/{letterId}/delete', [Letter\LetterController::class, 'delete'])->name('delete');
     });
 });

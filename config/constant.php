@@ -3,6 +3,7 @@
 use App\Models\Certificate;
 use App\Models\Employee;
 use App\Models\EmployeeActivity;
+use App\Models\Letter;
 use App\Models\LetterIn;
 use App\Models\LetterOut;
 use App\Models\Meeting;
@@ -75,20 +76,16 @@ return [
             Certificate::LAINNYA,
         ],
     ],
-    'letter_out' => [
-        'sifat' => [
-            LetterOut::Rahasia,
-            LetterOut::Penting,
-            LetterOut::Segera,
-            LetterOut::Biasa,
+    'letter' => [
+        'jenis' => [
+            Letter::SuratMasuk,
+            Letter::SuratKeluar,
         ],
-    ],
-    'letter_in' => [
         'sifat' => [
-            LetterIn::Rahasia,
-            LetterIn::Penting,
-            LetterIn::Segera,
-            LetterIn::Biasa,
+            Letter::Biasa,
+            Letter::Penting,
+            Letter::Rahasia,
+            Letter::Segera,
         ],
     ],
     'employee_activity' => [
