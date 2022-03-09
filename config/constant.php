@@ -103,7 +103,6 @@ return [
     'meeting' => [
         'status' => [
             Meeting::SELESAI,
-            Meeting::PROSESS,
             Meeting::BELUM_MULAI,
         ],
     ],
