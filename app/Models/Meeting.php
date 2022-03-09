@@ -11,6 +11,8 @@ class Meeting extends Model
 
     protected $table = 'meetings';
 
-    protected $incrementing = false;
-    
+    public $incrementing = false;
+
+    const SELESAI = 'Selesai';
+    const BELUM_MULAI = 'Belum Mulai';
 }

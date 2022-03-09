@@ -22,7 +22,7 @@ class CreateMeetingsTable extends Migration
             $table->date('tanggal');
             $table->string('waktu');
             $table->string('tempat');
-            $table->boolean('status');
+            $table->string('status');
             $table->string('dokumentasi')->nullable();
             $table->timestamps();
         });
