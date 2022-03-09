@@ -28,8 +28,8 @@
         </ul>
     </li>
     <li>
-        <a href="#"
-            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+        <a href="{{route('visit_letter.index')}}"
+            class="{{Route::currentRouteName() === 'visit_letter.index' || Route::currentRouteName() === 'visit_letter.detail' || Route::currentRouteName() === 'employee.edit' ? 'border-l-8 border-l-primary bg-gray-100 -ml-2' : '' }} flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
             <i class="fa-solid fa-calendar-day text-lg text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
             <span class="ml-3">Kunjungan</span>
         </a>

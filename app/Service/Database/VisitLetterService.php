@@ -62,6 +62,14 @@ class VisitLetterService{
         return $visit_letter->toArray();
     }
 
+    public function delete($visitLetterId)
+    {
+        $visit_letter = VisitLetter::findOrFail($visitLetterId);
+        $visit_letter->delete();
+
+        return $visit_letter->toArray();
+    }
+
     private function fill(VisitLetter $visit_letter, array $attributes)
     {
         foreach ($attributes as $key => $value) {

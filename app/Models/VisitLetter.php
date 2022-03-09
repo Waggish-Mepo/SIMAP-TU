@@ -13,4 +13,9 @@ class VisitLetter extends Model
      protected $casts = [
          'tanggal' => 'datetime:d-m-Y'
      ];
+
+     protected $fillable = [
+        'lampiran',
+        'dokumentasi',
+    ];
 }
