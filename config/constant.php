@@ -5,6 +5,7 @@ use App\Models\Employee;
 use App\Models\EmployeeActivity;
 use App\Models\LetterIn;
 use App\Models\LetterOut;
+use App\Models\Meeting;
 use App\Models\User;
 
 return [
@@ -97,6 +98,12 @@ return [
             EmployeeActivity::SEMINAR,
             EmployeeActivity::EVENT,
             EmployeeActivity::LAINNYA,
+        ],
+    ],
+    'meeting' => [
+        'status' => [
+            Meeting::SELESAI,
+            Meeting::BELUM_MULAI,
         ],
     ],
 ];
