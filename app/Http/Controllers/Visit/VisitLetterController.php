@@ -45,7 +45,7 @@ class VisitLetterController extends Controller
         $visitDB = new VisitLetterService;
 
         $visits = $visitDB->index(['order_by' => 'ASC'])['data'] ?? [];
-        $archives = $visitDB->index(['order_by' => 'ASC', 'status' => VisitLetter::ARSIP])['data'] ?? [];
+        $archives = $visitDB->index(['order_by' => 'ASC', 'status' => VisitLetter::SELESAI])['data'] ?? [];
 
         $data = [
             'visits' => $visits,

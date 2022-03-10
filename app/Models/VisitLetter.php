@@ -11,7 +11,8 @@ class VisitLetter extends Model
 
     public $incrementing = false;
 
-    const ARSIP = 'arsip';
+    const BELUM_SELESAI = 'Belum Selesai';
+    const SELESAI = 'Selesai';
 
     protected $casts = [
         'tanggal' => 'datetime:d-m-Y'
