@@ -65,6 +65,10 @@
                                     Sifat
                                 </th>
                                 <th scope="col"
+                                    class="py-6 px-6 text-xs font-medium tracking-wider text-center text-white uppercase dark:text-gray-400">
+                                    Lampiran
+                                </th>
+                                <th scope="col"
                                     class="rounded-r-lg py-6 px-6 text-xs font-medium tracking-wider text-center text-white uppercase dark:text-gray-400">
                                     Aksi
                                 </th>
@@ -109,13 +113,19 @@
                                         </span>
                                     </td>
                                     <td
+                                        class="text-center py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                        <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-200 dark:text-yellow-900">
+                                            {{ $letter['lampiran'] }}
+                                        </span>
+                                    </td>
+                                    <td
                                         class="rounded-r-lg py-6 px-6 text-sm text-center font-medium flex-nowrap">
                                         <div class="inline-flex" role="group">
                                             <button type="button"
                                                 @if (Route::currentRouteName() === 'letter.in.index')
                                                 onclick="btnEditLetter('{{ $letter['id'] }}', '{{ $letter['no_surat'] }}', '{{ $letter['tgl_surat'] }}', '{{ $letter['perihal'] }}', '{{ $letter['sifat'] }}', '{{ $letter['lampiran']}}', '{{ $letter['pengirim'] }}', '{{ $letter['tgl_terima'] }}')"
                                                 @else
-                                                onclick="btnEditLetter('{{ $letter['id'] }}', '{{ $letter['no_surat'] }}', '{{ $letter['tgl_surat'] }}', '{{ $letter['perihal'] }}', '{{ $letter['sifat'] }}', '{{ $letter['lampiran']}}')"
+                                                onclick="btnEditLetter('{{ $letter['id'] }}', '{{ $letter['no_surat'] }}', '{{ $letter['tgl_surat'] }}', '{{ $letter['perihal'] }}', '{{ $letter['sifat'] }}', '{{ $letter['lampiran']}}', '{{ $letter['pengirim'] }}', '{{ $letter['tgl_terima'] }}')"
                                                 @endif
                                                 data-modal-toggle="modal-edit-letter"
                                                 class="text-white bg-yellow-400 opacity-90 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
