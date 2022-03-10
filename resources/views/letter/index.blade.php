@@ -114,9 +114,7 @@
                                     </td>
                                     <td
                                         class="text-center py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-200 dark:text-yellow-900">
                                             {{ $letter['lampiran'] }}
-                                        </span>
                                     </td>
                                     <td
                                         class="rounded-r-lg py-6 px-6 text-sm text-center font-medium flex-nowrap">
