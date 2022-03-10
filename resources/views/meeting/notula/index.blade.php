@@ -32,8 +32,12 @@
                             <table id="table-employee" class="min-w-full border-separate table-spacing">
                                 <thead class="bg-primary dark:bg-primary">
                                     <tr>
-                                        <th scope="col"
+                                    <th scope="col"
                                             class="px-6 py-6 text-xs font-medium tracking-wider text-left text-white uppercase rounded-l-lg dark:text-gray-400">
+                                            #
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
                                             Pimpinan Rapat
                                         </th>
                                         <th scope="col"
@@ -62,9 +66,12 @@
                                 <tbody id="render-employee">
                                 <tr
                                             class="border-b odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 dark:border-gray-600">
-
                                             <td
                                                 class="px-6 py-6 text-sm font-medium text-gray-900 rounded-l-lg whitespace-nowrap dark:text-white">
+                                                1
+                                            </td>
+                                            <td
+                                                class="px-6 py-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 1
                                             </td>
                                             <td

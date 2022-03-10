@@ -45,8 +45,12 @@
                             <table id="table-employee" class="min-w-full border-separate table-spacing">
                                 <thead class="bg-primary dark:bg-primary">
                                     <tr>
-                                        <th scope="col"
+                                    <th scope="col"
                                             class="px-6 py-6 text-xs font-medium tracking-wider text-left text-white uppercase rounded-l-lg dark:text-gray-400">
+                                            #
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
                                             Materi
                                         </th>
                                         <th scope="col"
@@ -90,6 +94,10 @@
                                                 1
                                             </td>
                                             <td
+                                                class="px-6 py-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                1
+                                            </td>
+                                            <td
                                                 class="px-6 py-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                                                 2
                                             </td>
@@ -110,7 +118,7 @@
                                                 asd
                                             </td>
                                             <td>
-                                            <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-indigo-100 bg-indigo-700 border rounded"> Selesai</span>
+                                            <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-indigo-100 bg-green-500 border rounded"> Selesai</span>
                                             <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-indigo-100 bg-red-700 border rounded">Belum Selesai</span>
                                             </td>
 
@@ -118,8 +126,12 @@
                                                     class="px-6 py-6 text-sm font-medium text-center rounded-r-lg flex-nowrap">
                                                     <div class="inline-flex" role="group">
                                                         <a href=""
-                                                            class="text-white bg-indigo-700 opacity-90 hover:bg-indigo-900 focus:ring-4 focus:ring-indigo-400 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
+                                                            class="text-white bg-green-500 opacity-90 hover:bg-green-900 focus:ring-4 focus:ring-green-400 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
                                                             <i class="fa-solid fa-check"></i>
+                                                        </a>
+                                                        <a href="{{ route('meeting.notula.detail') }}"
+                                                            class="text-white bg-indigo-700 opacity-90 hover:bg-indigo-900 focus:ring-4 focus:ring-indigo-400 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
+                                                            <i class="fa-solid fa-magnifying-glass"></i>
                                                         </a>
                                                         <form
                                                             action=""
@@ -131,6 +143,7 @@
                                                                 <i class="fa-solid fa-trash"></i>
                                                             </button>
                                                         </form>
+
                                                     </div>
                                                 </td>
                                         </tr>
@@ -152,6 +165,10 @@
                                     <tr>
                                         <th scope="col"
                                             class="px-6 py-6 text-xs font-medium tracking-wider text-left text-white uppercase rounded-l-lg dark:text-gray-400">
+                                            #
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
                                             Materi
                                         </th>
                                         <th scope="col"
@@ -184,11 +201,13 @@
                                     </tr>
                                 </thead>
                                 <tbody id="render-employee">
-                                <tr
-                                            class="border-b odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 dark:border-gray-600">
-
+                                <tr class="border-b odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 dark:border-gray-600">
                                             <td
                                                 class="px-6 py-6 text-sm font-medium text-gray-900 rounded-l-lg whitespace-nowrap dark:text-white">
+                                                1
+                                            </td>
+                                            <td
+                                                class="px-6 py-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 1
                                             </td>
                                             <td
