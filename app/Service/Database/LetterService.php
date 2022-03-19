@@ -14,10 +14,15 @@ class LetterService{
         $orderBy = $filter['order_by'] ?? 'DESC';
         $per_page = $filter['per_page'] ?? 99;
         $no_surat = $filter['no_surat'] ?? null;
+        $tgl_surat = $filter['tgl_surat'] ?? null;
         $sifat = $filter['sifat'] ?? null;
         $jenis = $filter['jenis'] ?? null;
 
         $query = Letter::orderBy('created_at', $orderBy);
+
+        if ($tgl_surat !== null) {
+            $query->where('tgl_surat', $tgl_surat);
+        }
 
         if ($no_surat !== null) {
             $query->where('no_surat', 'LIKE','%'.$no_surat.'%');

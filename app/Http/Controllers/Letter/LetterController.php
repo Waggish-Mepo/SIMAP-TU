@@ -13,22 +13,43 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class LetterController extends Controller
 {
-    public function indexLetterIn()
+    public function index()
     {
         $user = Auth::user();
         $letterDB = new LetterService;
-        $letters = $letterDB->index(['jenis' => 'Surat Masuk', 'order_by' => 'ASC'])['data'] ?? [];
+        $letters = $letterDB->index()['data'] ?? [];
+        $tgl_surats = [];
+        foreach ($letters as $key => $value) {
+            $tgl_surats[$key] = $letters[$key]['tgl_surat'];
+        }
 
-        return view('letter.index', compact('user', 'letters'));
+        return view('letter.index', compact('user', 'tgl_surats'));
     }
 
-    public function indexLetterOut()
+    public function getLetterIns(Request $request)
     {
         $user = Auth::user();
         $letterDB = new LetterService;
-        $letters = $letterDB->index(['jenis' => 'Surat Keluar', 'order_by' => 'ASC'])['data'] ?? [];
 
-        return view('letter.index', compact('user', 'letters'));
+        $payload = ['jenis' => 'Surat Masuk', 'order_by' => 'ASC'];
+        if ($request->tgl_surat !== null) {
+            $payload['tgl_surat'] = $request->tgl_surat;
+        }
+        $letters = $letterDB->index($payload)['data'] ?? [];
+        return response()->json($letters);
+    }
+
+    public function getLetterOuts(Request $request)
+    {
+        $user = Auth::user();
+        $letterDB = new LetterService;
+
+        $payload = ['jenis' => 'Surat Keluar', 'order_by' => 'ASC'];
+        if ($request->tgl_surat !== null) {
+            $payload['tgl_surat'] = $request->tgl_surat;
+        }
+        $letters = $letterDB->index($payload)['data'] ?? [];
+        return response()->json($letters);
     }
 
     public function create(Request $request)
@@ -55,18 +76,23 @@ class LetterController extends Controller
         return back()->with('success', 'Surat berhasil diperbarui');
     }
 
-    public function delete($letterId)
+    public function delete(Request $request)
     {
         $letterDB = new LetterService;
-        $letterDB->delete($letterId);
+        $letter = $letterDB->delete($request->id);
 
-        return back()->with('success', 'Surat berhasil dihapus');
+        return response()->json($letter);
     }
 
     public function exportLetterIn()
     {
         $date = Carbon::now()->locale('id_ID')->isoFormat('DD-MM-YYYY');
         return Excel::download(new LetterInsExport, 'DATA-SURAT-MASUK-SMK-WIKRAMA-BOGOR-'.$date.'.xlsx');
+    }
+
+    public function exportLetterInFilterTglSurat($tgl_surat)
+    {
+        return Excel::download(new LetterInsExport($tgl_surat), 'DATA-SURAT-MASUK-SMK-WIKRAMA-BOGOR-'.$date.'.xlsx');
     }
 
     public function exportLetterOut()
