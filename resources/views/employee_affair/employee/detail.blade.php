@@ -426,7 +426,7 @@
             toggleModal('modal-edit-certificate');
             const jenis = $('#data-jenis-'+id).html(),
                 tingkat = $('#data-tingkat-'+id).html(),
-                tanggal = new Date($('#data-tanggal-'+id).html()).toISOString().substring(0, 10);
+                tanggal = $('#data-tanggal-'+id).html().replaceAll("/", "-").split("-").reverse().join("-");
 
             $(`#modal-edit-certificate #jenis option`).attr('selected', false);
             $(`#modal-edit-certificate #tingkat option`).attr('selected', false);
