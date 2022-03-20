@@ -51,23 +51,23 @@ class LetterService{
         return $letter->toArray();
     }
 
-    public function delete($certificateId)
+    public function delete($letterId)
     {
-        $letter = Letter::findOrFail($certificateId);
+        $letter = Letter::findOrFail($letterId);
         $letter->delete();
 
         return $letter->toArray();
     }
 
-    public function detail($employeeId)
+    public function detail($letterId)
     {
-        $letter = Letter::findOrFail($employeeId);
+        $letter = Letter::findOrFail($letterId);
         return $letter->toArray();
     }
 
-    public function update($employeeId, $payload)
+    public function update($letterId, $payload)
     {
-        $letter = Letter::findOrFail($employeeId);
+        $letter = Letter::findOrFail($letterId);
         $letter = $this->fill($letter, $payload);
         $letter->save();
 
