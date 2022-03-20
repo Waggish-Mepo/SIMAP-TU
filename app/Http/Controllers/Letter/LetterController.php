@@ -20,6 +20,7 @@ class LetterController extends Controller
         $letters = $letterDB->index()['data'] ?? [];
         $tgl_surats = [];
         foreach ($letters as $key => $value) {
+            if (in_array($letters[$key]['tgl_surat'], $tgl_surats)) continue;
             $tgl_surats[$key] = $letters[$key]['tgl_surat'];
         }
 

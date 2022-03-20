@@ -14,8 +14,8 @@
     <div class="grid justify-items-end mb-4">
         <div class="flex flex-row">
             <label for="tgl-surats" class="mr-2 block my-auto text-md font-medium text-gray-900 dark:text-gray-400">Filter Tanggal Surat</label>
-            <select id="tgl-surats" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option disabled selected value></option>
+            <select onchange="selectTglSurat()" id="tgl-surats" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option selected value></option>
                 @foreach($tgl_surats as $tgl)
                 <option value="{{ $tgl }}">{{ $tgl }}</option>
                 @endforeach
@@ -114,12 +114,17 @@
 
         getLetters();
 
-        function getLetters() {
+        function getLetters(tgl_surat) {
             let url = `{{ Route::currentRouteName() === 'letter.in.index' ? url('/letter/database/letter-ins') : url('/letter/database/letter-outs') }}`
+            if (tgl_surat != null) tgl_surat =tgl_surat.replaceAll("/", "-").split("-").reverse().join("-");
+            let data = {
+                'tgl_surat' : tgl_surat
+            }
 
             $.ajax({
                 type: "get",
                 url: url,
+                data: data,
                 beforeSend: function () {
                     html = `
                     <tr
@@ -234,6 +239,11 @@
             $(`#render-letter`).html(html);
             $(`#table-letter`).DataTable();
             $(`#table-letter`).removeClass('dataTable');
+        }
+
+        function selectTglSurat() {
+            let tgl = document.getElementById("tgl-surats").value;
+            getLetters(tgl);
         }
 
         function btnDeleteLetter(id, url) {
