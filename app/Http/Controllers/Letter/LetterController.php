@@ -93,6 +93,7 @@ class LetterController extends Controller
 
     public function exportLetterInFilterTglSurat($tgl_surat)
     {
+        $date = Carbon::now()->locale('id_ID')->isoFormat('DD-MM-YYYY');
         return Excel::download(new LetterInsExport($tgl_surat), 'DATA-SURAT-MASUK-SMK-WIKRAMA-BOGOR-'.$date.'.xlsx');
     }
 
