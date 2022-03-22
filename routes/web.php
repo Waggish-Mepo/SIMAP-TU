@@ -3,8 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeAffair;
-use App\Http\Controllers\EmployeeAffair\EmployeeController;
 use App\Http\Controllers\Meeting;
+use App\Http\Controllers\Letter;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -104,4 +104,26 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], funct
             Route::get('/', [Meeting\NotulaController::class, 'index'])->name('index');
         });
     });
+});
+
+Route::group(['middleware' => ['auth', 'role:ADMIN,HEADMASTER']], function () {
+    // Surat Menyurat
+    Route::get('letter-in', [Letter\LetterController::class, 'index'])->name('letter.in.index');
+    Route::get('letter-out', [Letter\LetterController::class, 'index'])->name('letter.out.index');
+    Route::prefix('letter')->name('letter.')->group(function () {
+        Route::post('/', [Letter\LetterController::class, 'create'])->name('create');
+        Route::get('/{letterId}', [Letter\LetterController::class, 'detail'])->name('detail');
+        Route::get('/{letterId}/edit', [Letter\LetterController::class, 'edit'])->name('edit');
+        Route::patch('/{letterId}/update', [Letter\LetterController::class, 'update'])->name('update');
+
+        Route::get('/export/letter-in', [Letter\LetterController::class, 'exportLetterIn'])->name('export.in');
+        Route::get('/export/letter-out', [Letter\LetterController::class, 'exportLetterOut'])->name('export.out');
+
+        // Ajax Request
+        Route::get('/database/letter-ins', [Letter\LetterController::class, 'getLetterIns'])->name('index.in');
+        Route::get('/database/letter-outs', [Letter\LetterController::class, 'getLetterOuts'])->name('index.out');
+        Route::delete('/database/letter', [Letter\LetterController::class, 'delete'])->name('delete');
+    });
+
+
 });

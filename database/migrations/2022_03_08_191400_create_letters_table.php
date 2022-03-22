@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLetterInsTable extends Migration
+class CreateLettersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateLetterInsTable extends Migration
      */
     public function up()
     {
-        Schema::create('letter_ins', function (Blueprint $table) {
+        Schema::create('letters', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('pengirim')->nullable();
+            $table->string('jenis');
             $table->string('no_surat');
             $table->date('tgl_surat');
-            $table->date('tgl_terima');
+            $table->date('tgl_terima')->nullable();
             $table->string('perihal');
             $table->string('sifat');
             $table->string('lampiran')->nullable();
@@ -32,6 +34,6 @@ class CreateLetterInsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('letter_ins');
+        Schema::dropIfExists('letters');
     }
 }

@@ -48,6 +48,9 @@
             <span class="ml-3">Kunjungan</span>
         </a>
     </li>
+    @if ($user->role === 'ADMIN')
+        @include('layout.sidebar.admin._item')
+    @endif
     <li>
         <a href="#"
             class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -56,9 +59,6 @@
             <span class="ml-3">Rapat</span>
         </a>
     </li>
-    @if ($user->role === 'ADMIN')
-        @include('layout.sidebar.admin._item')
-    @endif
 </ul>
 <ul class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
     <li>
