@@ -7,6 +7,7 @@ use App\Models\LetterIn;
 use App\Models\LetterOut;
 use App\Models\Meeting;
 use App\Models\User;
+use App\Models\VisitLetter;
 
 return [
     'user' => [
@@ -105,5 +106,18 @@ return [
             Meeting::SELESAI,
             Meeting::BELUM_MULAI,
         ],
+    ],
+    'visit' => [
+        'status' => [
+            VisitLetter::SELESAI,
+            VisitLetter::BELUM_SELESAI,
+        ],
+        'hari' => [
+            VisitLetter::SENIN,
+            VisitLetter::SELASA,
+            VisitLetter::RABU,
+            VisitLetter::KAMIS,
+            VisitLetter::JUMAT,
+        ]
     ],
 ];

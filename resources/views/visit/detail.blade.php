@@ -21,7 +21,7 @@
     </div>
     <div>
         <div class="p-4 bg-white rounded-md dark:bg-gray-800" id="pegawai" role="tabpanel" aria-labelledby="pegawai-tab">
-            <form action="{{ route('visit_letter.update', $visit['id']) }}" method="post">
+            <form action="{{ route('visit_letter.update', $visit['id']) }}" method="post" enctype="multipart/form-data">
                 <form>
                 @csrf
                 @method('PATCH')
@@ -69,16 +69,10 @@
                                 required>
                                 <option disabled selected value="-- Pilih Hari --">
                                     -- Pilih Hari --</option>
-                                <option value="Senin">
-                                    Senin</option>
-                                <option value="Selasa">
-                                    Selasa</option>
-                                <option value="Rabu">
-                                    Rabu</option>
-                                <option value="Kamis">
-                                    Kamis</option>
-                                <option value="Jumat">
-                                    Jumat</option>
+                                @foreach( config('constant.visit.hari') as $hari)
+                                    <option value="{{$hari}}"
+                                        {{$visit['hari'] === $hari ? 'selected' : ''}}>{{ $hari }}</option>
+                                        @endforeach
                             </select>
                         </div>
                         <div class="mb-6">
@@ -117,16 +111,17 @@
                                 required>
                                 <option disabled selected value="--Pilih Status--">
                                     -- Pilih Status --</option>
-                                <option value="Belum Selesai">
-                                    Belum Selesai</option>
-                                <option value="Selesai">
-                                    Selesai</option>
+                                    @foreach( config('constant.visit.status') as $status)
+                                    <option value="{{$status}}"
+                                        {{$visit['status'] === $status ? 'selected' : ''}}>{{ $status }}</option>
+                                        @endforeach
                             </select>
                         </div>
                         <div class="mb-6">
                             <label for="dokumentasi"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Dokumentasi</label>
-                            <input type="file" id="dokumentasi" name="dokumentasi"
+                                <img id="dokumentasi-img" class="mx-auto" src="{{ asset('storage/'.$visit['dokumentasi'])}}" alt="" srcset="" style="width:15rem;height:15rem">
+                            <input onchange="document.getElementById('dokumentasi-img').src = window.URL.createObjectURL(this.files[0])" type="file" id="dokumentasi" name="dokumentasi"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
                                 value="{{ $visit['dokumentasi'] }}">
                         </div>
@@ -138,4 +133,18 @@
             </form>
         </div>
     </div>
+@endsection
+
+@section('script')
+<script>
+   
+
+    $(document).ready(function(){
+         const tanggal = `{{$visit['tanggal']}}`.replaceAll("/", "-").split("-").reverse().join("-");
+
+    $('#tanggal').val(tanggal)
+    console.log(tanggal)
+    }) 
+
+</script>
 @endsection

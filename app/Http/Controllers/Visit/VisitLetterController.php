@@ -10,7 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
-use App\exportVisitArchives;
+use App\Exports\VisitFinishesExport;
 use App\Models\VisitLetter;
 
 class VisitLetterController extends Controller
@@ -18,7 +18,14 @@ class VisitLetterController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('visit.index', compact('user'));
+        $visitDB = new VisitLetterService;
+        $visit = $visitDB->index()['data'] ?? [];
+        $tgl_visits = [];
+        foreach ($visit as $key => $value) {
+            if (in_array($visit[$key]['tanggal'], $tgl_visits)) continue;
+            $tgl_visits[$key] = $visit[$key]['tanggal'];
+        }
+        return view('visit.index', compact('user', 'tgl_visits'));
     }
 
     public function detail($visitLetterId)
@@ -98,5 +105,11 @@ class VisitLetterController extends Controller
 
         return redirect()->route('visit_letter.index')
             ->with('success', 'Data berhasil dihapus');
+    }
+
+    public function exportVisitFinish()
+    {
+        $date = Carbon::now()->locale('id_ID')->isoFormat('DD-MM-YYYY');
+        return Excel::download(new VisitFinishesExport, 'DATA-SELESAI-SURAT-KUNJUNGAN-SMK-WIKRAMA-BOGOR-'.$date.'.xlsx');
     }
 }

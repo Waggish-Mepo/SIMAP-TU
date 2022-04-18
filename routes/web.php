@@ -90,6 +90,8 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], funct
         Route::delete('/{visitId}/delete', [Visit\VisitLetterController::class, 'delete'])->name('delete');
         
         Route::get('/database/visits', [Visit\VisitLetterController::class, 'getVisitLetters']);
+
+        Route::get('/export/visit-finished', [Visit\VisitLetterController::class, 'exportVisitFinish'])->name('export.finish');
     });
 
     // Rapat
