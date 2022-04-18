@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EmployeeAffair\IjazahController;
 use App\Http\Controllers\EmployeeAffair;
 use App\Http\Controllers\EmployeeAffair\EmployeeController;
 use App\Http\Controllers\Meeting;
@@ -64,7 +65,6 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], funct
 
         // Ijazah Pegawai
         Route::prefix('/ijazah')->name('ijazah.')->group(function () {
-            Route::get('/', [EmployeeAffair\IjazahController::class, 'index'])->name('index');
             Route::post('/', [EmployeeAffair\IjazahController::class, 'create'])->name('create');
             Route::patch('/', [EmployeeAffair\IjazahController::class, 'update'])->name('update');
             Route::delete('/', [EmployeeAffair\IjazahController::class, 'delete'])->name('delete');
@@ -72,6 +72,7 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], funct
 
         // Ajax Request
         Route::get('/database/certificate/{employeeId}', [EmployeeAffair\CertificateController::class, 'index'])->name('certificates.index');
+        Route::get('/database/ijazah/{employeeId}', [EmployeeAffair\IjazahController::class, 'index'])->name('ijazah.index');
         Route::get('/database/users', [EmployeeAffair\EmployeeController::class, 'getUsers']);
         Route::patch('/database/users', [EmployeeAffair\EmployeeController::class, 'resetPassword']);
         Route::group(['middleware' => ['auth', 'role:ADMIN']], function () {

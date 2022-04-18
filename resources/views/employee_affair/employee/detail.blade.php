@@ -293,13 +293,74 @@
                 </div>
             </div>
         </div>
-        <div class="hidden p-4 bg-white rounded-md dark:bg-gray-800" id="ijazah" role="tabpanel" aria-labelledby="ijazah-tab">
-
+        <div class="hidden p-4 rounded-md dark:bg-gray-800" id="ijazah" role="tabpanel" aria-labelledby="ijazah-tab">
+            @if (Route::currentRouteName() === 'employee.edit')
+                <div class="grid justify-items-end mb-4">
+                    <div class="flex flex-row">
+                        <button type="button" data-modal-toggle="modal-add-ijazah" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                            <i class="fa-solid fa-file-ijazah"></i>
+                            Tambah Ijazah
+                        </button>
+                    </div>
+                </div>
+            @endif
+            <div class="flex flex-col">
+                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
+                        <div class="overflow-hidden">
+                            <table id="table-ijazah" class="min-w-full border-separate table-spacing">
+                                <thead class="bg-primary dark:bg-primary">
+                                    <tr>
+                                        <th scope="col"
+                                            class="rounded-l-lg py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            #
+                                        </th>
+                                        <th scope="col"
+                                            class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            Nomor
+                                        </th>
+                                        <th scope="col"
+                                            class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            Jurusan
+                                        </th>
+                                        <th scope="col"
+                                            class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            Nama Sekolah
+                                        </th>
+                                        <th scope="col"
+                                            class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            Kabupaten/Kota
+                                        </th>
+                                        <th scope="col"
+                                            class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            Provinsi
+                                        </th>
+                                        <th scope="col"
+                                            class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            Nama Orang Tua
+                                        </th>
+                                        <th scope="col"
+                                            class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            Ijazah
+                                        </th>
+                                        <th scope="col"
+                                            class="rounded-r-lg py-6 px-6 text-xs font-medium tracking-wider text-center text-white uppercase dark:text-gray-400">
+                                            Aksi
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="render-ijazah"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     @include('employee_affair.modal._add_certificate')
     @include('employee_affair.modal._edit_certificate')
+    @include('employee_affair.modal._add_ijazah')
 @endsection
 
 @section('script')
@@ -342,6 +403,7 @@
             });
         }
 
+
         getCertificates();
         function getCertificates(){
             url = '{{route('employee.certificates.index', $employee['id'])}}';
@@ -353,6 +415,7 @@
                 }
             });
         }
+
 
         function renderCertificate(data){
             let html = ``;
@@ -439,5 +502,120 @@
             $(`#modal-edit-certificate #tingkat option[value=${tingkat}]`).attr('selected', 'selected');
             $('#modal-edit-certificate #sertifikat-imgs').attr('src', $(`#data-sertifikat-${id}`).attr(`src`));
         }
+
+
+        getIjazah();
+        function getIjazah(){
+            url = '{{ route('employee.ijazah.index', $employee['id']) }}';
+            $.ajax({
+                type: 'GET',
+                url: url,
+                success: function(data){
+                    console.log(data);
+                    renderIjazah(data);
+                }
+            });
+        }
+
+        function renderIjazah(data){
+            let html = ``;
+
+            if (data.length < 1) {
+                html += `
+                    <tr
+                        class="border-b odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 dark:border-gray-600">
+                        <td class="rounded-lg py-6 px-6 text-sm font-medium text-center text-gray-900 whitespace-nowrap dark:text-white" colspan="8">
+                            Tidak dapat menemukan data ijazah
+                        </td>
+                    </tr>`
+                return $(`#render-ijazah`).html(html);
+            }
+            $.each(data, function (key, data) {
+            html += `
+                <tr
+                    class="border-b odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 dark:border-gray-600">
+                    <td
+                        class="rounded-l-lg py-6 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        ${key + 1}
+                    </td>
+                    <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                        <div id="data-nomor-${data.id}" class="whitespace-normal w-44">${data.nomor}</div>
+                    </td>
+                    <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                        <div id="data-jurusan-${data.id}" class="whitespace-normal w-24">${data.jurusan}</div>
+                    </td>
+                    <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                        <div id="data-nama_sekolah-${data.id}" class="whitespace-normal w-24">${data.nama_sekolah}</div>
+                    </td>
+                    <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                        <div id="data-kabupaten_kota-${data.id}" class="whitespace-normal w-24">${data.kabupaten_kota}</div>
+                    </td>
+                    <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                        <div id="data-provinsi-${data.id}" class="whitespace-normal w-24">${data.provinsi}</div>
+                    </td>
+                    <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                        <div id="data-provinsi-${data.id}" class="whitespace-normal w-24">${data.nama_ortu}</div>
+                    </td>
+                    <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                        <img id="data-ijazah-${data.id}" class="w-24 " src="{{ asset('storage/${data.ijazah}')}}"></img>
+                    </td>
+                    <td class="rounded-r-lg py-6 px-6 text-sm text-center font-medium flex-nowrap">
+                        <div class="inline-flex" role="group">
+                            <button type="button" onclick="btnEditIjazah('${data.id}')" class="text-white bg-yellow-400 opacity-90 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                            <button type"button" onclick="btnDeleteIjazah('${data.id}')" class="text-white bg-red-700 opacity-90 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                    `
+            });
+            html += `</tr>`
+
+            $(`#render-ijazah`).html(html);
+            $(`#table-ijazah`).DataTable();
+            $(`#table-ijazah`).removeClass('dataTable');
+        };
+
+        function btnDeleteIjazah(id){
+            url = `{{route('employee.ijazah.delete', ['employeeId' => "employeeId", 'certificateId' => "certificateId"])}}`;
+            url = url.replace('employeeId', id).replace('ijazahId', id);
+            $.ajax({
+                type: 'DELETE',
+                url: url,
+                success: function(data){
+                    toast('Berhasil menghapus ijazah', 'success');
+                    getIjazah();
+                }
+            });
+        }
+
+        function btnEditIjazah(id){
+            toggleModal('modal-edit-ijazah');
+            const nomor = $(`#data-nomor-${id}`).text();
+            const jurusan = $(`#data-jurusan-${id}`).text();
+            const nama_sekolah = $(`#data-nama_sekolah-${id}`).text();
+            const npsn = $(`#data-npsn-${id}`).text();
+            const kabupaten_kota = $(`#data-kabupaten_kota-${id}`).text();
+            const provinsi = $(`#data-provinsi-${id}`).text();
+            const nama_ortu = $(`#data-nama_ortu-${id}`).text();
+            const nis = $(`#data-nis-${id}`).text();
+            const nisn = $(`#data-nisn-${id}`).text();
+            const no_peserta_un = $(`#data-no_peserta_un-${id}`).text();
+
+            $('#modal-edit-ijazah #nomor_s').val(nomor);
+            $('#modal-edit-ijazah #jurusan').val(jurusan);
+            $('#modal-edit-ijazah #nama_sekolah').val(nama_sekolah);
+            $('#modal-edit-ijazah #npsn').val(npsn);
+            $('#modal-edit-ijazah #kabupaten_kota').val(kabupaten_kota);
+            $('#modal-edit-ijazah #provinsi').val(provinsi);
+            $('#modal-edit-ijazah #nama_ortu').val(nama_ortu);
+            $('#modal-edit-ijazah #nis').val(nis);
+            $('#modal-edit-ijazah #nisn').val(nisn);
+            $('#modal-edit-ijazah #no_peserta_un').val(no_peserta_un);
+            $('#modal-edit-ijazah #ijazah-imgs').attr('src', $(`#data-ijazah-${id}`).attr(`src`));
+        }
     </script>
+
 @endsection
