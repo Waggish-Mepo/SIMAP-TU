@@ -42,6 +42,7 @@ class DatabaseSeeder extends Seeder
 
         foreach ($users as $user) {
             $createdUser = User::factory($user)->create();
+            Employee::where('id', $createdUser['userable_id'])->update(['jenis_ptk' => Employee::Guru_kelas]);
             if ($createdUser['role'] === User::ADMIN) Employee::where('id', $createdUser['userable_id'])->update(['jenis_ptk' => Employee::Tenaga_Administrasi_Sekolah]);
             elseif ($createdUser['role'] === User::HEADMASTER) Employee::where('id', $createdUser['userable_id'])->update(['jenis_ptk' => Employee::Kepala_Sekolah]);
         }
