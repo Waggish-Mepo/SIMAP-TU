@@ -28,17 +28,17 @@
         </ul>
     </div>
     <div id="jadwalTabContent">
-         <label for="tgl-visits" class="mr-2 block my-auto text-md font-medium text-gray-900 dark:text-gray-400">Filter Tanggal Kunjungan</label>
-            <select onchange="selectTglSurat()" id="tgl-visits" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option selected value></option>
-                @foreach($tgl_visits as $tgl)
-                <option value="{{ $tgl }}">{{ $tgl }}</option>
-                @endforeach
-            </select>
         <div class="rounded-lg" id="jadwal" role="tabpanel"
             aria-labelledby="jadwal-tab">
             <div class="grid justify-items-end mb-4">
-                <div class="flex flex-row">
+                    <div class="flex flex-row">
+                        <label for="tgl-visits" class="mr-2 block my-auto text-md font-medium text-gray-900 dark:text-gray-400">Filter Tanggal Kunjungan</label>
+                    <select onchange="selectTglSurat()" id="tgl-visits" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected value></option>
+                        @foreach($tgl_visits as $tgl)
+                        <option value="{{ $tgl }}">{{ $tgl }}</option>
+                        @endforeach
+                    </select>
                     @if ($user->role === 'ADMIN')
                         {{-- <a href="{{route('')}}" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                             <i class="fa-solid fa-file-export mr-2"></i>
@@ -173,7 +173,7 @@
         function getVisits(tanggal) {
             let url = `{{ url('/visit-letter/database/visits') }}`
 
-            if (tanggal != null) tanggal =tanggal.replaceAll("/", "-").split("-").reverse().join("-");
+            if (tanggal != null) tanggal = tanggal.replaceAll("/", "-").split("-").reverse().join("-");
             let data = {
                 'tanggal' : tanggal
             }
@@ -294,8 +294,8 @@
         }
 
         function selectTglSurat() {
-            let tgl = document.getElementById("tgl-visits").value;
-            getVisits(tgl)
+            let tgl = $('#tgl-visits option:selected').val();
+            getVisits(tgl);
         }
 
 

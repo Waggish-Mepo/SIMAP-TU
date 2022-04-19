@@ -46,12 +46,17 @@ class VisitLetterController extends Controller
         return view('visit.detail', compact('visit', 'user'));
     }
 
-    public function getVisitLetters()
+    public function getVisitLetters(Request $request)
     {
         $user = Auth::user();
         $visitDB = new VisitLetterService;
 
-        $visits = $visitDB->index(['order_by' => 'ASC'])['data'] ?? [];
+        if ($request->tanggal !== null) {
+            $visits = $visitDB->index(['order_by' => 'ASC', 'tanggal' => $request->tanggal])['data'] ?? [];
+        } else {
+            $visits = $visitDB->index(['order_by' => 'ASC'])['data'] ?? [];
+        }
+
         $archives = $visitDB->index(['order_by' => 'ASC', 'status' => VisitLetter::SELESAI])['data'] ?? [];
 
         $data = [
