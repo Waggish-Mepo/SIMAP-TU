@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeAffair\IjazahController;
 use App\Http\Controllers\EmployeeAffair;
+use App\Http\Controllers\Visit;
+use App\Http\Controllers\EmployeeAffair\EmployeeController;
 use App\Http\Controllers\Meeting;
 use App\Http\Controllers\Letter;
 use Illuminate\Support\Facades\Route;
@@ -84,7 +86,14 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], funct
     // Kunjungan
     Route::prefix('visit-letter')->name('visit_letter.')->group(function () {
         Route::get('/', [Visit\VisitLetterController::class, 'index'])->name('index');
-        Route::get('/{visitId}', [Visit\VisitLetterController::class, 'detail'])->name('detail');
+        Route::post('/', [Visit\VisitLetterController::class, 'create'])->name('create');
+        Route::get('/{visitId}/detail', [Visit\VisitLetterController::class, 'detail'])->name('detail');
+        Route::patch('/{visitId}/update', [Visit\VisitLetterController::class, 'update'])->name('update');
+        Route::delete('/{visitId}/delete', [Visit\VisitLetterController::class, 'delete'])->name('delete');
+
+        Route::get('/database/visits', [Visit\VisitLetterController::class, 'getVisitLetters']);
+
+        Route::get('/export/visit-finished', [Visit\VisitLetterController::class, 'exportVisitFinish'])->name('export.finish');
     });
 
     // Rapat
