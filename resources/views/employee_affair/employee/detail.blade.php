@@ -449,7 +449,7 @@
                     <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                         <div id="data-jenis-${data.id}" class="whitespace-normal w-24">${data.jenis}</div>
                     </td>
-                    <td id="data-tingkat-${data.id}" class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">${data.tingkat}</td>
+                    <td id="data-tingkat-${data.id}" class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-g   ray-400">${data.tingkat}</td>
                     <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                         <img id="data-sertifikat-${data.id}" class="w-24 " src="{{ asset('storage/${data.sertifikat}')}}"></img>
                     </td>

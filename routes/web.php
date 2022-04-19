@@ -64,7 +64,7 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], funct
         });
 
         // Ijazah Pegawai
-        Route::prefix('/ijazah')->name('ijazah.')->group(function () {
+        Route::prefix('/ijazah/{employeeId}')->name('ijazah.')->group(function () {
             Route::post('/', [EmployeeAffair\IjazahController::class, 'create'])->name('create');
             Route::patch('/', [EmployeeAffair\IjazahController::class, 'update'])->name('update');
             Route::delete('/', [EmployeeAffair\IjazahController::class, 'delete'])->name('delete');
