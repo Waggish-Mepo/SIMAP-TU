@@ -82,10 +82,12 @@
                                                 class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
                                                 Status
                                             </th>
+                                            @if ($user->role === 'ADMIN')
                                             <th scope="col"
                                                 class="rounded-r-lg py-6 px-6 text-xs font-medium tracking-wider text-center text-white uppercase dark:text-gray-400">
                                                 Aksi
                                             </th>
+                                            @endif
                                     </tr>
                                 </thead>
                                 <tbody id="render-jadwal"></tbody>
@@ -135,10 +137,12 @@
                                              class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
                                              Status
                                         </th>
+                                        @if ($user->role === 'ADMIN')
                                         <th scope="col"
                                             class="rounded-r-lg py-6 px-6 text-xs font-medium tracking-wider text-center text-white uppercase dark:text-gray-400">
                                             Aksi
                                         </th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody id="render-arsip"></tbody>
@@ -259,6 +263,22 @@
                         </div>
                     </td>
                     `
+
+            if (role === 'EMPLOYEE' || role === 'HEADMASTER') {
+                html += `
+                    <td class= "py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                        <div class="whitespace-normal w-24">
+                            ${data.status}
+                        </div>
+                    </td>
+                    `
+                    html += `</tr>`
+
+                $(`#render-${id}`).html(html);
+                $(`#table-${id}`).DataTable();
+                $(`#table-${id}`).removeClass('dataTable');
+            }
+
             if (role === 'ADMIN'){
                 html += `
                         <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">

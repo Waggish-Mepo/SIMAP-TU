@@ -57,7 +57,7 @@
                         <div class="mb-6">
                             <label for="jam"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Jam Kunjungan</label>
-                            <input type="text" id="jam" name="jam"
+                            <input type="time" id="jam" name="jam"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
                                 value="{{ $visit['jam'] }}">
                         </div>
@@ -67,8 +67,8 @@
                             <select id="hari" name="hari"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
                                 required>
-                                <option disabled selected value="-- Pilih Hari --">
-                                    -- Pilih Hari --</option>
+                                <option disabled selected >
+                                    {{ $visit['hari'] }}</option>
                                 @foreach( config('constant.visit.hari') as $hari)
                                     <option value="{{$hari}}"
                                         {{$visit['hari'] === $hari ? 'selected' : ''}}>{{ $hari }}</option>
@@ -137,14 +137,14 @@
 
 @section('script')
 <script>
-   
+
 
     $(document).ready(function(){
          const tanggal = `{{$visit['tanggal']}}`.replaceAll("/", "-").split("-").reverse().join("-");
 
     $('#tanggal').val(tanggal)
     console.log(tanggal)
-    }) 
+    })
 
 </script>
 @endsection
