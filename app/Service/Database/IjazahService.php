@@ -55,11 +55,10 @@ class IjazahService{
         $ijazah = new Ijazah;
         $ijazah->id = Uuid::uuid4()->toString();
         $ijazah->employee_id = $employeeId;
-        $payload['ijazah'] = $payload['ijazah']->store('public/ijazah');
+        $payload['ijazah'] = $payload['ijazah']->store('ijazah');
         $payload['ijazah'] = str_replace('public/', '', $payload['ijazah']);
         $ijazah = $this->fill($ijazah, $payload);
         $ijazah->save();
-
 
         return $ijazah->toArray();
     }
