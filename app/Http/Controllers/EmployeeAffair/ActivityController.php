@@ -118,11 +118,10 @@ class ActivityController extends Controller
             'kategori' => $request->kategori,
         ];
 
-        $activityDb->create($payload);
+        $activities = $activityDb->create($payload);
 
         // dd($tes);
 
-        return redirect()->route('employee.activity.index')
-            ->with('success', 'Data berhasil ditambahkan');
+        return response()->json($activities);
     }
 }

@@ -75,9 +75,11 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], funct
         // Ajax Request
         Route::get('/database/certificate/{employeeId}', [EmployeeAffair\CertificateController::class, 'index'])->name('certificates.index');
         Route::get('/database/users', [EmployeeAffair\EmployeeController::class, 'getUsers']);
+        Route::get('/database/activity', [EmployeeAffair\ActivityController::class, 'getActivity']);
         Route::patch('/database/users', [EmployeeAffair\EmployeeController::class, 'resetPassword']);
         Route::group(['middleware' => ['auth', 'role:ADMIN']], function () {
             Route::post('/database/users', [EmployeeAffair\EmployeeController::class, 'createUser']);
+            Route::post('/database/activity', [EmployeeAffair\ActivityController::class, 'store']);
             Route::patch('/{employeeId}/update-status', [EmployeeAffair\EmployeeController::class, 'toggleStatus'])->name('update.status');
         });
     });
