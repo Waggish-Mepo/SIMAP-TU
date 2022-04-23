@@ -62,20 +62,6 @@
                                 value="{{ $visit['jam'] }}">
                         </div>
                         <div class="mb-6">
-                            <label for="hari"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Hari Kunjungan</label>
-                            <select id="hari" name="hari"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                                required>
-                                <option disabled selected >
-                                    {{ $visit['hari'] }}</option>
-                                @foreach( config('constant.visit.hari') as $hari)
-                                    <option value="{{$hari}}"
-                                        {{$visit['hari'] === $hari ? 'selected' : ''}}>{{ $hari }}</option>
-                                        @endforeach
-                            </select>
-                        </div>
-                        <div class="mb-6">
                             <label for="tanggal"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tanggal Kunjungan</label>
                             <input type="date" id="tanggal" name="tanggal"
