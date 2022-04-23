@@ -15,7 +15,6 @@ class VisitLetterService{
         $orderBy = $filter['order_by'] ?? 'DESC';
         $per_page = $filter['per_page'] ?? 99;
         $no_surat = $filter['no_surat'] ?? null;
-        $hari = $filter['hari'] ?? null;
         $status = $filter['status'] ?? null;
         $tanggal = $filter['tanggal'] ?? null;
 
@@ -27,10 +26,6 @@ class VisitLetterService{
 
         if ($no_surat !== null) {
             $query->where('no_surat', $no_surat);
-        }
-
-        if ($hari !== null) {
-            $query->where('hari', $hari);
         }
 
         if ($status !== null) {
@@ -95,7 +90,6 @@ class VisitLetterService{
             'lampiran' => 'nullable|string',
             'perihal' => 'nullable|string',
             'kepada' => 'nullable|string',
-            'hari' => 'nullable|string',
             'tanggal' => 'nullable|date',
             'jam' => 'nullable|string',
             'tempat' => 'nullable|string',

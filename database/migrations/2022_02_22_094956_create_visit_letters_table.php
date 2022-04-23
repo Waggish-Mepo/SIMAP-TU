@@ -19,7 +19,6 @@ class CreateVisitLettersTable extends Migration
             $table->string('lampiran')->nullable();
             $table->string('perihal');
             $table->string('kepada');
-            $table->string('hari');
             $table->date('tanggal');
             $table->string('jam');
             $table->string('tempat');

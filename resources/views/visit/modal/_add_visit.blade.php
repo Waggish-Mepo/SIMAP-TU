@@ -48,32 +48,12 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
                             >
                     </div>
-                    <div class="mb-6">
-                        <label for="hari"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Hari Kunjungan</label>
-                        <select id="hari" name="hari"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                            required>
-                            <option disabled selected value="-- Pilih Hari --">
-                                -- Pilih Hari --</option>
-                            <option value="Senin">
-                                Senin</option>
-                            <option value="Selasa">
-                                Selasa</option>
-                            <option value="Rabu">
-                                Rabu</option>
-                            <option value="Kamis">
-                                Kamis</option>
-                            <option value="Jumat">
-                                Jumat</option>
-                        </select>
-                    </div>
                 </div>
                 <div class="flex-1 px-3">
                     <div class="mb-6">
                         <label for="tanggal"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tanggal Kunjungan</label>
-                        <input type="date" id="tanggal" name="tanggal"
+                        <input id="tanggal" name="tanggal" type="date"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
                             >
                     </div>
