@@ -57,6 +57,10 @@ class ActivityController extends Controller
         }
 
         $employees =  $activityDb->index()['data'];
+        $employeeDb = new EmployeeService;
+        foreach ($employees as $key => $value) {
+            $employees[$key]['nama_pegawai'] = $employeeDb->detail($employees[$key]['employee_id'])['nama'];
+        }
         $pribadi =  $activityDb->index($payload)['data'];
 
         $activities['pribadi'] = $pribadi;

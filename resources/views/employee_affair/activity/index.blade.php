@@ -234,13 +234,24 @@
                     `
 
 
-
-            html +=`
-                    <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                        <div class="whitespace-normal w-36">
-                            {{ $user->name }}
-                        </div>
-                    </td>
+            if (id === 'employee') {
+                html +=`
+                        <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                            <div class="whitespace-normal w-36">
+                                ${data.nama_pegawai}
+                            </div>
+                        </td>
+                        `;
+            } else {
+                html +=`
+                        <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                            <div class="whitespace-normal w-36">
+                                {{ $user->name }}
+                            </div>
+                        </td>
+                        `;
+            }
+            html += `
                     <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                         ${data.nama_kegiatan}
                     </td>
