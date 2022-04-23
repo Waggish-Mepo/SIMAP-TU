@@ -336,11 +336,10 @@
             $('#modal-edit-visit #tempat').val(tempat);
             $('#modal-edit-visit #jumlah_peserta').val(jumlah_peserta);
             $('#modal-edit-visit #keterangan').val(keterangan);
-            $(`#modal-edit-visit #status`).val(status)
-            $(`#modal-edit-visit #dokumentasi`).val(dokumentasi)             
-            
+            $(`#modal-edit-visit #status`).val(status);
+            $(`#modal-edit-visit #dokumentasi-imgs`).attr('src', `storage/${dokumentasi}`).attr('src');             
             const updateRoute = `{{route('visit_letter.update', 'visitId')}}`.replace('visitId', id);
-            console.log(updateRoute);
+
             $('#modal-edit-visit form').attr('action', updateRoute);
         }
 
