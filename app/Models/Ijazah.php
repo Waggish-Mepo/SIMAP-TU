@@ -26,4 +26,7 @@ class Ijazah extends Model
         'no_peserta_un',
         'ijazah',
     ];
+
+    public $incrementing = false;
+
 }

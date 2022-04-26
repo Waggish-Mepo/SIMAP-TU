@@ -33,10 +33,11 @@ class IjazahController extends Controller
         $payload = $request->all();
         unset($payload['_token']);
         unset($payload['_method']);
-        unset($payload['id']);
 
         $ijazahDb = new IjazahService;
         $ijazahDb->create($employeeId, $payload);
+
+        // dd($tes);
 
         return back()->with('success', 'Berhasil menambahkan ijazah');
     }

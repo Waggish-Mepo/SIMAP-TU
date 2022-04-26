@@ -67,7 +67,7 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], funct
         Route::prefix('/ijazah/{employeeId}')->name('ijazah.')->group(function () {
             Route::post('/', [EmployeeAffair\IjazahController::class, 'create'])->name('create');
             Route::patch('/', [EmployeeAffair\IjazahController::class, 'update'])->name('update');
-            Route::delete('/', [EmployeeAffair\IjazahController::class, 'delete'])->name('delete');
+            Route::delete('/{ijazahId}', [EmployeeAffair\IjazahController::class, 'delete'])->name('delete');
         });
 
         // Ajax Request
