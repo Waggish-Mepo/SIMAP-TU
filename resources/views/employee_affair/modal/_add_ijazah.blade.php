@@ -45,14 +45,14 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">npsn</label>
                         <input type="number" id="npsn" name="npsn"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                            >
+                            required placeholder="Masukan Nomor NPSN">
                     </div>
                     <div class="mb-6">
                         <label for="kabupaten_kota"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Kabupaten Kota</label>
                         <input type="text" id="kabupaten_kota" name="kabupaten_kota"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="contoh: Malang" required
-                            >
+                             required>
                     </div>
                     <div class="mb-6">
                         <label for="provinsi"
@@ -68,41 +68,41 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nama Orang Tua</label>
                         <input type="text" id="nama_ortu" name="nama_ortu"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                            >
+                             required placeholder="Masukan Nama Orang Tua">
                     </div>
                     <div class="mb-6">
                         <label for="nis"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nis</label>
                         <input type="number" id="nis" name="nis"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                            >
+                             required placeholder="Masukan NIS">
                     </div>
                     <div class="mb-6">
                         <label for="nisn"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nins</label>
                         <input type="number" id="nisn" name="nisn"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                            >
+                            required placeholder="Masukan nisn">
                     </div>
                     <div class="mb-6">
                         <label for="no_peserta_un"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">No Peserta Ujian Nasional</label>
                         <input type="text" id="no_peserta_un" name="no_peserta_un"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                            >
+                            required placeholder="Masukan No Perserta UN">
                     </div>
                     <div class="mb-3">
-                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="sertifikat">Unggah ijazah</label>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="ijazah">Unggah ijazah</label>
                         <div class="bg-gray-200 w-full mb-2">
-                            <img id="ijazah-img" class="h-36 mx-auto" src="" alt="" srcset="">
+                            <img id="ijazah-img" class="h-36 mx-auto" src="" alt="" >
                         </div>
                         <input onchange="document.getElementById('ijazah-img').src = window.URL.createObjectURL(this.files[0])"
                         accept=".jpg, .jpeg, .png, .pdf" class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="ijazah_help" id="ijazah" type="file" name="ijazah">
                         <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="ijazah_help">Maksimal ukuran file: 2mb</div>
                     </div>
                 </div>
-                </div>
-                </div>
+            </div>
+
             <!-- Modal footer -->
             <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
                 <button data-modal-toggle="btn-add-ijazah" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tambah Data</button>
