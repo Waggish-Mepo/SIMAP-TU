@@ -357,7 +357,6 @@
     @include('employee_affair.modal._add_certificate')
     @include('employee_affair.modal._edit_certificate')
     @include('employee_affair.modal._add_ijazah')
-    @include('employee_affair.modal._detail_ijazah')
 @endsection
 
 @section('script')
@@ -561,9 +560,9 @@
                     </td>
                     <td class="rounded-r-lg py-6 px-6 text-sm text-center font-medium flex-nowrap">
                         <div class="inline-flex" role="group">
-                            <button type="button" onclick="btnDetailIjazah('${data.id}')" class="text-white bg-blue-700 opacity-90 hover:bg-blue-500 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
+                            <a href="{!! URL::to('/employee/ijazah/${data.employee_id}/${data.id}/detail') !!}" class="text-white bg-primary opacity-90 hover:bg-blue-900 focus:ring-4 focus:ring-blue-700 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:bg-primary dark:hover:bg-blue-900 dark:focus:ring-blue-700">
+                                        <i class="fa-solid fa-eye"></i>
+                            </a>
                             <button type="button" onclick="btnEditIjazah('${data.id}')" class="text-white bg-yellow-400 opacity-90 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
@@ -581,6 +580,7 @@
             $(`#table-ijazah`).removeClass('dataTable');
         };
 
+
         function btnDeleteIjazah(id){
             url = `{{route('employee.ijazah.delete', ['employeeId' => $employee['id'], 'ijazahId' => 'ijazahId'])}}`;
             url = url.replace('employeeId', id).replace('ijazahId', id);
@@ -592,31 +592,6 @@
                     getIjazah();
                 }
             });
-        }
-
-        function btnDetailIjazah(id) {
-            toggleModal('modal-detail-ijazah');
-            const nomor = $(`#data-nomor`).text();
-            const jurusan = $(`#data-jurusan`).text();
-            const nama_sekolah = $(`#data-nama_sekolah`).text();
-            const kabupaten_kota = $(`#data-kabupaten_kota`).text();
-            const provinsi = $(`#data-provinsi`).text();
-            const nama_ortu = $(`#data-nama_ortu`).text();
-            const nis = $(`#data-nis`).text();
-            const nisn = $(`#data-nisn`).text();
-            const no_peserta_un = $(`#data-no_peserta_un`).text();
-
-            $('#modal-detail-ijazah #nomor').val(nomor);
-            $('#modal-detail-ijazah #jurusan').val(jurusan);
-            $('#modal-detail-ijazah #nama_sekolah').val(nama_sekolah);
-            $('#modal-detail-ijazah #npsn').text(data.npsn);
-            $('#modal-detail-ijazah #kabupaten_kota').val(kabupaten_kota);
-            $('#modal-detail-ijazah #provinsi').val(provinsi);
-            $('#modal-detail-ijazah #nama_ortu').val(nama_ortu);
-            $('#modal-detail-ijazah #nis').val(nis);
-            $('#modal-detail-ijazah #nisn').val(nisn);
-            $('#modal-detail-ijazah #no_peserta_un').val(no_peserta_un);
-            $('#modal-detail-ijazah #ijazah-imgs').attr('src', $(`#data-ijazah-${id}`).attr(`src`));
         }
 
         function btnEditIjazah(id){

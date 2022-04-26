@@ -97,8 +97,8 @@
                             <img id="ijazah-img" class="h-36 mx-auto" src="" alt="" >
                         </div>
                         <input onchange="document.getElementById('ijazah-img').src = window.URL.createObjectURL(this.files[0])"
-                        accept=".jpg, .jpeg, .png, .pdf" class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="ijazah_help" id="ijazah" type="file" name="ijazah">
-                        <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="ijazah_help">Maksimal ukuran file: 2mb</div>
+                        accept=".jpg, .jpeg, .png, .pdf" class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="ijazah" id="ijazah" type="file" name="ijazah">
+                        <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="ijazah">Maksimal ukuran file: 2mb</div>
                     </div>
                 </div>
             </div>
