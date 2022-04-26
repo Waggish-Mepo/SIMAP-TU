@@ -22,7 +22,6 @@
     <div>
         <div class="p-4 bg-white rounded-md dark:bg-gray-800" id="pegawai" role="tabpanel" aria-labelledby="pegawai-tab">
             <form action="{{ route('visit_letter.update', $visit['id']) }}" method="post" enctype="multipart/form-data">
-                <form>
                 @csrf
                 @method('PATCH')
                 <div class="flex flex-row flex-wrap">
