@@ -99,9 +99,10 @@ class VisitLetterController extends Controller
 
         $visitDB->update($visitLetterId, $payload);
 
-        return redirect()->route('visit_letter.index')
-            ->with('success', 'Data berhasil diubah');
+        return back()->with('success', 'Data berhasil diperbarui');
     }
+
+
 
     public function delete($visitLetterId)
     {

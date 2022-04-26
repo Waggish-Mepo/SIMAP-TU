@@ -157,6 +157,7 @@
     @if ($user->role === 'ADMIN')
 
         @include('visit.modal._add_visit')
+        @include('visit.modal._edit_visit')
     @endif
 
 @endsection
@@ -287,9 +288,12 @@
                                     <a href="{!! URL::to('/visit-letter/${data.id}/detail') !!}" class="text-white bg-primary opacity-90 hover:bg-blue-900 focus:ring-4 focus:ring-blue-700 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:bg-primary dark:hover:bg-blue-900 dark:focus:ring-blue-700">
                                         <i class="fa-solid fa-eye"></i>
                                     </a>
-                                    <a href="{!! URL::to('/visit-letter/${data.id}/detail') !!}" class="text-white bg-yellow-400 opacity-90 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
+                                    <button type="button"
+                                onclick="btnEditVisit('${data.id}', '${data.no_surat}', '${data.lampiran}', '${data.perihal}', '${data.kepada}', '${data.tanggal}', '${data.tempat}', '${data.jam}', '${data.jumlah_peserta}', '${data.dokumentasi}', '${data.keterangan}', '${data.status}')"
+                                data-modal-toggle="modal-edit-visit"
+                                class="text-white bg-yellow-400 opacity-90 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
                                     <form
                                         action="${deleteRoute}"
                                         method="POST" enctype="multipart/form-data">
@@ -316,6 +320,27 @@
             getVisits(tgl);
         }
 
+        function btnEditVisit(id, no_surat, lampiran, perihal, kepada, tanggal, tempat, jam, jumlah_peserta, dokumentasi, keterangan, status) {
+            toggleModal('modal-edit-visit', true);
 
-    </script>
+            tanggal = tanggal.replaceAll("/", "-").split("-").reverse().join("-");
+            $('#modal-edit-visit #no_surat').val(no_surat);
+            $('#modal-edit-visit #lampiran').val(lampiran);
+            $('#modal-edit-visit #perihal').val(perihal);
+            $('#modal-edit-visit #kepada').val(kepada);
+            $('#modal-edit-visit #jam').val(jam);
+            $('#modal-edit-visit #tgl-kunjungan').val(tanggal);
+            $('#modal-edit-visit #tempat').val(tempat);
+            $('#modal-edit-visit #jumlah_peserta').val(jumlah_peserta);
+            $('#modal-edit-visit #keterangan').val(keterangan);
+            $(`#modal-edit-visit #status`).val(status);
+            $(`#modal-edit-visit #dokumentasi-imgs`).attr('src', `storage/${dokumentasi}`).attr('src');
+
+            const updateRoute = `{{route('visit_letter.update', 'visitId')}}`.replace('visitId', id);
+
+            $('#modal-edit-visit form').attr('action', updateRoute);
+        }
+
+
+  </script>
 @endsection
