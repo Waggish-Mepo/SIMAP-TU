@@ -61,9 +61,11 @@ class EmployeeController extends Controller
         foreach ($employees as $key => $value) {
             $jenisPtk = $employees[$key]['jenis_ptk'];
 
-            $empKey = array_search($employees[$key]['id'], array_column($members, 'userable_id'));
-            $employees[$key]['username'] = $members[$empKey]['username'];
-            $employees[$key]['status'] = $members[$empKey]['status'];
+            if ($user->role === User::ADMIN) {
+                $empKey = array_search($employees[$key]['id'], array_column($members, 'userable_id'));
+                $employees[$key]['username'] = $members[$empKey]['username'];
+                $employees[$key]['status'] = $members[$empKey]['status'];
+            }
 
             if (in_array($jenisPtk, [
                 'Guru Mapel',
@@ -155,18 +157,18 @@ class EmployeeController extends Controller
     public function exportEmployee()
     {
         $date = Carbon::now()->locale('id_ID')->isoFormat('DD-MM-YYYY');
-        return Excel::download(new EmployeesExport, 'DATA-PEGAWAI-SMK-WIKRAMA-BOGOR-'.$date.'.xlsx');;
+        return Excel::download(new EmployeesExport, 'DATA-PEGAWAI-SMK-WIKRAMA-BOGOR-'.$date.'.xlsx');
     }
 
     public function exportTeacher()
     {
         $date = Carbon::now()->locale('id_ID')->isoFormat('DD-MM-YYYY');
-        return Excel::download(new EmployeesExport, 'DATA-GURU-SMK-WIKRAMA-BOGOR-'.$date.'.xlsx');;
+        return Excel::download(new EmployeesExport, 'DATA-GURU-SMK-WIKRAMA-BOGOR-'.$date.'.xlsx');
     }
 
     public function exportStaff()
     {
         $date = Carbon::now()->locale('id_ID')->isoFormat('DD-MM-YYYY');
-        return Excel::download(new EmployeesExport, 'DATA-STAF-SMK-WIKRAMA-BOGOR-'.$date.'.xlsx');;
+        return Excel::download(new EmployeesExport, 'DATA-STAF-SMK-WIKRAMA-BOGOR-'.$date.'.xlsx');
     }
 }

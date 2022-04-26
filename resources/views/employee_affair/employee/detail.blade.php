@@ -33,12 +33,12 @@
                     id="sertifikat-tab" data-tabs-target="#sertifikat" type="button" role="tab" aria-controls="sertifikat"
                     aria-selected="false">Sertifikat</button>
             </li>
-            <li class="mr-2" role="presentation">
+            {{-- <li class="mr-2" role="presentation">
                 <button
                     class="inline-block py-2 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
                     id="ijazah-tab" data-tabs-target="#ijazah" type="button" role="tab" aria-controls="ijazah"
                     aria-selected="false">Ijazah</button>
-            </li>
+            </li> --}}
         </ul>
     </div>
     <div id="employeeTabContent">
@@ -484,9 +484,12 @@
 
         function btnEditCertificate(id){
             toggleModal('modal-edit-certificate');
+            console.log($('#data-tanggal-'+id).html());
             const jenis = $('#data-jenis-'+id).html(),
                 tingkat = $('#data-tingkat-'+id).html(),
-                tanggal = new Date($('#data-tanggal-'+id).html()).toISOString().substring(0, 10);
+                tanggal = $('#data-tanggal-'+id).html().replaceAll("/", "-").split("-").reverse().join("-");
+
+                console.log(tanggal);
 
             $(`#modal-edit-certificate #jenis option`).attr('selected', false);
             $(`#modal-edit-certificate #tingkat option`).attr('selected', false);

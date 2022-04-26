@@ -6,6 +6,7 @@ use App\Models\VisitLetter;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Facades\Storage;
 
 class VisitLetterService{
 
@@ -14,17 +15,17 @@ class VisitLetterService{
         $orderBy = $filter['order_by'] ?? 'DESC';
         $per_page = $filter['per_page'] ?? 99;
         $no_surat = $filter['no_surat'] ?? null;
-        $hari = $filter['hari'] ?? null;
         $status = $filter['status'] ?? null;
+        $tanggal = $filter['tanggal'] ?? null;
 
         $query = VisitLetter::orderBy('created_at', $orderBy);
 
-        if ($no_surat !== null) {
-            $query->where('no_surat', $no_surat);
+         if ($tanggal !== null) {
+            $query->where('tanggal', $tanggal);
         }
 
-        if ($hari !== null) {
-            $query->where('hari', $hari);
+        if ($no_surat !== null) {
+            $query->where('no_surat', $no_surat);
         }
 
         if ($status !== null) {
@@ -56,8 +57,24 @@ class VisitLetterService{
     public function update($visitLetterId, $payload)
     {
         $visit_letter = VisitLetter::findOrFail($visitLetterId);
+        if (isset($payload['dokumentasi'])) {
+            Storage::delete('public/'.$visit_letter->dokumentasi);
+            $payload['dokumentasi'] = $payload['dokumentasi']->store('public/visits');
+            $payload['dokumentasi'] = str_replace('public/', '', $payload['dokumentasi']);
+        } else {
+            $payload['dokumentasi'] = $visit_letter->dokumentasi;
+        }
+
         $visit_letter = $this->fill($visit_letter, $payload);
         $visit_letter->save();
+
+        return $visit_letter->toArray();
+    }
+
+    public function delete($visitLetterId)
+    {
+        $visit_letter = VisitLetter::findOrFail($visitLetterId);
+        $visit_letter->delete();
 
         return $visit_letter->toArray();
     }
@@ -73,7 +90,6 @@ class VisitLetterService{
             'lampiran' => 'nullable|string',
             'perihal' => 'nullable|string',
             'kepada' => 'nullable|string',
-            'hari' => 'nullable|string',
             'tanggal' => 'nullable|date',
             'jam' => 'nullable|string',
             'tempat' => 'nullable|string',
