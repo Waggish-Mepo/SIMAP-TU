@@ -357,6 +357,7 @@
     @include('employee_affair.modal._add_certificate')
     @include('employee_affair.modal._edit_certificate')
     @include('employee_affair.modal._add_ijazah')
+    @include('employee_affair.modal._edit_ijazah')
 @endsection
 
 @section('script')
@@ -563,7 +564,7 @@
                             <a href="{!! URL::to('/employee/ijazah/${data.employee_id}/${data.id}/detail') !!}" class="text-white bg-primary opacity-90 hover:bg-blue-900 focus:ring-4 focus:ring-blue-700 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:bg-primary dark:hover:bg-blue-900 dark:focus:ring-blue-700">
                                         <i class="fa-solid fa-eye"></i>
                             </a>
-                            <button type="button" onclick="btnEditIjazah('${data.id}')" class="text-white bg-yellow-400 opacity-90 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
+                            <button type="button" onclick="btnEditIjazah('${data.id}','${data.employee_id}','${data.nomor}','${data.jurusan}','${data.nama_sekolah}','${data.npsn}','${data.kabupaten_kota}','${data.provinsi}','${data.nama_ortu}','${data.nis}','${data.nisn}','${data.no_peserta_un}','${data.ijazah}')" class="text-white bg-yellow-400 opacity-90 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
                             <button type"button" onclick="btnDeleteIjazah('${data.id}')" class="text-white bg-red-700 opacity-90 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
@@ -580,7 +581,6 @@
             $(`#table-ijazah`).removeClass('dataTable');
         };
 
-
         function btnDeleteIjazah(id){
             url = `{{route('employee.ijazah.delete', ['employeeId' => $employee['id'], 'ijazahId' => 'ijazahId'])}}`;
             url = url.replace('employeeId', id).replace('ijazahId', id);
@@ -594,30 +594,25 @@
             });
         }
 
-        function btnEditIjazah(id){
-            toggleModal('modal-edit-ijazah');
-            const nomor = $(`#data-nomor-${id}`).text();
-            const jurusan = $(`#data-jurusan-${id}`).text();
-            const nama_sekolah = $(`#data-nama_sekolah-${id}`).text();
-            const npsn = $(`#data-npsn-${id}`).text();
-            const kabupaten_kota = $(`#data-kabupaten_kota-${id}`).text();
-            const provinsi = $(`#data-provinsi-${id}`).text();
-            const nama_ortu = $(`#data-nama_ortu-${id}`).text();
-            const nis = $(`#data-nis-${id}`).text();
-            const nisn = $(`#data-nisn-${id}`).text();
-            const no_peserta_un = $(`#data-no_peserta_un-${id}`).text();
+        function btnEditIjazah(id, employee_id, nomor, jurusan, nama_sekolah, npsn, kabupaten_kota, provinsi, nama_ortu, nis, nisn, no_peserta_un, ijazah){
+            toggleModal('modal-edit-ijazah', true);
 
-            $('#modal-edit-ijazah #nomor_s').val(nomor);
-            $('#modal-edit-ijazah #jurusan').val(jurusan);
-            $('#modal-edit-ijazah #nama_sekolah').val(nama_sekolah);
-            $('#modal-edit-ijazah #npsn').val(npsn);
-            $('#modal-edit-ijazah #kabupaten_kota').val(kabupaten_kota);
-            $('#modal-edit-ijazah #provinsi').val(provinsi);
-            $('#modal-edit-ijazah #nama_ortu').val(nama_ortu);
-            $('#modal-edit-ijazah #nis').val(nis);
-            $('#modal-edit-ijazah #nisn').val(nisn);
-            $('#modal-edit-ijazah #no_peserta_un').val(no_peserta_un);
-            $('#modal-edit-ijazah #ijazah-imgs').attr('src', $(`#data-ijazah-${id}`).attr(`src`));
+            console.log(nomor);
+
+            $(`#modal-edit-ijazah #nomor`).val(nomor);
+            $(`#modal-edit-ijazah #jurusan`).val(jurusan);
+            $(`#modal-edit-ijazah #nama_sekolah`).val(nama_sekolah);
+            $(`#modal-edit-ijazah #npsn`).val(npsn);
+            $(`#modal-edit-ijazah #kabupaten_kota`).val(kabupaten_kota);
+            $(`#modal-edit-ijazah #provinsi`).val(provinsi);
+            $(`#modal-edit-ijazah #nama_ortu`).val(nama_ortu);
+            $(`#modal-edit-ijazah #nis`).val(nis);
+            $(`#modal-edit-ijazah #nisn`).val(nisn);
+            $(`#modal-edit-ijazah #no_peserta_un`).val(no_peserta_un);
+            $('#modal-edit-ijazah #ijazah-img').attr('src', $(`#data-ijazah`).attr(`src`));
+
+            const updateRoute = `{{route('employee.ijazah.update', 'employeeId')}}`.replace('employeeId', employee_id);
+            $(`#modal-edit-ijazah form`).attr('action', updateRoute);
         }
     </script>
 
