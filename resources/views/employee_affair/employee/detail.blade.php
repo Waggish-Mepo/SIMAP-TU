@@ -597,8 +597,6 @@
         function btnEditIjazah(id, employee_id, nomor, jurusan, nama_sekolah, npsn, kabupaten_kota, provinsi, nama_ortu, nis, nisn, no_peserta_un, ijazah){
             toggleModal('modal-edit-ijazah', true);
 
-            console.log(nomor);
-
             $(`#modal-edit-ijazah #nomor`).val(nomor);
             $(`#modal-edit-ijazah #jurusan`).val(jurusan);
             $(`#modal-edit-ijazah #nama_sekolah`).val(nama_sekolah);
@@ -612,6 +610,8 @@
             $('#modal-edit-ijazah #ijazah-img').attr('src', $(`#data-ijazah`).attr(`src`));
 
             const updateRoute = `{{route('employee.ijazah.update', 'employeeId')}}`.replace('employeeId', employee_id);
+            
+            console.log(updateRoute)
             $(`#modal-edit-ijazah form`).attr('action', updateRoute);
         }
     </script>
