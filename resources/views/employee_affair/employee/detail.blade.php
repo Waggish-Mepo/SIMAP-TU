@@ -511,7 +511,6 @@
                 type: 'GET',
                 url: url,
                 success: function(data){
-                    console.log(data);
                     renderIjazah(data);
                 },
                 error: function(data){
@@ -612,7 +611,6 @@
 
             const updateRoute = `{{route('employee.ijazah.update', 'employeeId')}}`.replace('employeeId', employee_id);
 
-            console.log(updateRoute)
             $(`#modal-edit-ijazah form`).attr('action', updateRoute);
         }
     </script>

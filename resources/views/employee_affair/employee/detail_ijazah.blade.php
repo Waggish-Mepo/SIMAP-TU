@@ -113,11 +113,4 @@
 @endsection
 
 @section('script')
-    <script>
-        $(document).ready(function(){
-            $('#ijazah-img').click(function(){
-                $('#ijazah-img').attr('src', '{{ asset('storage/'.$ijazah['ijazah'])}}');
-            });
-        });
-    </script>
 @endsection
