@@ -33,12 +33,12 @@
                     id="sertifikat-tab" data-tabs-target="#sertifikat" type="button" role="tab" aria-controls="sertifikat"
                     aria-selected="false">Sertifikat</button>
             </li>
-            {{-- <li class="mr-2" role="presentation">
+            <li class="mr-2" role="presentation">
                 <button
                     class="inline-block py-2 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
                     id="ijazah-tab" data-tabs-target="#ijazah" type="button" role="tab" aria-controls="ijazah"
                     aria-selected="false">Ijazah</button>
-            </li> --}}
+            </li>
         </ul>
     </div>
     <div id="employeeTabContent">
@@ -337,10 +337,6 @@
                                         </th>
                                         <th scope="col"
                                             class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
-                                            Nama Orang Tua
-                                        </th>
-                                        <th scope="col"
-                                            class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
                                             Ijazah
                                         </th>
                                         <th scope="col"
@@ -361,6 +357,7 @@
     @include('employee_affair.modal._add_certificate')
     @include('employee_affair.modal._edit_certificate')
     @include('employee_affair.modal._add_ijazah')
+    @include('employee_affair.modal._edit_ijazah')
 @endsection
 
 @section('script')
@@ -514,8 +511,10 @@
                 type: 'GET',
                 url: url,
                 success: function(data){
-                    console.log(data);
                     renderIjazah(data);
+                },
+                error: function(data){
+                    console.log(data);
                 }
             });
         }
@@ -542,29 +541,29 @@
                         ${key + 1}
                     </td>
                     <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                        <div id="data-nomor-${data.id}" class="whitespace-normal w-44">${data.nomor}</div>
+                        <div id="data-nomor" class="whitespace-normal w-44">${data.nomor}</div>
                     </td>
                     <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                        <div id="data-jurusan-${data.id}" class="whitespace-normal w-24">${data.jurusan}</div>
+                        <div id="data-jurusan" class="whitespace-normal w-24">${data.jurusan}</div>
                     </td>
                     <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                        <div id="data-nama_sekolah-${data.id}" class="whitespace-normal w-24">${data.nama_sekolah}</div>
+                        <div id="data-nama_sekolah" class="whitespace-normal w-24">${data.nama_sekolah}</div>
                     </td>
                     <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                        <div id="data-kabupaten_kota-${data.id}" class="whitespace-normal w-24">${data.kabupaten_kota}</div>
+                        <div id="data-kabupaten_kota" class="whitespace-normal w-24">${data.kabupaten_kota}</div>
                     </td>
                     <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                        <div id="data-provinsi-${data.id}" class="whitespace-normal w-24">${data.provinsi}</div>
+                        <div id="data-provinsi" class="whitespace-normal w-24">${data.provinsi}</div>
                     </td>
                     <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                        <div id="data-provinsi-${data.id}" class="whitespace-normal w-24">${data.nama_ortu}</div>
-                    </td>
-                    <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                        <img id="data-ijazah-${data.id}" class="w-24 " src="{{ asset('storage/${data.ijazah}')}}"></img>
+                        <img id="data-ijazah" class="w-24 " src="{{ asset('storage/${data.ijazah}')}}"></img>
                     </td>
                     <td class="rounded-r-lg py-6 px-6 text-sm text-center font-medium flex-nowrap">
                         <div class="inline-flex" role="group">
-                            <button type="button" onclick="btnEditIjazah('${data.id}')" class="text-white bg-yellow-400 opacity-90 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
+                            <a href="{!! URL::to('/employee/ijazah/${data.employee_id}/${data.id}/detail') !!}" class="text-white bg-primary opacity-90 hover:bg-blue-900 focus:ring-4 focus:ring-blue-700 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:bg-primary dark:hover:bg-blue-900 dark:focus:ring-blue-700">
+                                        <i class="fa-solid fa-eye"></i>
+                            </a>
+                            <button type="button" onclick="btnEditIjazah('${data.id}','${data.employee_id}','${data.nomor}','${data.jurusan}','${data.nama_sekolah}','${data.npsn}','${data.kabupaten_kota}','${data.provinsi}','${data.nama_ortu}','${data.nis}','${data.nisn}','${data.no_peserta_un}','${data.ijazah}')" class="text-white bg-yellow-400 opacity-90 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
                             <button type"button" onclick="btnDeleteIjazah('${data.id}')" class="text-white bg-red-700 opacity-90 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
@@ -582,7 +581,7 @@
         };
 
         function btnDeleteIjazah(id){
-            url = `{{route('employee.ijazah.delete', ['employeeId' => "employeeId", 'certificateId' => "certificateId"])}}`;
+            url = `{{route('employee.ijazah.delete', ['employeeId' => $employee['id'], 'ijazahId' => 'ijazahId'])}}`;
             url = url.replace('employeeId', id).replace('ijazahId', id);
             $.ajax({
                 type: 'DELETE',
@@ -594,30 +593,25 @@
             });
         }
 
-        function btnEditIjazah(id){
-            toggleModal('modal-edit-ijazah');
-            const nomor = $(`#data-nomor-${id}`).text();
-            const jurusan = $(`#data-jurusan-${id}`).text();
-            const nama_sekolah = $(`#data-nama_sekolah-${id}`).text();
-            const npsn = $(`#data-npsn-${id}`).text();
-            const kabupaten_kota = $(`#data-kabupaten_kota-${id}`).text();
-            const provinsi = $(`#data-provinsi-${id}`).text();
-            const nama_ortu = $(`#data-nama_ortu-${id}`).text();
-            const nis = $(`#data-nis-${id}`).text();
-            const nisn = $(`#data-nisn-${id}`).text();
-            const no_peserta_un = $(`#data-no_peserta_un-${id}`).text();
+        function btnEditIjazah(id, employee_id, nomor, jurusan, nama_sekolah, npsn, kabupaten_kota, provinsi, nama_ortu, nis, nisn, no_peserta_un, ijazah){
+            toggleModal('modal-edit-ijazah', true);
 
-            $('#modal-edit-ijazah #nomor_s').val(nomor);
-            $('#modal-edit-ijazah #jurusan').val(jurusan);
-            $('#modal-edit-ijazah #nama_sekolah').val(nama_sekolah);
-            $('#modal-edit-ijazah #npsn').val(npsn);
-            $('#modal-edit-ijazah #kabupaten_kota').val(kabupaten_kota);
-            $('#modal-edit-ijazah #provinsi').val(provinsi);
-            $('#modal-edit-ijazah #nama_ortu').val(nama_ortu);
-            $('#modal-edit-ijazah #nis').val(nis);
-            $('#modal-edit-ijazah #nisn').val(nisn);
-            $('#modal-edit-ijazah #no_peserta_un').val(no_peserta_un);
-            $('#modal-edit-ijazah #ijazah-imgs').attr('src', $(`#data-ijazah-${id}`).attr(`src`));
+            $('#modal-edit-ijazah #id').val(id);
+            $(`#modal-edit-ijazah #nomor`).val(nomor);
+            $(`#modal-edit-ijazah #jurusan`).val(jurusan);
+            $(`#modal-edit-ijazah #nama_sekolah`).val(nama_sekolah);
+            $(`#modal-edit-ijazah #npsn`).val(npsn);
+            $(`#modal-edit-ijazah #kabupaten_kota`).val(kabupaten_kota);
+            $(`#modal-edit-ijazah #provinsi`).val(provinsi);
+            $(`#modal-edit-ijazah #nama_ortu`).val(nama_ortu);
+            $(`#modal-edit-ijazah #nis`).val(nis);
+            $(`#modal-edit-ijazah #nisn`).val(nisn);
+            $(`#modal-edit-ijazah #no_peserta_un`).val(no_peserta_un);
+            $('#modal-edit-ijazah #ijazah-img').attr('src', $(`#data-ijazah`).attr(`src`));
+
+            const updateRoute = `{{route('employee.ijazah.update', 'employeeId')}}`.replace('employeeId', employee_id);
+
+            $(`#modal-edit-ijazah form`).attr('action', updateRoute);
         }
     </script>
 

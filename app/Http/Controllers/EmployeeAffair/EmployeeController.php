@@ -61,9 +61,11 @@ class EmployeeController extends Controller
         foreach ($employees as $key => $value) {
             $jenisPtk = $employees[$key]['jenis_ptk'];
 
-            $empKey = array_search($employees[$key]['id'], array_column($members, 'userable_id'));
-            $employees[$key]['username'] = $members[$empKey]['username'];
-            $employees[$key]['status'] = $members[$empKey]['status'];
+            if ($user->role === User::ADMIN) {
+                $empKey = array_search($employees[$key]['id'], array_column($members, 'userable_id'));
+                $employees[$key]['username'] = $members[$empKey]['username'];
+                $employees[$key]['status'] = $members[$empKey]['status'];
+            }
 
             if (in_array($jenisPtk, [
                 'Guru Mapel',

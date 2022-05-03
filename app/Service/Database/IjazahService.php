@@ -52,14 +52,13 @@ class IjazahService{
 
     public function create($employeeId, $payload)
     {
-        $ijazah = new Ijazah;
-        $ijazah->id = Uuid::uuid4()->toString();
-        $ijazah->employee_id = $employeeId;
+        $ijazahDb = new Ijazah;
+        $ijazahDb->id = Uuid::uuid4()->toString();
+        $ijazahDb->employee_id = $employeeId;
         $payload['ijazah'] = $payload['ijazah']->store('public/ijazah');
         $payload['ijazah'] = str_replace('public/', '', $payload['ijazah']);
-        $ijazah = $this->fill($ijazah, $payload);
+        $ijazah = $this->fill($ijazahDb, $payload);
         $ijazah->save();
-
 
         return $ijazah->toArray();
     }

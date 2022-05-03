@@ -4,6 +4,7 @@ namespace App\Http\Controllers\EmployeeAffair;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Service\Database\EmployeeService;
 use App\Service\Database\IjazahService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,10 +34,11 @@ class IjazahController extends Controller
         $payload = $request->all();
         unset($payload['_token']);
         unset($payload['_method']);
-        unset($payload['id']);
 
         $ijazahDb = new IjazahService;
         $ijazahDb->create($employeeId, $payload);
+
+        // dd($tes);
 
         return back()->with('success', 'Berhasil menambahkan ijazah');
     }
@@ -51,7 +53,12 @@ class IjazahController extends Controller
         $ijazahDb = new IjazahService;
         $ijazah = $ijazahDb->detail($ijazahId);
 
-        return response()->json($ijazah);
+        $employeeDb = new EmployeeService;
+        $ijazah['nama_pegawai'] = $employeeDb->detail($ijazah['employee_id'])['nama'];
+
+        // dd($ijazah);
+
+        return view('employee_affair.employee.detail_ijazah', compact('ijazah', 'user'));
     }
 
     public function update($employeeId, Request $request)
