@@ -33,12 +33,12 @@
                     id="sertifikat-tab" data-tabs-target="#sertifikat" type="button" role="tab" aria-controls="sertifikat"
                     aria-selected="false">Sertifikat</button>
             </li>
-            {{-- <li class="mr-2" role="presentation">
+            <li class="mr-2" role="presentation">
                 <button
                     class="inline-block py-2 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
                     id="ijazah-tab" data-tabs-target="#ijazah" type="button" role="tab" aria-controls="ijazah"
                     aria-selected="false">Ijazah</button>
-            </li> --}}
+            </li>
         </ul>
     </div>
     <div id="employeeTabContent">
@@ -293,13 +293,71 @@
                 </div>
             </div>
         </div>
-        <div class="hidden p-4 bg-white rounded-md dark:bg-gray-800" id="ijazah" role="tabpanel" aria-labelledby="ijazah-tab">
-
+        <div class="hidden p-4 rounded-md dark:bg-gray-800" id="ijazah" role="tabpanel" aria-labelledby="ijazah-tab">
+            @if (Route::currentRouteName() === 'employee.edit')
+                <div class="grid justify-items-end mb-4">
+                    <div class="flex flex-row">
+                        <button type="button" data-modal-toggle="modal-add-ijazah" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                            <i class="fa-solid fa-file-ijazah"></i>
+                            Tambah Ijazah
+                        </button>
+                    </div>
+                </div>
+            @endif
+            <div class="flex flex-col">
+                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
+                        <div class="overflow-hidden">
+                            <table id="table-ijazah" class="min-w-full border-separate table-spacing">
+                                <thead class="bg-primary dark:bg-primary">
+                                    <tr>
+                                        <th scope="col"
+                                            class="rounded-l-lg py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            #
+                                        </th>
+                                        <th scope="col"
+                                            class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            Nomor
+                                        </th>
+                                        <th scope="col"
+                                            class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            Jurusan
+                                        </th>
+                                        <th scope="col"
+                                            class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            Nama Sekolah
+                                        </th>
+                                        <th scope="col"
+                                            class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            Kabupaten/Kota
+                                        </th>
+                                        <th scope="col"
+                                            class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            Provinsi
+                                        </th>
+                                        <th scope="col"
+                                            class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            Ijazah
+                                        </th>
+                                        <th scope="col"
+                                            class="rounded-r-lg py-6 px-6 text-xs font-medium tracking-wider text-center text-white uppercase dark:text-gray-400">
+                                            Aksi
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="render-ijazah"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     @include('employee_affair.modal._add_certificate')
     @include('employee_affair.modal._edit_certificate')
+    @include('employee_affair.modal._add_ijazah')
+    @include('employee_affair.modal._edit_ijazah')
 @endsection
 
 @section('script')
@@ -342,6 +400,7 @@
             });
         }
 
+
         getCertificates();
         function getCertificates(){
             url = '{{route('employee.certificates.index', $employee['id'])}}';
@@ -353,6 +412,7 @@
                 }
             });
         }
+
 
         function renderCertificate(data){
             let html = ``;
@@ -442,5 +502,117 @@
             $(`#modal-edit-certificate #tingkat option[value=${tingkat}]`).attr('selected', 'selected');
             $('#modal-edit-certificate #sertifikat-imgs').attr('src', $(`#data-sertifikat-${id}`).attr(`src`));
         }
+
+
+        getIjazah();
+        function getIjazah(){
+            url = '{{ route('employee.ijazah.index', $employee['id']) }}';
+            $.ajax({
+                type: 'GET',
+                url: url,
+                success: function(data){
+                    renderIjazah(data);
+                },
+                error: function(data){
+                    console.log(data);
+                }
+            });
+        }
+
+        function renderIjazah(data){
+            let html = ``;
+
+            if (data.length < 1) {
+                html += `
+                    <tr
+                        class="border-b odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 dark:border-gray-600">
+                        <td class="rounded-lg py-6 px-6 text-sm font-medium text-center text-gray-900 whitespace-nowrap dark:text-white" colspan="8">
+                            Tidak dapat menemukan data ijazah
+                        </td>
+                    </tr>`
+                return $(`#render-ijazah`).html(html);
+            }
+            $.each(data, function (key, data) {
+            html += `
+                <tr
+                    class="border-b odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 dark:border-gray-600">
+                    <td
+                        class="rounded-l-lg py-6 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        ${key + 1}
+                    </td>
+                    <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                        <div id="data-nomor" class="whitespace-normal w-44">${data.nomor}</div>
+                    </td>
+                    <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                        <div id="data-jurusan" class="whitespace-normal w-24">${data.jurusan}</div>
+                    </td>
+                    <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                        <div id="data-nama_sekolah" class="whitespace-normal w-24">${data.nama_sekolah}</div>
+                    </td>
+                    <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                        <div id="data-kabupaten_kota" class="whitespace-normal w-24">${data.kabupaten_kota}</div>
+                    </td>
+                    <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                        <div id="data-provinsi" class="whitespace-normal w-24">${data.provinsi}</div>
+                    </td>
+                    <td class="py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                        <img id="data-ijazah" class="w-24 " src="{{ asset('storage/${data.ijazah}')}}"></img>
+                    </td>
+                    <td class="rounded-r-lg py-6 px-6 text-sm text-center font-medium flex-nowrap">
+                        <div class="inline-flex" role="group">
+                            <a href="{!! URL::to('/employee/ijazah/${data.employee_id}/${data.id}/detail') !!}" class="text-white bg-primary opacity-90 hover:bg-blue-900 focus:ring-4 focus:ring-blue-700 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:bg-primary dark:hover:bg-blue-900 dark:focus:ring-blue-700">
+                                        <i class="fa-solid fa-eye"></i>
+                            </a>
+                            <button type="button" onclick="btnEditIjazah('${data.id}','${data.employee_id}','${data.nomor}','${data.jurusan}','${data.nama_sekolah}','${data.npsn}','${data.kabupaten_kota}','${data.provinsi}','${data.nama_ortu}','${data.nis}','${data.nisn}','${data.no_peserta_un}','${data.ijazah}')" class="text-white bg-yellow-400 opacity-90 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                            <button type"button" onclick="btnDeleteIjazah('${data.id}')" class="text-white bg-red-700 opacity-90 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                    `
+            });
+            html += `</tr>`
+
+            $(`#render-ijazah`).html(html);
+            $(`#table-ijazah`).DataTable();
+            $(`#table-ijazah`).removeClass('dataTable');
+        };
+
+        function btnDeleteIjazah(id){
+            url = `{{route('employee.ijazah.delete', ['employeeId' => $employee['id'], 'ijazahId' => 'ijazahId'])}}`;
+            url = url.replace('employeeId', id).replace('ijazahId', id);
+            $.ajax({
+                type: 'DELETE',
+                url: url,
+                success: function(data){
+                    toast('Berhasil menghapus ijazah', 'success');
+                    getIjazah();
+                }
+            });
+        }
+
+        function btnEditIjazah(id, employee_id, nomor, jurusan, nama_sekolah, npsn, kabupaten_kota, provinsi, nama_ortu, nis, nisn, no_peserta_un, ijazah){
+            toggleModal('modal-edit-ijazah', true);
+
+            $('#modal-edit-ijazah #id').val(id);
+            $(`#modal-edit-ijazah #nomor`).val(nomor);
+            $(`#modal-edit-ijazah #jurusan`).val(jurusan);
+            $(`#modal-edit-ijazah #nama_sekolah`).val(nama_sekolah);
+            $(`#modal-edit-ijazah #npsn`).val(npsn);
+            $(`#modal-edit-ijazah #kabupaten_kota`).val(kabupaten_kota);
+            $(`#modal-edit-ijazah #provinsi`).val(provinsi);
+            $(`#modal-edit-ijazah #nama_ortu`).val(nama_ortu);
+            $(`#modal-edit-ijazah #nis`).val(nis);
+            $(`#modal-edit-ijazah #nisn`).val(nisn);
+            $(`#modal-edit-ijazah #no_peserta_un`).val(no_peserta_un);
+            $('#modal-edit-ijazah #ijazah-img').attr('src', $(`#data-ijazah`).attr(`src`));
+
+            const updateRoute = `{{route('employee.ijazah.update', 'employeeId')}}`.replace('employeeId', employee_id);
+
+            $(`#modal-edit-ijazah form`).attr('action', updateRoute);
+        }
     </script>
+
 @endsection
