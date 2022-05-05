@@ -297,7 +297,7 @@
         }
 
         function createActivity() {
-            let url = `{{ url('/employee/database/activity') }}`
+            let url = `{{ route('employee.activity.store') }}`;
             let data = {
                 'nama' : $('#nama').val(),
                 'nama_kegiatan': $('#nama_kegiatan').val(),
@@ -324,7 +324,7 @@
                     toggleModal('modal-add-activity', false);
 
                     getActivity();
-                    toast('Sukses menambahkan data pegawai', 'success');
+                    toast('Sukses menambahkan data activity', 'success');
                 },
                 error: function (error) {
                     $("#btn-add-activity").html('Tambah');
