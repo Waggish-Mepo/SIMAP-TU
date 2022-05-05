@@ -57,6 +57,10 @@ class ActivityController extends Controller
         }
 
         $employees =  $activityDb->index()['data'];
+        $employeeDb = new EmployeeService;
+        foreach ($employees as $key => $value) {
+            $employees[$key]['nama_pegawai'] = $employeeDb->detail($employees[$key]['employee_id'])['nama'];
+        }
         $pribadi =  $activityDb->index($payload)['data'];
 
         $activities['pribadi'] = $pribadi;
@@ -118,11 +122,10 @@ class ActivityController extends Controller
             'kategori' => $request->kategori,
         ];
 
-        $activityDb->create($payload);
+        $activities = $activityDb->create($payload);
 
         // dd($tes);
 
-        return redirect()->route('employee.activity.index')
-            ->with('success', 'Data berhasil ditambahkan');
+        return response()->json($activities);
     }
 }

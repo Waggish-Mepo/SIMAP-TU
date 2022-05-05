@@ -77,6 +77,8 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], funct
         Route::get('/database/certificate/{employeeId}', [EmployeeAffair\CertificateController::class, 'index'])->name('certificates.index');
         Route::get('/database/ijazah/{employeeId}', [EmployeeAffair\IjazahController::class, 'index'])->name('ijazah.index');
         Route::get('/database/users', [EmployeeAffair\EmployeeController::class, 'getUsers']);
+        Route::get('/database/activity', [EmployeeAffair\ActivityController::class, 'getActivity']);
+        Route::post('/database/activity', [EmployeeAffair\ActivityController::class, 'store']);
         Route::patch('/database/users', [EmployeeAffair\EmployeeController::class, 'resetPassword']);
         Route::group(['middleware' => ['auth', 'role:ADMIN']], function () {
             Route::post('/database/users', [EmployeeAffair\EmployeeController::class, 'createUser']);

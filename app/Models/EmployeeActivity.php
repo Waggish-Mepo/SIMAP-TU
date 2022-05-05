@@ -24,4 +24,5 @@ class EmployeeActivity extends Model
         'tgl_kegiatan',
         'kategori',
     ];
+
 }
