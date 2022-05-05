@@ -122,12 +122,10 @@
                                             class="py-6 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
                                             Kategori
                                         </th>
-                                        @if ($user->role === 'ADMIN')
-                                            <th scope="col"
-                                                class="rounded-r-lg py-6 px-6 text-xs font-medium tracking-wider text-center text-white uppercase dark:text-gray-400">
-                                                Aksi
-                                            </th>
-                                        @endif
+                                        <th scope="col"
+                                            class="rounded-r-lg py-6 px-6 text-xs font-medium tracking-wider text-center text-white uppercase dark:text-gray-400">
+                                            Aksi
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody id="render-pribadi">
@@ -266,7 +264,7 @@
                         </div>
                     </td>
                     `
-            if (role === 'ADMIN'){
+            if (role === 'ADMIN' || id === 'pribadi') {
                 html += `
                         <td class="rounded-r-lg py-6 px-6 text-sm text-center font-medium flex-nowrap">
                             <div class="inline-flex" role="group">
