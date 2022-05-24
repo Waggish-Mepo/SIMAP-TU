@@ -70,6 +70,7 @@ return [
         public_path('storage') => storage_path('app/public'),
         public_path('public/certificates') => storage_path('app/public/storage/certificates'),
         public_path('public/visits') => storage_path('app/public/storage/visits'),
+        public_path('public/ijazah') => storage_path('app/public/storage/ijazah')
     ],
 
 ];
