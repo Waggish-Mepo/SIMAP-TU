@@ -120,7 +120,7 @@
                         </div>
                         <div class="mb-6">
                             <label for="sk_pengangkatan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">SK Pengangkatan</label>
-                            <input type="number" name="sk_pengangkatan" id="sk_pengangkatan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" value="{{$employee['sk_pengangkatan']}}">
+                            <input type="text" name="sk_pengangkatan" id="sk_pengangkatan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" value="{{$employee['sk_pengangkatan']}}">
                         </div>
                         <div class="mb-6">
                             <label for="lembaga-pengangkatan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Lembaga Pengangkatan</label>
@@ -135,7 +135,7 @@
                         </div>
                         <div class="mb-6">
                             <label for="sk-cpns" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">SK CPNS</label>
-                            <input type="number" name="sk_cpns" id="sk-cpns" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" value="{{$employee['sk_cpns']}}">
+                            <input type="text" name="sk_cpns" id="sk-cpns" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" value="{{$employee['sk_cpns']}}">
                         </div>
                         <div class="mb-6">
                             <label for="tmt-pns" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">TMT PNS</label>
@@ -148,7 +148,7 @@
                         </div>
                         <div class="mb-6">
                             <label for="kartu-suami" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Kartu Suami</label>
-                            <input type="number" name="kartu_suami" id="kartu-suami" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" value="{{$employee['kartu_suami']}}">
+                            <input type="text" name="kartu_suami" id="kartu-suami" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" value="{{$employee['kartu_suami']}}">
                         </div>
                         <div class="mb-6">
                             <label for="ktp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">KTP</label>
@@ -207,7 +207,7 @@
                         </div>
                         <div class="mb-6">
                             <label for="kartu-istri" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Kartu Istri</label>
-                            <input type="number" name="kartu_istri" id="kartu-istri" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" value="{{$employee['kartu_istri']}}">
+                            <input type="text" name="kartu_istri" id="kartu-istri" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" value="{{$employee['kartu_istri']}}">
                         </div>
                         <div class="mb-6">
                             <label for="kk" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">KK</label>
