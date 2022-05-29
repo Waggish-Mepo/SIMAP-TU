@@ -51,6 +51,10 @@ class VisitLetterService{
         $visit_letter = $this->fill($visit_letter, $payload);
         $visit_letter->save();
 
+        if ($payload['lampiran'] === null) {
+            $payload['lampiran'] = '-';
+        }
+
         return $visit_letter->toArray();
     }
 
@@ -63,6 +67,10 @@ class VisitLetterService{
             $payload['dokumentasi'] = str_replace('public/', '', $payload['dokumentasi']);
         } else {
             $payload['dokumentasi'] = $visit_letter->dokumentasi;
+        }
+
+        if ($payload['lampiran'] === null) {
+            $payload['lampiran'] = '-';
         }
 
         $visit_letter = $this->fill($visit_letter, $payload);
