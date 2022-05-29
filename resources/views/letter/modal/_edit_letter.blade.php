@@ -36,14 +36,14 @@
                             <label for="pengirim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Pengirim</label>
                             <input type="text" id="pengirim" name="pengirim"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                                placeholder="" value="" required>
+                                placeholder="contoh: PT Mepo Sejahtera" value="" required>
                         </div>
                         @endif
                         <div class="mb-6">
                             <label for="perihal" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Perihal</label>
                             <input type="text" id="perihal" name="perihal"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                                placeholder="" value="" required>
+                                placeholder="contoh: Pemberitahuan PTM Terbatas" value="" required>
                         </div>
                         <div class="mb-6">
                             <label for="sifat"

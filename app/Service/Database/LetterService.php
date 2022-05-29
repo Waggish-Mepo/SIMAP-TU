@@ -45,6 +45,11 @@ class LetterService{
     {
         $letter = new Letter;
         $letter->id = Uuid::uuid4()->toString();
+
+        if ($payload['lampiran'] === null) {
+            $payload['lampiran'] = '-';
+        }
+
         $letter = $this->fill($letter, $payload);
         $letter->save();
 
@@ -68,6 +73,11 @@ class LetterService{
     public function update($letterId, $payload)
     {
         $letter = Letter::findOrFail($letterId);
+
+        if ($payload['lampiran'] === null) {
+            $payload['lampiran'] = '-';
+        }
+
         $letter = $this->fill($letter, $payload);
         $letter->save();
 
