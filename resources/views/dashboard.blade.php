@@ -34,7 +34,4 @@
 @endsection
 
 @section('script')
-<script>
-    console.log("halo mas")
-</script>
 @endsection
