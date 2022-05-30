@@ -93,12 +93,12 @@
 
                              <input disabled type="text" id="status" name="status"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                                value="{{ $visit['status'] }}"> 
+                                value="{{ $visit['status'] }}">
                         </div>
                         <div class="mb-6">
                             <label for="dokumentasi"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Dokumentasi</label>
-                                <img id="dokumentasi-img" class="mx-auto" src="{{ asset('storage/'.$visit['dokumentasi'])}}" alt="" srcset="" style="width:15rem;height:15rem">
+                                <img id="dokumentasi-img" class="mx-auto" src="{{ asset('storage/'.$visit['dokumentasi'])}}" alt="" srcset="">
                         </div>
                         <div class="flex justify-end p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
                             <a href="{{ route('visit_letter.index') }}" id="btn-add-employee" class="text-white bg-primary hover:bg-primary focus:ring-4 focus:ring-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary dark:hover:bg-primary dark:focus:ring-primary">Kembali</a>

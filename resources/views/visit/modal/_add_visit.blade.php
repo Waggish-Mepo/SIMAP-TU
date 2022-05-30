@@ -18,11 +18,12 @@
                         <label for="no_surat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">No Surat</label>
                         <input type="text" name="no_surat" id="no_surat"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
+                            required
                             >
                     </div>
                     <div class="mb-6">
                         <label for="lampiran"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Lampiran</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Lampiran (opsional)</label>
                         <input type="text" id="lampiran" name="lampiran"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
                             >
@@ -32,6 +33,7 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Perihal</label>
                         <input type="text" id="perihal" name="perihal"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
+                            placeholder="contoh: Surat Pemohonan Kunjungan Industri" required
                             >
                     </div>
                     <div class="mb-6">
@@ -39,6 +41,7 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Kepada</label>
                         <input type="text" id="kepada" name="kepada"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
+                            required
                             >
                     </div>
                     <div class="mb-6">
@@ -46,6 +49,7 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Jam Kunjungan</label>
                         <input type="time" id="jam" name="jam"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
+                            required
                             >
                     </div>
                 </div>
@@ -55,6 +59,7 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tanggal Kunjungan</label>
                         <input id="tanggal" name="tanggal" type="date"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
+                            required
                             >
                     </div>
                     <div class="mb-6">
@@ -62,6 +67,8 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tempat Kunjungan</label>
                         <input type="text" id="tempat" name="tempat"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
+                            placeholder="contoh: Balai Krida"
+                            required
                             >
                     </div>
                     <div class="mb-6">
@@ -69,6 +76,8 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Jumlah Peserta</label>
                         <input type="number" id="jumlah_peserta" name="jumlah_peserta"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
+                            placeholder="contoh: 46"
+                            required
                             >
                     </div>
                     <div class="mb-6">
@@ -76,6 +85,7 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Keterangan Kunjungan</label>
                         <input type="text" id="keterangan" name="keterangan"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
+                            required
                             >
                     </div>
                     <div class="mb-6">
