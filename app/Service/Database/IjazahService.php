@@ -104,8 +104,8 @@ class IjazahService{
             'kabupaten_kota' => 'required|string',
             'provinsi' => 'required|string',
             'nama_ortu' => 'required|string',
-            'nis' => 'required|integer',
-            'nisn' => 'required|integer',
+            'nis' => 'required|integer|min:8',
+            'nisn' => 'required|integer|min:10',
             'no_peserta_un' => 'required|string',
             'ijazah' => 'required',
         ]);
