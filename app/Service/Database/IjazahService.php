@@ -100,7 +100,7 @@ class IjazahService{
             'nomor' => 'required|string',
             'jurusan' => 'required|string',
             'nama_sekolah' => 'required|string',
-            'npsn' => 'required|integer',
+            'npsn' => 'required|string',
             'kabupaten_kota' => 'required|string',
             'provinsi' => 'required|string',
             'nama_ortu' => 'required|string',
