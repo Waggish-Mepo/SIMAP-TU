@@ -46,9 +46,9 @@
                     <div class="mb-6">
                         <label for="npsn"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">NPSN</label>
-                        <input type="number" id="npsn" name="npsn"
+                        <input type="text" id="npsn" name="npsn"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                            required placeholder="Masukan Nomor NPSN">
+                            required placeholder="Masukan NPSN">
                     </div>
                     <div class="mb-6">
                         <label for="kabupaten_kota"
