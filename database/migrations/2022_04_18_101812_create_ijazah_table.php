@@ -19,12 +19,12 @@ class CreateIjazahTable extends Migration
             $table->string('nomor');
             $table->string('jurusan');
             $table->string('nama_sekolah');
-            $table->integer('npsn');
+            $table->string('npsn');
             $table->string('kabupaten_kota');
             $table->string('provinsi');
             $table->string('nama_ortu');
             $table->integer('nis');
-            $table->integer('nisn');
+            $table->bigInteger('nisn');
             $table->string('no_peserta_un');
             $table->string('ijazah');
             $table->timestamps();
