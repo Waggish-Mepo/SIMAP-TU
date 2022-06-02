@@ -1,10 +1,21 @@
 <p align="center"><img src="https://raw.githubusercontent.com/Waggish-Mepo/SIMAP-TU/master/public/img/logo-wikrama-bogor.png" width="100"></p>
 
-## Tentang SIMAP Tata Usaha
+## About SIMAP TU
 
 Sistem Informasi Manajemen Administrasi Pegawai Tata Usaha atau SIMAP TU merupakan inovasi dibidang IT yang dikembangkan untuk memudahkan pihak sekolah dalam mengelola pencatatan, pengumpulan, penyimpanan data, dan dokumen yang dapat dipergunakan untuk membantu pimpinan dalam pengambilan keputusan, urusan surat menyurat serta laporan mengenai kegiatan sekolah.
 
+## Tech Stacks
+- Laravel 8
+- TailwindCSS
+- Flowbite
+- Datatables
+
 ## Getting Started
+### Requirements
+- PHP 8
+- Composer
+- NodeJS
+
 ### Setup
 
 - Clone repositori ini (https://github.com/Waggish-Mepo/SIMAP-TU.git) ke lokal
@@ -17,11 +28,11 @@ Sistem Informasi Manajemen Administrasi Pegawai Tata Usaha atau SIMAP TU merupak
     - `php artisan migrate --seed`
     - `php artisan storage:link`
 
-### Debugging/Menjalankan Server
+### Debugging/Run Server
 - `php artisan serve`
 - `npm run watch`
 
-## Kontributor
+## Contributor
 
 - **[Suryo Mujahid](https://github.com/suryomujahid)**
 - **[Reski Junaidi Shalat](https://github.com/Saekyo)**
