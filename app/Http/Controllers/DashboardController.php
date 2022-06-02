@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Service\Database\EmployeeService;
 use App\Service\Database\UserService;
+use App\Service\Database\LetterService;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
 
@@ -50,6 +51,17 @@ class DashboardController extends Controller
         $users['staffs'] = $staffs;
         $users['employees'] = count($employees)+1;
 
-        return view('dashboard', compact('user', 'users'));
+        $letterDB = new LetterService;
+        $letters[0] = count($letterDB->index([
+            "jenis" => "Surat Masuk",
+            "monthly" => true
+        ])['data']);
+        $letters[1] = count($letterDB->index([
+            "jenis" => "Surat Keluar",
+            "monthly" => true
+        ])['data']);
+
+
+        return view('dashboard', compact('user', 'users', 'letters'));
     }
 }
