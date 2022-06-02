@@ -29,6 +29,10 @@
                 <h5 class="mb-2 text-2xl font-regular tracking-tight text-white dark:text-white">Total Staf</h5>
                 <h5 class="mt-6 p-3 rounded-md bg-green-400 mb-6 text-6xl font-bold tracking-tight text-gray-100 dark:text-white">{{$users['staffs']}}</h5>
             </div>
+            <div class="block p-6 text-center w-56 bg-green-500 rounded-lg border border-green-300 shadow-md hover:bg-green-600 dark:bg-green-700 dark:border-green-700 dark:hover:bg-green-700">
+                <h5 class="mb-2 text-2xl font-regular tracking-tight text-white dark:text-white">Total Siswa</h5>
+                <h5 class="mt-6 p-3 rounded-md bg-green-400 mb-6 text-6xl font-bold tracking-tight text-gray-100 dark:text-white">{{$users['students']}}</h5>
+            </div>
         </div>
     </div>
 @endsection

@@ -4,10 +4,13 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeAffair\IjazahController;
 use App\Http\Controllers\EmployeeAffair;
+use App\Http\Controllers\StudentAffair;
 use App\Http\Controllers\Visit;
 use App\Http\Controllers\EmployeeAffair\EmployeeController;
 use App\Http\Controllers\Meeting;
 use App\Http\Controllers\Letter;
+use App\Http\Controllers\StudenAffair\StudentController;
+use App\Http\Controllers\StudentAffair\StudentController as StudentAffairStudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,8 +30,27 @@ Route::get('/login', [AuthController::class, 'check'])->name('login');
 Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('auth');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER']], function () {
+Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER,STUDENT']], function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+
+    // Siswa
+    Route::prefix('student')->name('student.')->group(function () {
+        Route::get('/', [StudentAffairStudentController::class, 'index'])->name('index');
+        Route::get('/{studentId}/detail', [StudentAffairStudentController::class, 'detail'])->name('detail');
+        Route::get('/{studentId}/edit', [StudentAffairStudentController::class, 'edit'])->name('edit');
+        Route::patch('/{studentId}/update', [StudentAffairStudentController::class, 'updateUser'])->name('update');
+
+
+        // Ajax Request Siswa
+        Route::get('/database/users', [StudentAffair\StudentController::class, 'getUsers']);
+        Route::patch('/database/users', [StudentAffair\StudentController::class, 'resetPassword']);
+
+        Route::group(['middleware' => ['auth', 'role:ADMIN']], function () {
+            Route::post('/database/users', [StudentAffair\StudentController::class, 'createUser']);
+        });
+    });
+
 
     // Kepegawaian
     Route::prefix('employee')->name('employee.')->group(function () {

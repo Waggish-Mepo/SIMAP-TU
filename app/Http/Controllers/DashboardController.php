@@ -21,6 +21,7 @@ class DashboardController extends Controller
 
         $teachers = 0;
         $staffs = 0;
+        $students = 0;
         foreach ($employees as $key => $value) {
             $jenisPtk = $employees[$key]['jenis_ptk'];
 
@@ -48,6 +49,7 @@ class DashboardController extends Controller
 
         $users['teachers'] = $teachers;
         $users['staffs'] = $staffs;
+        $users['students'] = count($employees) - $teachers - $staffs;
         $users['employees'] = count($employees)+1;
 
         return view('dashboard', compact('user', 'users'));
