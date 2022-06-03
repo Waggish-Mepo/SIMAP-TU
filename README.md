@@ -12,7 +12,7 @@ Sistem Informasi Manajemen Administrasi Pegawai Tata Usaha atau SIMAP TU merupak
 
 ## Getting Started
 ### Requirements
-- PHP 8
+- PHP 7.4+
 - Composer
 - NodeJS
 
