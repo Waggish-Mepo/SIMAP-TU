@@ -73,7 +73,7 @@
                                 </th>
                                 <th scope="col"
                                     class="py-6 px-6 text-xs font-medium tracking-wider text-center text-white uppercase dark:text-gray-400">
-                                    Lampiran
+                                    File Surat
                                 </th>
                                 <th scope="col"
                                     class="rounded-r-lg py-6 px-6 text-xs font-medium tracking-wider text-center text-white uppercase dark:text-gray-400">
@@ -217,13 +217,13 @@
                     </td>
                     <td
                         class="text-center py-6 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                            ${data.lampiran}
+                           <img id="data-file" class="w-24 " src="{{ asset('storage/${data.file}')}}"></img>
                     </td>
                     <td
                         class="rounded-r-lg py-6 px-6 text-sm text-center font-medium flex-nowrap">
                         <div class="inline-flex" role="group">
                             <button type="button"
-                                onclick="btnEditLetter('${data.id}', '${data.no_surat}', '${data.tgl_surat}', '${data.perihal}', '${data.sifat}', '${data.lampiran }', '${data.pengirim}', '${data.tgl_terima}')"
+                                onclick="btnEditLetter('${data.id}', '${data.no_surat}', '${data.tgl_surat}', '${data.perihal}', '${data.sifat}', '${data.lampiran }', '${data.pengirim}', '${data.tgl_terima}', '${data.file}')"
                                 data-modal-toggle="modal-edit-letter"
                                 class="text-white bg-yellow-400 opacity-90 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
                                 <i class="fa-solid fa-pen-to-square"></i>

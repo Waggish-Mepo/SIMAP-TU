@@ -15,6 +15,7 @@ class CreateLettersTable extends Migration
     {
         Schema::create('letters', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('disposition_id')->nullable();
             $table->string('pengirim')->nullable();
             $table->string('jenis');
             $table->string('no_surat');
@@ -23,6 +24,7 @@ class CreateLettersTable extends Migration
             $table->string('perihal');
             $table->string('sifat');
             $table->string('lampiran')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }

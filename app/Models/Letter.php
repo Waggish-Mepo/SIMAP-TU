@@ -25,4 +25,8 @@ class Letter extends Model
         'tgl_surat' => 'datetime:d/m/Y',
         'tgl_terima' => 'datetime:d/m/Y',
     ];
+
+    protected $fillable = [
+        'file',
+    ];
 }
