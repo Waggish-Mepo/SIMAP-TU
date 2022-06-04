@@ -3,6 +3,7 @@
 namespace App\Service\Database;
 
 use App\Models\Letter;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Ramsey\Uuid\Uuid;
@@ -17,6 +18,7 @@ class LetterService{
         $tgl_surat = $filter['tgl_surat'] ?? null;
         $sifat = $filter['sifat'] ?? null;
         $jenis = $filter['jenis'] ?? null;
+        $monthly = $filter['monthly'] ?? false;
 
         $query = Letter::orderBy('created_at', $orderBy);
 
@@ -34,6 +36,10 @@ class LetterService{
 
         if ($sifat !== null) {
             $query->where('sifat', $sifat);
+        }
+
+        if ($monthly) {
+            $query->whereMonth('tgl_surat', Carbon::now()->month);
         }
 
         $employees = $query->simplePaginate($per_page);
