@@ -79,11 +79,12 @@ class StudentController extends Controller
             'nis' => $request->nis,
             'nisn' => $request->nisn,
             'tempat_lahir' => $request->tempat_lahir,
-            'tanggal_lahir' => Carbon::parse($request->tanggal_lahir)->format('Y-m-d'),
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'jenis_kelamin' => $request->jenis_kelamin,
         ];
-        $employee = $studentDb->create($payload);
+        $student = $studentDb->create($payload);
 
-        return response()->json($employee);
+        return response()->json($student);
     }
 
     public function resetPassword(Request $request)

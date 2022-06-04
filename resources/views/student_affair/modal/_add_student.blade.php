@@ -25,7 +25,7 @@
                 <!-- Modal body -->
                 <div class="p-6 space-y-3">
                     <div class="mb-3">
-                        <label for="nama_s" class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">Nama</label>
+                        <label for="nama" class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">Nama</label>
                         <input type="text" id="nama" name="nama"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
                             placeholder="Masukan Nama" required>

@@ -13,7 +13,4 @@ class Student extends Model
 
     public $incrementing = false;
 
-    protected $casts = [
-       'tanggal_lahir' => 'datetime:d/m/Y',
-    ];
 }

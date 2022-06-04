@@ -17,6 +17,8 @@ class StudentService{
         $per_page = $filter['per_page'] ?? 99;
         $name = $filter['nama'] ?? null;
         $nis = $filter['nis'] ?? null;
+        $nisn = $filter['nisn'] ?? null;
+        $tempat_lahir = $filter['tempat_lahir'] ?? null;
 
         $query = Student::orderBy('created_at', $orderBy);
 
@@ -26,6 +28,14 @@ class StudentService{
 
         if ($nis !== null) {
             $query->where('nis', $nis);
+        }
+
+        if ($nisn !== null) {
+            $query->where('nisn', $nisn);
+        }
+
+        if ($tempat_lahir !== null) {
+            $query->where('tempat_lahir', 'LIKE','%'.$tempat_lahir.'%');
         }
 
         $employees = $query->simplePaginate($per_page);
