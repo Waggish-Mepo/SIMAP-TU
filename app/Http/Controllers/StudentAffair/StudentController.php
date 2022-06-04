@@ -103,7 +103,7 @@ class StudentController extends Controller
 
         if ($user->userable_id !== $studentId &&
             $user->role !== User::ADMIN
-        ) return redirect()->route('employee.index');
+        ) return redirect()->route('student.index');
 
         $payload = $request->all();
         unset($payload['_token']);
@@ -111,7 +111,7 @@ class StudentController extends Controller
         unset($payload['id']);
 
         if (isset($payload['tanggal_lahir'])) {
-            $payload['tanggal_lahir'] = Carbon::createFromFormat('d/m/Y', $request->tanggal_lahir)->format('Y-m-d');
+            $payload['tanggal_lahir'] = Carbon::parse($payload['tanggal_lahir'])->format('Y-m-d');
         }
 
         $studentDb->update($studentId, $payload);
