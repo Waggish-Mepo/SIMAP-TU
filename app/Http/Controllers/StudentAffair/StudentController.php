@@ -96,6 +96,20 @@ class StudentController extends Controller
         return response()->json($student);
     }
 
+    public function toggleStatus($studentId)
+    {
+        $user = Auth::user();
+        $studentDb = new StudentService;
+
+        if ($user->userable_id !== $studentId &&
+            $user->role !== User::ADMIN
+        ) return redirect()->route('employee.index');
+
+        $employee = $studentDb->toggleStatus($studentId);
+
+        return response()->json($employee);
+    }
+
     public function updateUser($studentId, Request $request)
     {
         $user = Auth::user();

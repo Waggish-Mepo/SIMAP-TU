@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER,STUDENT']
         Route::group(['middleware' => ['auth', 'role:ADMIN']], function () {
             Route::patch('/database/users', [StudentAffair\StudentController::class, 'resetPassword']);
             Route::post('/database/users', [StudentAffair\StudentController::class, 'createUser']);
+            Route::patch('/{studentId}/update-status', [StudentAffair\StudentController::class, 'toggleStatus'])->name('update.status');
         });
     });
 

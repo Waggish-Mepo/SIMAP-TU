@@ -74,6 +74,14 @@ class StudentService{
         return $user->toArray();
     }
 
+    public function toggleStatus($studentId)
+    {
+        $user = User::where('userable_id', $studentId)->first();
+        $user->status = !$user->status;
+        $user->save();
+
+        return $user->toArray();
+    }
 
     public function detail($studentId)
     {

@@ -64,6 +64,12 @@
                     </div>
                 </div>
                 <div class="flex justify-end">
+                    @if ($user->role === 'ADMIN')
+                        <button type="button" onclick="toggleStatus()" class="
+                        {{$student['user']['status'] ? 'bg-red-500 hover:bg-red-700' : 'bg-green-500 hover:bg-green-700'}} btn-toggle-status text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2">
+                            {{$student['user']['status'] ? 'Nonaktifkan Akun' : 'Aktifkan Akun'}}
+                        </button>
+                    @endif
                     @if (Route::currentRouteName() === 'student.edit')
                         <button type="submit" class="bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                             Simpan
@@ -100,6 +106,25 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+
+        function toggleStatus(){
+            let btn = $('.btn-toggle-status');
+            $.ajax({
+                type: 'PATCH',
+                url: '{{route('student.update.status', $student['id'])}}',
+                success: function(data){
+                    toast('Berhasil mengubah status akun', 'success');
+                    if(!data.status){
+                        btn.removeClass('bg-red-500 hover:bg-red-700').addClass('bg-green-500 hover:bg-green-700');
+                        btn.text('Aktifkan Akun');
+                    }else{
+                        btn.removeClass('bg-green-500 hover:bg-green-700').addClass('bg-red-500 hover:bg-red-700');
+                        btn.text('Nonaktifkan Akun');
+                    }
+                }
+            });
+        }
     </script>
 
 @endsection
