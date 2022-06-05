@@ -44,9 +44,9 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,EMPLOYEE,HEADMASTER,STUDENT']
 
         // Ajax Request Siswa
         Route::get('/database/users', [StudentAffair\StudentController::class, 'getUsers']);
-        Route::patch('/database/users', [StudentAffair\StudentController::class, 'resetPassword']);
 
         Route::group(['middleware' => ['auth', 'role:ADMIN']], function () {
+            Route::patch('/database/users', [StudentAffair\StudentController::class, 'resetPassword']);
             Route::post('/database/users', [StudentAffair\StudentController::class, 'createUser']);
         });
     });

@@ -96,6 +96,7 @@
 
     @if ($user->role === 'ADMIN')
         @include('student_affair.modal._add_student')
+        @include('student_affair.modal._reset_password')
     @endif
 
 @endsection
@@ -269,7 +270,7 @@
         }
 
         function btnResetPassword(id, name) {
-            toggleModal('modal-reset-password');
+            toggleModal('modal-reset-password-student');
             $('#modal-reset-password-id').val(id);
             $('#modal-reset-password-name').html(name);
         }
@@ -310,7 +311,7 @@
         }
 
         function resetPassword() {
-            let url = `{{ url('/employee/database/users') }}`
+            let url = `{{ url('/student/database/users') }}`
             let id = $('#modal-reset-password-id').val();
 
             $.ajax({
@@ -329,7 +330,7 @@
                 success: function () {
                     $("#btn-reset-password").html('Ya');
                     $('#btn-reset-password').prop('disabled', false);
-                    toggleModal('modal-reset-password', false);
+                    toggleModal('modal-reset-password-student', false);
 
                     getUsers();
                     toast('Sukses mereset password', 'success');
@@ -337,7 +338,7 @@
                 error: function (error) {
                     $("#btn-reset-password").html('Tambah');
                     $('#btn-reset-password').prop('disabled', false);
-                    toggleModal('modal-reset-password', false);
+                    toggleModal('modal-reset-password-student', false);
 
                     toast('Gagal mereset password', 'danger');
                 }
