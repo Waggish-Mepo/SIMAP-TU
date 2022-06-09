@@ -52,8 +52,8 @@ class DatabaseSeeder extends Seeder
         // Student
         $users = [
             [
-                'username' => 'siswauser123',
-                'password' => Hash::make('siswauser123'),
+                'username' => 'studentuser123',
+                'password' => Hash::make('studentuser123'),
                 'role' => User::STUDENT,
                 'status' => true
             ],
