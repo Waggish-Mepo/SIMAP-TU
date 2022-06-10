@@ -16,6 +16,7 @@
             <img class="max-w-md" src="{{asset('img/svg/vector-user-dashboard.svg')}}" alt="" srcset="">
         </div>
 
+        @if ($user->role !== 'STUDENT')
         <div class="flex flex-wrap space-x-3">
             <div class="block p-6 text-center w-56 bg-orang rounded-lg border border-orange-300 shadow-md hover:bg-orange-400 dark:bg-orang dark:border-orang-700 dark:hover:bg-orang-700">
                 <h5 class="mb-2 text-2xl font-regular tracking-tight text-white dark:text-white">Total Pegawai</h5>
@@ -34,6 +35,7 @@
                 <h5 class="mt-6 p-3 rounded-md bg-green-400 mb-6 text-6xl font-bold tracking-tight text-gray-100 dark:text-white">{{$users['students']}}</h5>
             </div>
         </div>
+        @endif
     </div>
 @endsection
 

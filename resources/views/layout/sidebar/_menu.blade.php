@@ -93,10 +93,10 @@
         <ul id="dropdown-kepegawaian"
             class="{{ Route::currentRouteName() === 'student.index' ||Route::currentRouteName() === 'student.detail' ||Route::currentRouteName() === 'student.edit'? '': 'hidden' }} py-2 space-y-2">
             <li>
-                <a href="{{ route('student.index') }}"
+                <a href="{{ route('student.detail', $user->userable_id) }}"
                     class="{{ Route::currentRouteName() === 'student.index' ||Route::currentRouteName() === 'employee.detail' ||Route::currentRouteName() === 'student.edit'? 'border-l-8 border-l-primary bg-gray-100 -ml-2': '' }}
                     rounded-lg flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11">
-                    {{ $user->role === 'ADMIN' ? 'Kelola' : 'Data' }} Siswa
+                    Perbarui Data Saya
                 </a>
             </li>
         </ul>

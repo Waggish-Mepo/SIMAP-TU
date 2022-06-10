@@ -8,9 +8,13 @@
 
 @section('content')
     <p class="mb-4 text-2xl font-semibold text-gray-500">
+        @if ($user->role === 'ADMIN')
         <a href="{{route('student.index')}}" class="text-gray-800" href="">Siswa</a>
         <i class="fa-solid fa-chevron-right text-lg text-primary mx-2"></i>
         {{ $student['nama'] }}
+        @else
+        <a href="{{route('student.index')}}" class="text-gray-800" href="">Perbarui Data Saya</a>
+        @endif
     </p>
 
     <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
@@ -48,17 +52,24 @@
                         </div>
                         <div class="mb-6">
                             <label for="tanggal_lahir" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tanggal Lahir</label>
-                            <input type="date" id="tanggal_lahir" name="tanggal_lahir" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" value="{{$student['tanggal_lahir']}}">
+                            <input type="date" id="tanggal_lahir" name="tanggal_lahir" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" value="{{$student['tanggal_lahir']}}"
+                            @if ($user->role !== 'ADMIN')
+                                disabled
+                            @endif
+                            >
                         </div>
                         <div class="mb-6">
                             <label for="jenis_kelamin" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Jenis Kelamin</label>
                             <select id="jenis_kelamin" name="jenis_kelamin"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                                required>
+                                required
+                                @if ($user->role !== 'ADMIN')
+                                disabled
+                                @endif
+                            >
                                 <option disabled {{$student['jenis_kelamin'] === null ? 'selected' : ''}} value> -- Pilih Jenis Kelamin -- </option>
                                     <option value="Laki-laki">Laki-laki</option>
                                     <option value="Perempuan">Perempuan</option>
-                                    <option value="Lainnya">Lainnya</option>
                             </select>
                         </div>
                     </div>

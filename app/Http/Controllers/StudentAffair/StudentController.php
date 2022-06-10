@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\StudentAffair;
 
-use App\Exports\EmployeesExport;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Service\Database\StudentService;
@@ -10,7 +9,6 @@ use App\Service\Database\UserService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
 {
@@ -24,9 +22,8 @@ class StudentController extends Controller
     public function detail($studentId)
     {
         $user = Auth::user();
-        if ($user->userable_id !== $studentId &&
-            $user->role !== User::ADMIN
-        ) return redirect()->route('employee.index');
+        if ($user->userable_id !== $studentId && $user->role !== User::ADMIN) return redirect()->route('dashboard');
+
 
         $studentDb = new StudentService;
         $student = $studentDb->detail($studentId);
@@ -36,9 +33,7 @@ class StudentController extends Controller
     public function edit($studentId)
     {
         $user = Auth::user();
-        if ($user->userable_id !== $studentId &&
-            $user->role !== User::ADMIN
-        ) return redirect()->route('employee.index');
+        if ($user->userable_id !== $studentId && $user->role !== User::ADMIN) return redirect()->route('dashboard');
 
         $studentDb = new StudentService;
         $student = $studentDb->detail($studentId);
@@ -52,7 +47,7 @@ class StudentController extends Controller
 
         $students = $studentDb->index(['order_by' => 'ASC'])['data'] ?? [];
 
-        if ($user->role === User::ADMIN){
+        if ($user->role === User::ADMIN) {
             $userDB = new UserService;
             $members = $userDB->index(['order_by' => 'ASC'])['data'] ?? [];
         }
@@ -62,7 +57,6 @@ class StudentController extends Controller
                 $empKey = array_search($students[$key]['id'], array_column($members, 'userable_id'));
                 $students[$key]['username'] = $members[$empKey]['username'];
             }
-
         }
 
         $users['students'] = $students;
@@ -101,13 +95,11 @@ class StudentController extends Controller
         $user = Auth::user();
         $studentDb = new StudentService;
 
-        if ($user->userable_id !== $studentId &&
-            $user->role !== User::ADMIN
-        ) return redirect()->route('employee.index');
+        if ($user->role !== User::ADMIN) return redirect()->route('student.index');
 
-        $employee = $studentDb->toggleStatus($studentId);
+        $student = $studentDb->toggleStatus($studentId);
 
-        return response()->json($employee);
+        return response()->json($student);
     }
 
     public function updateUser($studentId, Request $request)
@@ -115,9 +107,8 @@ class StudentController extends Controller
         $user = Auth::user();
         $studentDb = new StudentService;
 
-        if ($user->userable_id !== $studentId &&
-            $user->role !== User::ADMIN
-        ) return redirect()->route('student.index');
+        if ($user->userable_id !== $studentId) return redirect()->route('dashboard');
+        // if ($user->role !== User::ADMIN) return redirect()->route('student.index');
 
         $payload = $request->all();
         unset($payload['_token']);
@@ -133,5 +124,3 @@ class StudentController extends Controller
         return redirect()->back()->with('success', 'Berhasil memperbarui data siswa');
     }
 }
-
-
