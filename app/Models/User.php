@@ -13,6 +13,7 @@ class User extends Authenticatable
     const ADMIN = 'ADMIN';
     const EMPLOYEE = 'EMPLOYEE';
     const HEADMASTER = 'HEADMASTER';
+    const STUDENT = 'STUDENT';
 
     public $incrementing = false;
 

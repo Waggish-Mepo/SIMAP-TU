@@ -3,9 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\Employee;
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
 class UserFactory extends Factory
@@ -24,6 +24,7 @@ class UserFactory extends Factory
         return [
             'id' => $this->faker->uuid(),
             'userable_id' => Employee::factory(['nama' => $name])->create()->id,
+            // 'userable_id' => Student::factory(['nama' => $name])->create()->id,
             'name' => $name,
             'username' => $username,
             'password' => Hash::make($username),

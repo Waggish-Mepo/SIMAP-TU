@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Employee;
+use App\Models\Student;
 use App\Models\User;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\Hash;
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
+        // Employee
         $users = [
             [
                 'username' => 'adminuser123',
@@ -46,5 +48,21 @@ class DatabaseSeeder extends Seeder
             if ($createdUser['role'] === User::ADMIN) Employee::where('id', $createdUser['userable_id'])->update(['jenis_ptk' => Employee::Tenaga_Administrasi_Sekolah]);
             elseif ($createdUser['role'] === User::HEADMASTER) Employee::where('id', $createdUser['userable_id'])->update(['jenis_ptk' => Employee::Kepala_Sekolah]);
         }
+
+        // Student
+        $users = [
+            [
+                'username' => 'studentuser123',
+                'password' => Hash::make('studentuser123'),
+                'role' => User::STUDENT,
+                'status' => true
+            ],
+        ];
+
+        foreach ($users as $user) {
+            $createdUser = User::factory($user)->create();
+            Student::where('id', $createdUser['userable_id']);
+        }
+
     }
 }

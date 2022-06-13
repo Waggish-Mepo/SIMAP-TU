@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use App\Service\Database\EmployeeService;
 use App\Service\Database\UserService;
 use Illuminate\Contracts\Session\Session;
@@ -21,6 +22,7 @@ class DashboardController extends Controller
 
         $teachers = 0;
         $staffs = 0;
+        $students = count(Student::all());
         foreach ($employees as $key => $value) {
             $jenisPtk = $employees[$key]['jenis_ptk'];
 
@@ -48,6 +50,7 @@ class DashboardController extends Controller
 
         $users['teachers'] = $teachers;
         $users['staffs'] = $staffs;
+        $users['students'] = $students;
         $users['employees'] = count($employees)+1;
 
         return view('dashboard', compact('user', 'users'));
