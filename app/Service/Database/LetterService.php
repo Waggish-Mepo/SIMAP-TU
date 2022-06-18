@@ -6,6 +6,7 @@ use App\Models\Letter;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Facades\Storage;
 
 class LetterService{
 
@@ -50,6 +51,15 @@ class LetterService{
             $payload['lampiran'] = '-';
         }
 
+        
+         if (isset($payload['file'])) {
+            $payload['file'] = $payload['file']->store('public/file');
+            $payload['file'] = str_replace('public/', '', $payload['file']);
+        } else {
+            $payload['file'] = $letter->file;
+        }
+
+
         $letter = $this->fill($letter, $payload);
         $letter->save();
 
@@ -78,6 +88,14 @@ class LetterService{
             $payload['lampiran'] = '-';
         }
 
+        if (isset($payload['file'])) {
+            Storage::delete('public/'.$letter->file);
+            $payload['file'] = $payload['file']->store('public/file');
+            $payload['file'] = str_replace('public/', '', $payload['file']);
+        } else {
+            $payload['file'] = $letter->file;
+        }
+
         $letter = $this->fill($letter, $payload);
         $letter->save();
 
@@ -91,6 +109,7 @@ class LetterService{
         }
 
         $validate = Validator::make($letter->toArray(), [
+            'disposition_id' => 'nullable|string',
             'no_surat' => 'required|string|max:255',
             'pengirim' => 'nullable|string',
             'sifat' => ['required', Rule::in(config('constant.letter.sifat'))],
@@ -99,6 +118,7 @@ class LetterService{
             'tgl_terima' => 'nullable',
             'perihal' => 'required|string',
             'lampiran' => 'nullable|string',
+            'file' => 'nullable|string',
         ]);
 
         if($validate->fails()) {
