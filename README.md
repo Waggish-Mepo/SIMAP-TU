@@ -9,6 +9,8 @@ Sistem Informasi Manajemen Administrasi Pegawai Tata Usaha atau SIMAP TU merupak
 - TailwindCSS
 - Flowbite
 - Datatables
+- JQuery
+- MySQL
 
 ## Getting Started
 ### Requirements
